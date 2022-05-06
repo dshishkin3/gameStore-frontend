@@ -1,9 +1,16 @@
 import React from "react";
 
-import "./App.css";
+import Layout from "./components/Layout/Layout";
+import AppRouter from "./config/Routes";
 
 function App() {
-  return <>hi!!</>;
+  return (
+    <div>
+      <Layout>
+        <AppRouter />
+      </Layout>
+    </div>
+  );
 }
 
 export default App;
