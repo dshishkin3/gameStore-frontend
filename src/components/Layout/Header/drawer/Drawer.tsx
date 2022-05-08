@@ -12,34 +12,12 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import logo from "../../../../assets/images/header/logo.png";
 
 import styles from "./Drawer.module.scss";
+import { mainCategories } from "../../../../utils/categories";
 
 interface IDrawerProps {
   drawer: boolean;
   setDrawer: (arg0: boolean) => void;
 }
-
-const categories = [
-  {
-    id: 1,
-    title: "Компьютерная периферия",
-  },
-  {
-    id: 2,
-    title: "Комплектующие для пк",
-  },
-  {
-    id: 3,
-    title: "Компьютеры, ноутбуки",
-  },
-  {
-    id: 4,
-    title: "Игровые приставки",
-  },
-  {
-    id: 5,
-    title: "Игровые столы и кресла",
-  },
-];
 
 const DrawerBlock = ({ drawer, setDrawer }: IDrawerProps) => {
   return (
@@ -69,7 +47,7 @@ const DrawerBlock = ({ drawer, setDrawer }: IDrawerProps) => {
         </div>
         <div className={styles.body}>
           <div className={styles.categories}>
-            {categories.map((category) => (
+            {mainCategories.map((category) => (
               <Link
                 to={`category/${category.title}`}
                 className={styles.category}
