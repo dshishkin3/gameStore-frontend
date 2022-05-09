@@ -25,9 +25,9 @@ const Card: FC<ICardProps> = ({ product }) => {
         </div>
         <img className={styles.img} src={product.urlImg} alt="" />
         <p className={styles.title}>
-          {product.title.length < 46
+          {product.title.length < 49
             ? product.title
-            : product.title.slice(0, 46) + "..."}
+            : product.title.slice(0, 49) + "..."}
         </p>
         <div className={styles.prices}>
           <p className={styles.price}>{product.price} ₽</p>
