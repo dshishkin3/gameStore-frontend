@@ -4,14 +4,19 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 
 import Card from "../../components/ui/card/Card";
-import { ICard } from "../../utils/interfaces";
+
+import { IProduct } from "../../utils/interfaces";
 
 import styles from "./Home.module.scss";
 import "swiper/css";
 import "swiper/css/navigation";
 
 const Home: FC = () => {
-  const [hits, setHits] = useState<ICard[]>([]);
+  const [hits, setHits] = useState<IProduct[]>([]);
+
+  useEffect(() => {
+    getHits();
+  }, []);
 
   const getHits = async () => {
     const res = await axios.get(
@@ -19,10 +24,6 @@ const Home: FC = () => {
     );
     setHits(res.data);
   };
-
-  useEffect(() => {
-    getHits();
-  }, []);
 
   return (
     <div className={styles.container}>

@@ -1,4 +1,4 @@
-export interface ICard {
+export interface IProduct {
   _id: string;
   title: string;
   desc: string;

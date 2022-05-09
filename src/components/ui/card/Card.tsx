@@ -1,13 +1,12 @@
 import React, { FC } from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-
-import { ICard } from "../../../utils/interfaces";
-
-import styles from "./Card.module.scss";
 import { Link } from "react-router-dom";
 
+import { IProduct } from "../../../utils/interfaces";
+
+import styles from "./Card.module.scss";
 interface ICardProps {
-  product: ICard;
+  product: IProduct;
 }
 
 const Card: FC<ICardProps> = ({ product }) => {
