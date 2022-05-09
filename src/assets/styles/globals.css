@@ -56,6 +56,24 @@ input:focus {
   width: 100%;
 }
 
+.swiper-button-prev {
+  display: none;
+}
+
+.swiper-button-next {
+  color: #767676;
+  transition: all 0.5s;
+}
+
+.swiper-button-next:hover {
+  transition: all 0.5s;
+  color: #2e2e2e;
+}
+
+.swiper-button-next::after {
+  font-size: 15px;
+}
+
 @media screen and (max-width: 400px) {
   select:focus,
   textarea:focus,
