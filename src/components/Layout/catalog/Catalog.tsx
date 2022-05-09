@@ -9,7 +9,7 @@ const Catalog: FC = () => {
     <div className={styles.container}>
       <div className={styles.catalog}>
         <MenuIcon fontSize="small" />
-        <p>Каталог товаров</p>
+        <p>Каталог товаров...</p>
       </div>
     </div>
   );
