@@ -3,11 +3,23 @@
 		margin-top:27px ;
 	}
 	.header{
+		display: flex;
+		align-items: center;
+		margin: 35px 0px 0px 0px;
 		.leftArrow{
-
+			display: flex;
+			align-items: center;
+			text-align: center;
+			align-self: center;
+			padding: 5px 5px;
+			margin-right: 21px;
+			align-self: center;
+			background: #FFFFFF;
+			border: 1px solid #F2F2F2;
+			border-radius: 8px;
 		}
 		.title{
-				margin:35px 0px 0px 0px;
+				
 				font-weight: 700;
 				font-size: 16px;
 				line-height: 20px;
@@ -42,9 +54,19 @@
 				margin-bottom: 15px
 			}
 			.price{
+				display: flex;
+			
 				font-weight: 700;
 				font-size: 20px;
 				line-height: 30px;
+				span{
+					align-self: flex-start;
+					margin-right: 45px;
+					&:last-child{
+						align-self: flex-end;
+						margin-right: 0px;
+					}
+				}
 			}
 		}
 	}
