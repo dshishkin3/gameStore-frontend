@@ -3,9 +3,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import { Link } from "react-router-dom";
 
-import MenuIcon from "@mui/icons-material/Menu";
-
 import { mainCategories } from "../../../utils/categories";
+
+import MenuBlock from "./menu/Menu";
 
 import styles from "./Catalog.module.scss";
 import "swiper/css";
@@ -14,10 +14,7 @@ import "swiper/css/navigation";
 const Catalog: FC = () => {
   return (
     <div className={styles.container}>
-      <div className={styles.catalog}>
-        <MenuIcon fontSize="medium" />
-        <p>Каталог товаров</p>
-      </div>
+      <MenuBlock />
       <div className={styles.categories}>
         <Swiper
           slidesPerView={4}
