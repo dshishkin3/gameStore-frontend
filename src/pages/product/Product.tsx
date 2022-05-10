@@ -30,7 +30,19 @@ const Product: FC = () => {
 		}
 	}
 	const addToFavorites = (obj: any): void => { // исправить типизацию
-		localStorage.setItem('favorites', JSON.stringify([obj]))
+		if (!localStorage.getItem('favorites')) localStorage.setItem('favorites', JSON.stringify([obj]))
+		if (localStorage.getItem('favorites')) {
+			let a: Array<IProduct> = JSON.parse(localStorage.getItem('favorites') || '')
+			a.forEach((item, index) => {
+				if (item._id !== obj._id) {
+					a.push(obj)
+				}
+
+			})
+			localStorage.setItem('favorites', JSON.stringify(a))
+		}
+
+
 	}
 	const onClickImgHandle = (img: string): void => {
 		setLargeImg(img);
@@ -61,7 +73,7 @@ const Product: FC = () => {
 					<div className={styles.subtitle}>{product.desc}</div>
 					<div className={styles.price}>
 						<span>{product.price} ₽  </span>
-						<span onClick={() => addToFavorites(product)} className={styles.heartIcon}><FavoriteBorderOutlinedIcon /></span>
+						<span onClick={() => addToFavorites(product)} className={styles.heartIcon}><FavoriteBorderOutlinedIcon color="success" /></span>
 					</div>
 				</div>
 			</div>
