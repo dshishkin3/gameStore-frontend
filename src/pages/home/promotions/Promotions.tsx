@@ -27,7 +27,7 @@ const Promotions: FC = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.promotions}>
       <p className={styles.title}>Акции</p>
       {loading ? (
         <MyLoader />

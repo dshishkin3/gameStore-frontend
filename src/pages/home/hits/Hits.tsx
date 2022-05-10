@@ -27,7 +27,7 @@ const Hits: FC = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.hits}>
       <p className={styles.title}>Хиты продаж</p>
       {loading ? (
         <MyLoader />
