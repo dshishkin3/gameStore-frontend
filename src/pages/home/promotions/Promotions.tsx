@@ -33,12 +33,27 @@ const Promotions: FC = () => {
         <MyLoader />
       ) : (
         <Swiper
-          slidesPerView={4}
+          slidesPerView={1}
           spaceBetween={70}
           navigation={true}
           className="mySwiper"
           style={{ maxWidth: 1550 }}
           modules={[Navigation]}
+          breakpoints={{
+            768: {
+              slidesPerView: 2,
+            },
+            1000: {
+              slidesPerView: 3,
+            },
+            1250: {
+              slidesPerView: 4,
+              spaceBetween: 20,
+            },
+            1400: {
+              slidesPerView: 4,
+            },
+          }}
         >
           {promotions.map((product) => (
             <SwiperSlide key={product._id}>

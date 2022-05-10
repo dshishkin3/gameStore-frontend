@@ -74,10 +74,31 @@ input:focus {
   font-size: 15px;
 }
 
+.swiper {
+  max-width: 1050px;
+}
+
 @media screen and (max-width: 400px) {
   select:focus,
   textarea:focus,
   input:focus {
     font-size: 16px;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .swiper {
+    max-width: 1000px;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .swiper {
+    max-width: 800px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .swiper {
+    max-width: 600px;
   }
 }

@@ -19,7 +19,7 @@ const Hits: FC = () => {
   }, []);
 
   const getHits = async () => {
-    const res = await axios.get(
+    const res = await axios.get<IProduct[]>(
       "http://game-store12.herokuapp.com/api/products/hits"
     );
     setHits(res.data);
@@ -33,12 +33,27 @@ const Hits: FC = () => {
         <MyLoader />
       ) : (
         <Swiper
-          slidesPerView={4}
+          slidesPerView={1}
           spaceBetween={70}
           navigation={true}
           className="mySwiper"
           style={{ maxWidth: 1550 }}
           modules={[Navigation]}
+          breakpoints={{
+            768: {
+              slidesPerView: 2,
+            },
+            1000: {
+              slidesPerView: 3,
+            },
+            1250: {
+              slidesPerView: 4,
+              spaceBetween: 20,
+            },
+            1400: {
+              slidesPerView: 4,
+            },
+          }}
         >
           {hits.map((product) => (
             <SwiperSlide key={product._id}>

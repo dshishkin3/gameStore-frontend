@@ -7,11 +7,8 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 
 import { IProduct } from "../../utils/interfaces";
 
-import small1 from "../../assets/images/product/small1.png";
-import small2 from "../../assets/images/product/small2.png";
-import small3 from "../../assets/images/product/small3.png";
-
 import axios from "axios";
+import PageTitle from "../../components/ui/pageTitle/PageTitle";
 
 const Product: FC = () => {
 	const { id } = useParams<string>();
@@ -20,7 +17,6 @@ const Product: FC = () => {
 	const [loading, setLoading] = useState<boolean>(true);
 	const [largeImg, setLargeImg] = useState<string>();
 	const [favorites, setFavorites] = useState<IProduct[]>([])
-
 	useEffect(() => {
 		fetchProduct();
 	}, []);
@@ -34,7 +30,7 @@ const Product: FC = () => {
 		}
 	}
 	const addToFavorites = (obj: any): void => { // исправить типизацию
-
+		localStorage.setItem('favorites', JSON.stringify([obj]))
 	}
 	const onClickImgHandle = (img: string): void => {
 		setLargeImg(img);
@@ -43,7 +39,7 @@ const Product: FC = () => {
 	return (
 		<div className={styles.product}>
 			<div className={styles.header}>
-				<NavLink to="/" className={styles.leftArrow}><ChevronLeftOutlinedIcon color="disabled" fontSize="medium" /></NavLink> <h2 className={styles.title}>{product.title}</h2>
+				<PageTitle title={product.title} />
 			</div>
 			<div className={styles.content}>
 				<div className={styles.productImg}>

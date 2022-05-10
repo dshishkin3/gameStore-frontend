@@ -9,6 +9,7 @@ interface ICardProps {
 	product: IProduct;
 }
 const Card: FC<ICardProps> = ({ product }) => {
+
 	return (
 		<Link to={`product/${product._id}`}>
 			<div className={styles.container}>
@@ -36,6 +37,7 @@ const Card: FC<ICardProps> = ({ product }) => {
 			</div>
 		</Link>
 	);
+
 };
 
 export default Card;

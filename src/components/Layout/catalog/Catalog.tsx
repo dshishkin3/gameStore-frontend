@@ -17,17 +17,28 @@ const Catalog: FC = () => {
       <MenuBlock />
       <div className={styles.categories}>
         <Swiper
-          slidesPerView={4}
+          slidesPerView={1}
           spaceBetween={0}
           navigation={true}
           className="mySwiper"
-          style={{ maxWidth: 1050 }}
           modules={[Navigation]}
+          breakpoints={{
+            1000: {
+              slidesPerView: 3,
+            },
+            1250: {
+              slidesPerView: 4,
+            },
+            1400: {
+              width: 1050,
+              slidesPerView: 4,
+            },
+          }}
         >
           {mainCategories.map((category) => (
             <SwiperSlide key={category.id}>
               {" "}
-              <Link to={`category/${category.title}`}>{category.title}</Link>
+              <Link to={`/`}>{category.title}</Link>
             </SwiperSlide>
           ))}
         </Swiper>

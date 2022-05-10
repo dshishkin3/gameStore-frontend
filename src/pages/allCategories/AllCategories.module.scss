@@ -1,0 +1,13 @@
+.categories {
+  display: flex;
+  margin-top: 30px;
+}
+
+.category {
+  text-align: center;
+  margin-right: 60px;
+
+  & p {
+    font-weight: 500;
+  }
+}

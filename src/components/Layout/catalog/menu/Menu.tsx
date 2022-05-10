@@ -50,20 +50,37 @@ const MenuBlock: FC = () => {
             <p className={styles.title}>Категории товаров</p>
             <CloseIcon onClick={handleClose} cursor="pointer" />
           </div>
-          {mainCategories.map((category) => (
+          <div className={styles.categories}>
             <Link
-              to={`category/${category.title}`}
+              to={`/subcategory/Компьютерная периферия`}
               className={styles.category}
-              key={category.id}
               onClick={handleClose}
             >
               <img
                 src="https://c.dns-shop.ru/thumb/st4/fit_width/120/120/88f022c8921651dd34f05377c46a20d8/d8ebb6eda3210347f2614c878e5a7ebe7992469f025d2dc073464462fe875ded.png.webp"
                 alt=""
               />
-              <p>{category.title}</p>
+              <p>Компьютерная периферия</p>
             </Link>
-          ))}
+            <Link
+              to={`/subcategory/Офис и сеть`}
+              className={styles.category}
+              onClick={handleClose}
+            >
+              <img
+                src="https://c.dns-shop.ru/thumb/st1/fit_width/120/120/b0be184579c9d84dfeeffb5d6e4a4248/9c38238aadad78929943380148e8a57152528dc83d5e6590e53eb64d0fc1a2db.png"
+                alt=""
+              />
+              <p>Офис и сеть</p>
+            </Link>
+          </div>
+          <Link
+            to={`allCategories`}
+            onClick={handleClose}
+            className={styles.allCategories}
+          >
+            Все категории...
+          </Link>
         </div>
       </Menu>
     </div>
