@@ -34,17 +34,24 @@
 		.productImg{
 			margin: 16px 148px 64px 0px;
 			.large{
-				margin-bottom: 12px;
+				margin-bottom: 17px;
 				img{
 					max-width: 355px;
+					max-height: 315;
 				};
 			}
 			.small{
+				cursor: pointer;
 				display: flex;
 				justify-content: space-between;
-img{
-	max-width: 50px;
-}
+				.active{
+					background: #FFFFFF;
+						border: 0.7px solid #F5F5F5;
+				}
+				img{
+					max-width: 77px;
+				
+				}
 			}
 		}
 		.body{

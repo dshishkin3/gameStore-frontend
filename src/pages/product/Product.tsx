@@ -15,7 +15,8 @@ const Product: FC = () => {
 
 	const [product, setProduct] = useState<IProduct>({} as IProduct);
 	const [loading, setLoading] = useState<boolean>(true);
-	const [largeImg, setLargeImg] = useState<string>();
+	const [largeImg, setLargeImg] = useState<number>(0);
+	// const [largeImg, setLargeImg] = useState<string>();
 	const [favorites, setFavorites] = useState<IProduct[]>([])
 	useEffect(() => {
 		fetchProduct();
@@ -29,23 +30,16 @@ const Product: FC = () => {
 			console.log(e)
 		}
 	}
-	const addToFavorites = (obj: any): void => { // исправить типизацию
-		if (!localStorage.getItem('favorites')) localStorage.setItem('favorites', JSON.stringify([obj]))
-		if (localStorage.getItem('favorites')) {
-			let a: Array<IProduct> = JSON.parse(localStorage.getItem('favorites') || '')
-			a.forEach((item, index) => {
-				if (item._id !== obj._id) {
-					a.push(obj)
-				}
-
-			})
-			localStorage.setItem('favorites', JSON.stringify(a))
+	const addToFavorites = (obj: IProduct): void => { // исправить типизацию
+		if (!localStorage.getItem(obj._id)) {
+			localStorage.setItem(obj._id, JSON.stringify([obj]));
+		} else {
+			localStorage.removeItem(obj._id)
 		}
 
-
 	}
-	const onClickImgHandle = (img: string): void => {
-		setLargeImg(img);
+	const onClickImgHandle = (index: number): void => {
+		setLargeImg(index);
 	}
 
 	return (
@@ -56,12 +50,12 @@ const Product: FC = () => {
 			<div className={styles.content}>
 				<div className={styles.productImg}>
 					<div className={styles.large}>
-						{!loading && <img src={largeImg ? largeImg : product.urlImages[0]} alt="productImage" />}
+						{!loading && <img src={product.urlImages[largeImg]} alt="productImage" />}
 					</div>
 					<div className={styles.small}>
-						{!loading && product.urlImages.slice(1).map(img => (
-							<div onClick={() => onClickImgHandle(img)} key={img}>
-								<img src={img} alt="small" />
+						{!loading && product.urlImages.slice(1).map((img, index) => (
+							<div className={index === largeImg ? styles.active : ''} onClick={() => onClickImgHandle(index)} key={img}>
+								<img src={product.urlImages[index]} alt="small" />
 							</div>
 						))}
 
@@ -73,7 +67,7 @@ const Product: FC = () => {
 					<div className={styles.subtitle}>{product.desc}</div>
 					<div className={styles.price}>
 						<span>{product.price} ₽  </span>
-						<span onClick={() => addToFavorites(product)} className={styles.heartIcon}><FavoriteBorderOutlinedIcon color="success" /></span>
+						<NavLink to="/favorites" onClick={() => addToFavorites(product)} className={styles.heartIcon}><FavoriteBorderOutlinedIcon color="success" /></NavLink>
 					</div>
 				</div>
 			</div>
