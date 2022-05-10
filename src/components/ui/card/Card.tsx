@@ -22,7 +22,7 @@ const Card: FC<ICardProps> = ({ product }) => {
             <FavoriteBorderIcon fontSize="medium" color="success" />
           </div>
         </div>
-        <img className={styles.img} src={product.urlImg} alt="" />
+        <img className={styles.img} src={product.urlImages[0]} alt="" />
         <p className={styles.title}>
           {product.title.length < 49
             ? product.title

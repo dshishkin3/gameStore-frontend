@@ -6,7 +6,7 @@ export interface IProduct {
   category: string;
   price: number;
   oldPrice?: number;
-  urlImg: string;
+  urlImages: Array<string>;
   hit: boolean;
   promotion: boolean;
 }
