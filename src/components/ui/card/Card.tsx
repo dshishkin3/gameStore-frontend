@@ -11,7 +11,7 @@ interface ICardProps {
 
 const Card: FC<ICardProps> = ({ product }) => {
   return (
-    <Link to={`product/${product._id}`}>
+    <Link to={`product/${product._id}`} className={styles.wrapper}>
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.info}>

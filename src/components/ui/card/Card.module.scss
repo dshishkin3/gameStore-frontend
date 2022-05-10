@@ -79,3 +79,10 @@
   color: #1e5900;
   text-decoration: line-through;
 }
+
+@media (max-width: 768px) {
+  .wrapper {
+    display: flex;
+    justify-content: center;
+  }
+}
