@@ -38,7 +38,7 @@ const Catalog: FC = () => {
           {mainCategories.map((category) => (
             <SwiperSlide key={category.id}>
               {" "}
-              <Link to={`category/${category.title}`}>{category.title}</Link>
+              <Link to={`/`}>{category.title}</Link>
             </SwiperSlide>
           ))}
         </Swiper>

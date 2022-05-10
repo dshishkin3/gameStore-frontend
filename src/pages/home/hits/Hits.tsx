@@ -19,7 +19,7 @@ const Hits: FC = () => {
   }, []);
 
   const getHits = async () => {
-    const res = await axios.get(
+    const res = await axios.get<IProduct[]>(
       "http://game-store12.herokuapp.com/api/products/hits"
     );
     setHits(res.data);

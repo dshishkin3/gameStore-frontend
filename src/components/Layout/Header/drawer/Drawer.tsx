@@ -47,17 +47,24 @@ const DrawerBlock = ({ drawer, setDrawer }: IDrawerProps) => {
         </div>
         <div className={styles.body}>
           <div className={styles.categories}>
-            {mainCategories.map((category) => (
-              <Link
-                to={`category/${category.title}`}
-                className={styles.category}
-                key={category.id}
-                onClick={() => setDrawer(!drawer)}
-              >
-                <p>{category.title}</p>
-                <ArrowForwardIosIcon fontSize="small" />
-              </Link>
-            ))}
+            <Link
+              to={`subcategory/Компьютерная периферия`}
+              className={styles.category}
+              onClick={() => setDrawer(!drawer)}
+            >
+              <p>Компьютерная периферия</p>
+              <ArrowForwardIosIcon fontSize="small" />
+            </Link>
+
+            <Link
+              to={`subcategory/Офис и сеть`}
+              className={styles.category}
+              onClick={() => setDrawer(!drawer)}
+            >
+              <p>Офис и сеть</p>
+              <ArrowForwardIosIcon fontSize="small" />
+            </Link>
+
             <Link to="/allCategories" onClick={() => setDrawer(!drawer)}>
               <p className={styles.allCategories}>Все категории...</p>
             </Link>

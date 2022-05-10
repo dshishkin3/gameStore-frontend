@@ -1,0 +1,30 @@
+.categories {
+  display: flex;
+  margin-top: 30px;
+}
+
+.category {
+  text-align: center;
+  margin-right: 60px;
+
+  & p {
+    font-weight: 500;
+  }
+
+  & img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  // justify-content: space-between;
+}
+
+@media (max-width: 1200px) {
+  .products {
+    justify-content: space-around;
+  }
+}

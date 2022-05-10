@@ -4,6 +4,8 @@
   text-align: center;
   cursor: pointer;
   padding: 0px 35px;
+  max-width: 272px;
+  margin-right: 60px;
 }
 
 .header {
@@ -80,9 +82,17 @@
   text-decoration: line-through;
 }
 
+@media (max-width: 1200px) {
+  .container {
+    max-width: fit-content;
+    margin-right: 0px;
+  }
+}
+
 @media (max-width: 768px) {
   .wrapper {
     display: flex;
     justify-content: center;
+    margin-bottom: 30px;
   }
 }
