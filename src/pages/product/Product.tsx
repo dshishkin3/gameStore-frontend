@@ -32,6 +32,11 @@ const Product: FC = () => {
 			console.log(e)
 		}
 	}
+	const addToFavorites = (): void => {
+		console.log('add to favorites')
+	}
+
+	console.log(product)
 	return (
 		<div className={styles.product}>
 			<div className={styles.header}>
@@ -43,16 +48,17 @@ const Product: FC = () => {
 						<img src={product.urlImg} alt="productImage" />
 					</div>
 					<div className={styles.small}>
-						<div><img src={small1} alt="small" /></div>
-						<div><img src={small2} alt="small" /></div>
-						<div><img src={small3} alt="small" /></div>
+
+						<div><img src={''} alt="small" /></div>
+
+
 					</div>
 				</div>
 				<div className={styles.body}>
 					<div className={styles.subtitle}>{product.desc}</div>
 					<div className={styles.price}>
 						<span>{product.price} ₽  </span>
-						<span className="heartIcon"><FavoriteBorderOutlinedIcon /></span>
+						<span onClick={addToFavorites} className={styles.heartIcon}><FavoriteBorderOutlinedIcon /></span>
 					</div>
 				</div>
 			</div>
