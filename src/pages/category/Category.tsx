@@ -3,6 +3,7 @@ import React, { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Card from "../../components/ui/card/Card";
+import MyLoader from "../../components/ui/contentLoader/ContentLoader";
 import PageTitle from "../../components/ui/pageTitle/PageTitle";
 
 import { IProduct } from "../../utils/interfaces";
@@ -31,7 +32,7 @@ const Category: FC = () => {
     <div>
       <PageTitle title={String(name)} />
       {loading ? (
-        <h1>loading...</h1>
+        <MyLoader />
       ) : (
         <div className={styles.products}>
           {products.map((product) => (

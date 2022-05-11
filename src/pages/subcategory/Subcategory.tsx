@@ -17,7 +17,11 @@ const Subcategory: FC = () => {
       <PageTitle title={String(name)} />
       <div className={styles.categories}>
         {category[0].subcategories.map((item) => (
-          <Link to={`/category/${item.title}`} className={styles.category}>
+          <Link
+            to={`/category/${item.title}`}
+            className={styles.category}
+            key={item.id}
+          >
             <img src={item.urlImg} alt="" />
             <p>{item.title}</p>
           </Link>

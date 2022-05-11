@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  width: -webkit-fill-available;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    margin-top: 35px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}

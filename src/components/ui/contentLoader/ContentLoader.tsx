@@ -1,15 +1,10 @@
 import React from "react";
 import ContentLoader from "react-content-loader";
 
+import styles from "./ContentLoader.module.scss";
+
 const MyLoader = () => (
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "space-between",
-      marginTop: 30,
-      width: " -webkit-fill-available",
-    }}
-  >
+  <div className={styles.container}>
     <ContentLoader
       speed={2}
       width={272}
