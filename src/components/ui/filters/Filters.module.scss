@@ -1,0 +1,40 @@
+.title {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-align: end;
+}
+
+.inputs {
+  display: flex;
+  width: 232px;
+  margin-bottom: 15px;
+
+  & label {
+    font-size: 14px;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.success {
+  cursor: pointer;
+  background-color: #1e5900;
+  color: #fff;
+  padding: 8px;
+  border: none;
+  border-radius: 3px;
+  margin-right: 8px;
+}
+
+.reset {
+  cursor: pointer;
+  background-color: #fff;
+  color: rgb(0, 0, 0);
+  padding: 8px;
+  border: 1px solid #bebebe;
+  border-radius: 3px;
+}

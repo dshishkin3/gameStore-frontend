@@ -6,7 +6,9 @@ body {
   scroll-behavior: smooth;
 }
 
-input {
+input,
+label,
+textarea {
   font-family: "Montserrat", sans-serif;
 }
 

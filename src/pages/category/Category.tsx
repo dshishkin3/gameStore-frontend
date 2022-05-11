@@ -5,6 +5,7 @@ import BackButton from "../../components/ui/backButton/BackButton";
 
 import Card from "../../components/ui/card/Card";
 import MyLoader from "../../components/ui/contentLoader/ContentLoader";
+import Filters from "../../components/ui/filters/Filters";
 import PageTitle from "../../components/ui/pageTitle/PageTitle";
 
 import { IProduct } from "../../utils/interfaces";
@@ -18,10 +19,10 @@ const Category: FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    getHits();
+    getCategoryProducts();
   }, []);
 
-  const getHits = async () => {
+  const getCategoryProducts = async () => {
     const res = await axios.get<IProduct[]>(
       `http://game-store12.herokuapp.com/api/products/category/${name}`
     );
@@ -35,15 +36,23 @@ const Category: FC = () => {
       {loading ? (
         <MyLoader />
       ) : (
-        <div className={styles.products}>
-          {products.length < 1 ? (
+        <div className={styles.wrapper}>
+          {products.length < 1 && (
             <div className={styles.empty}>
               <p>Товаров из данной категории пока нет :(</p>
               <BackButton />
             </div>
-          ) : (
-            products.map((product) => <Card product={product} />)
           )}
+
+          <div className={styles.products}>
+            {products.map((product) => (
+              <Card product={product} key={product._id} />
+            ))}
+          </div>
+          <Filters
+            setProducts={setProducts}
+            getCategoryProducts={getCategoryProducts}
+          />
         </div>
       )}
     </div>
