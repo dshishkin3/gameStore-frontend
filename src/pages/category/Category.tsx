@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import BackButton from "../../components/ui/backButton/BackButton";
 
 import Card from "../../components/ui/card/Card";
 import MyLoader from "../../components/ui/contentLoader/ContentLoader";
@@ -35,9 +36,14 @@ const Category: FC = () => {
         <MyLoader />
       ) : (
         <div className={styles.products}>
-          {products.map((product) => (
-            <Card product={product} />
-          ))}
+          {products.length < 1 ? (
+            <div className={styles.empty}>
+              <p>Товаров из данной категории пока нет :(</p>
+              <BackButton />
+            </div>
+          ) : (
+            products.map((product) => <Card product={product} />)
+          )}
         </div>
       )}
     </div>

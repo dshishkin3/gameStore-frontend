@@ -72,6 +72,12 @@ export const categories: ICategory[] = [
         urlImg:
           "https://c.dns-shop.ru/thumb/st4/fit/220/150/babe897fcda183320416506c1d9a148f/e7594d1c9601dd029f7872b11c9b4a870faa2e851bf6f1fcf4f79050aacb60e7.jpg",
       },
+      {
+        id: 3,
+        title: "Оргтехника и офисное оборудование",
+        urlImg:
+          "https://c.dns-shop.ru/thumb/st1/fit/220/150/9effa9f23e5ca7ce68dfd1faa5ea93c7/afbb811213d3d4c57d75c6d42155158e23cfa8ab63b320a681cdf6319c0714d2.jpg",
+      },
     ],
   },
 ];

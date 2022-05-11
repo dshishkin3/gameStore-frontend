@@ -1,0 +1,15 @@
+.container {
+  background-color: #1e5900;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  border: none;
+  color: #fff;
+  padding: 17px 25px;
+  font-weight: 600;
+  cursor: pointer;
+
+  & svg {
+    margin-right: 15px;
+  }
+}
