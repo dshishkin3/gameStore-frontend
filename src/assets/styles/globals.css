@@ -71,7 +71,8 @@ input:focus {
 }
 
 .swiper-button-next::after {
-  font-size: 15px;
+  font-size: 20px;
+  margin-left: 35px;
 }
 
 .swiper {
@@ -100,5 +101,8 @@ input:focus {
 @media screen and (max-width: 1000px) {
   .swiper {
     max-width: 600px;
+  }
+  .swiper-button-next::after {
+    font-size: 30px;
   }
 }
