@@ -45,9 +45,13 @@
     cursor: pointer;
     background-color: #ffffff;
     border-radius: 50px;
-    padding: 8px 10px;
+    padding: 5px 8px;
     display: flex;
     align-items: center;
+  }
+
+  &Link {
+    display: flex;
   }
 }
 

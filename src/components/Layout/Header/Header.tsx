@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import SearchIcon from "@mui/icons-material/Search";
@@ -12,6 +12,7 @@ import styles from "./Header.module.scss";
 
 const Header: FC = () => {
   const [drawer, setDrawer] = useState(false);
+  const [search, setSearch] = useState("");
 
   return (
     <div className={styles.container}>
@@ -21,9 +22,16 @@ const Header: FC = () => {
       </Link>
       <Drawer drawer={drawer} setDrawer={setDrawer} />
       <div className={styles.search}>
-        <input className={styles.searchInput} placeholder="Поиск..." />
+        <input
+          className={styles.searchInput}
+          placeholder="Поиск..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
         <div className={styles.searchIcon}>
-          <SearchIcon fontSize="small" />
+          <Link to={`/search/${search}`} className={styles.searchLink}>
+            <SearchIcon fontSize="small" />
+          </Link>
         </div>
       </div>
       <div className={styles.info}>
