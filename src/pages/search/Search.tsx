@@ -5,6 +5,7 @@ import BackButton from "../../components/ui/backButton/BackButton";
 
 import Card from "../../components/ui/card/Card";
 import MyLoader from "../../components/ui/contentLoader/ContentLoader";
+import Filters from "../../components/ui/filters/Filters";
 import PageTitle from "../../components/ui/pageTitle/PageTitle";
 
 import { IProduct } from "../../utils/interfaces";
@@ -32,20 +33,22 @@ const Search: FC = () => {
   return (
     <div>
       <PageTitle title="Поиск в каталоге" />
-      {loading ? (
-        <MyLoader />
-      ) : (
-        <div className={styles.products}>
-          {products.length < 1 ? (
-            <div className={styles.empty}>
-              <p>К сожалению, по вашему запросу ничего не найдено :(</p>
-              <BackButton />
-            </div>
-          ) : (
-            products.map((product) => <Card product={product} />)
-          )}
-        </div>
-      )}
+      <div className={styles.container}>
+        {loading ? (
+          <MyLoader />
+        ) : (
+          <div className={styles.products}>
+            {products.length < 1 ? (
+              <div className={styles.empty}>
+                <p>К сожалению, по вашему запросу ничего не найдено :(</p>
+                <BackButton />
+              </div>
+            ) : (
+              products.map((product) => <Card product={product} />)
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

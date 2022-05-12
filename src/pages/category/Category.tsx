@@ -54,7 +54,7 @@ const Category: FC = () => {
         )}
         <Filters
           setProducts={setProducts}
-          getCategoryProducts={getCategoryProducts}
+          getProducts={getCategoryProducts}
           loading={loading}
           setLoading={setLoading}
         />
