@@ -33,28 +33,32 @@ const Category: FC = () => {
   return (
     <div>
       <PageTitle title={String(name)} />
-      {loading ? (
-        <MyLoader />
-      ) : (
-        <div className={styles.wrapper}>
-          {products.length < 1 && (
-            <div className={styles.empty}>
-              <p>Товаров из данной категории пока нет :(</p>
-              <BackButton />
-            </div>
-          )}
+      <div className={styles.container}>
+        {loading ? (
+          <MyLoader />
+        ) : (
+          <div className={styles.wrapper}>
+            {products.length < 1 && (
+              <div className={styles.empty}>
+                <p>Товаров из данной категории пока нет :(</p>
+                <BackButton />
+              </div>
+            )}
 
-          <div className={styles.products}>
-            {products.map((product) => (
-              <Card product={product} key={product._id} />
-            ))}
+            <div className={styles.products}>
+              {products.map((product) => (
+                <Card product={product} key={product._id} />
+              ))}
+            </div>
           </div>
-          <Filters
-            setProducts={setProducts}
-            getCategoryProducts={getCategoryProducts}
-          />
-        </div>
-      )}
+        )}
+        <Filters
+          setProducts={setProducts}
+          getCategoryProducts={getCategoryProducts}
+          loading={loading}
+          setLoading={setLoading}
+        />
+      </div>
     </div>
   );
 };
