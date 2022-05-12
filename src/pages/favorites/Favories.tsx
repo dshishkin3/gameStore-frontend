@@ -5,8 +5,9 @@ import { IProduct } from "../../utils/interfaces";
 
 
 const Favories: FC = () => {
-	const [product, setProduct] = useState<IProduct[]>([])
-	const [productId, setProductId] = useState<string[]>([])
+	const [product, setProduct] = useState<IProduct[]>([]);
+	const [productId, setProductId] = useState<string[]>([]);
+
 
 
 	return (

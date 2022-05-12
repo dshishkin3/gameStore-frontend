@@ -45,19 +45,24 @@ const Product: FC = () => {
 
 	function addToFavorites(obj: IProduct): void {
 		if (localStorage.getItem('favorites')) {
-			let favorites: Array<IProduct> = JSON.parse(localStorage.getItem('favorites') || '');
+			let favorites: Array<string> = JSON.parse(localStorage.getItem('favorites') || '');
+			favorites.push(obj._id)
+			localStorage.setItem('favorites', JSON.stringify(favorites))
+			// if (favorites.length) {
+			// 	// favorites = favorites.filter(elem => elem._id !== obj._id);
+			// 	localStorage.setItem('favorites', JSON.stringify(favorites));
+			// }
+			// else {
+			// 	localStorage.setItem('favorites', JSON.stringify([obj]));
+			// }
 
-			if (favorites.length) {
-				favorites = favorites.filter(elem => elem._id !== obj._id);
-				localStorage.setItem('favorites', JSON.stringify(favorites))
-			} else {
-				localStorage.setItem('favorites', JSON.stringify([obj]));
-			}
-
-		} else {
-
-			localStorage.setItem('favorites', JSON.stringify([obj]));
 		}
+		else {
+
+			localStorage.setItem('favorites', JSON.stringify([obj._id]));
+		}
+
+		//###########################################
 
 		if (!localStorage.getItem(obj._id)) {
 			localStorage.setItem(obj._id, JSON.stringify([obj]));
