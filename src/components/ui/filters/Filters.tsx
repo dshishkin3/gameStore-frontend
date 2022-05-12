@@ -17,7 +17,7 @@ import "./styles.css";
 
 interface IFiltersProps {
   setProducts: (arg0: IProduct[]) => void;
-  getCategoryProducts: () => void;
+  getProducts: () => void;
   loading: boolean;
   setLoading: (arg0: boolean) => void;
 }
@@ -42,7 +42,7 @@ const filterCheckbox = [
 ];
 
 const Filters: FC<IFiltersProps> = ({
-  getCategoryProducts,
+  getProducts,
   setProducts,
   loading,
   setLoading,
@@ -103,7 +103,7 @@ const Filters: FC<IFiltersProps> = ({
   };
 
   const reset = () => {
-    getCategoryProducts();
+    getProducts();
     setFrom("");
     setTo("");
     setLabelPrice("");
