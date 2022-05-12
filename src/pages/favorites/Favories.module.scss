@@ -1,0 +1,9 @@
+.favorites{
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	.card{
+		align-self: center;
+		flex: 0 0 25%;
+	}
+}
