@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import styles from "./product.module.scss";
 
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 
 import { IProduct } from "../../utils/interfaces";
 
@@ -11,102 +11,133 @@ import axios from "axios";
 import PageTitle from "../../components/ui/pageTitle/PageTitle";
 
 const Product: FC = () => {
-	const { id } = useParams<string>();
-	const [product, setProduct] = useState<IProduct>({} as IProduct);
-	const [loading, setLoading] = useState<boolean>(true);
-	const [largeImg, setLargeImg] = useState<number>(0);
-	// const [largeImg, setLargeImg] = useState<string>();
-	const [favorites, setFavorites] = useState<boolean>(false);
+  const { id } = useParams<string>();
+  const [product, setProduct] = useState<IProduct>({} as IProduct);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [largeImg, setLargeImg] = useState<number>(0);
+  // const [largeImg, setLargeImg] = useState<string>();
+  const [favorites, setFavorites] = useState<boolean>(false);
+  const [favorites2, setFavorites2] = useState<IProduct[]>([]);
 
-	useEffect(() => {
-		fetchProduct();
-		if (localStorage.getItem(product._id)) {
-			setFavorites(true);
-		}
-		console.log('fetch')
-	}, []);
+  useEffect(() => {
+    fetchProduct();
+    if (localStorage.getItem(product._id)) {
+      setFavorites(true);
+    }
+    console.log("fetch");
+  }, []);
 
-	useEffect(() => {
-		if (localStorage.getItem(product._id)) {
-			setFavorites(true);
-		}
+  useEffect(() => {
+    if (localStorage.getItem(product._id)) {
+      setFavorites(true);
+    }
+  }, [localStorage.getItem(product._id)]);
 
-	}, [localStorage.getItem(product._id)]);
+  async function fetchProduct() {
+    try {
+      const response = await axios.get<IProduct>(
+        `http://game-store12.herokuapp.com/api/products/product/${id}`
+      );
+      setProduct(response.data);
+      setLoading(false);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
-	async function fetchProduct() {
-		try {
-			const response = await axios.get<IProduct>(`http://game-store12.herokuapp.com/api/products/product/${id}`)
-			setProduct(response.data)
-			setLoading(false)
-		} catch (e) {
-			console.log(e)
-		}
-	}
+  function addToFavorites(obj: IProduct): void {
+    console.log(obj);
 
-	function addToFavorites(obj: IProduct): void {
-		if (localStorage.getItem('favorites')) {
-			let favorites: Array<IProduct> = JSON.parse(localStorage.getItem('favorites') || '');
+    let old = [];
+    if (localStorage.getItem("favorites")) {
+      old = JSON.parse(localStorage.getItem("favorites") || "");
+    } else {
+      localStorage.setItem("favorites", JSON.stringify([obj]));
+    }
 
-			if (favorites.length) {
-				favorites = favorites.filter(elem => elem._id !== obj._id);
-				localStorage.setItem('favorites', JSON.stringify(favorites))
-			} else {
-				localStorage.setItem('favorites', JSON.stringify([obj]));
-			}
+    if (old.some((e: any) => e._id === obj._id)) {
+      let old2 = old.filter((item: any) => item._id !== obj._id);
+      console.log(old2);
 
-		} else {
+      localStorage.setItem("favorites", JSON.stringify([...old2]));
+      console.log("exist");
+    } else {
+      localStorage.setItem("favorites", JSON.stringify([...old, obj]));
+    }
 
-			localStorage.setItem('favorites', JSON.stringify([obj]));
-		}
+    //   if (favorites2.length) {
+    //     setFavorites2(favorites2.filter((elem) => elem._id !== obj._id));
+    //     localStorage.setItem("favorites", JSON.stringify(favorites2));
+    //   } else {
+    //     localStorage.setItem("favorites", JSON.stringify([obj]));
+    //   }
+    // } else {
+    //   localStorage.setItem("favorites", JSON.stringify([...favorites2, obj]));
+    // }
 
-		if (!localStorage.getItem(obj._id)) {
-			localStorage.setItem(obj._id, JSON.stringify([obj]));
-			setFavorites(true);
-		}
-		else {
-			localStorage.removeItem(obj._id);
-			setFavorites(false);
-		}
-	}
+    // if (!localStorage.getItem(obj._id)) {
+    //   localStorage.setItem(obj._id, JSON.stringify([obj]));
+    //   setFavorites(true);
+    // } else {
+    //   localStorage.removeItem(obj._id);
+    //   setFavorites(false);
+    // }
+    // }
+  }
 
-	const onClickImgHandle = (index: number): void => {
-		setLargeImg(index);
-	}
+  const onClickImgHandle = (index: number): void => {
+    setLargeImg(index);
+  };
 
-	return (
-		<div className={styles.product}>
-			<div className={styles.header}>
-				<PageTitle title={product.title} />
-			</div>
-			<div className={styles.content}>
-				<div className={styles.productImg}>
-					<div className={styles.large}>
-						{!loading && <img src={product.urlImages[largeImg]} alt="productImage" />}
-					</div>
-					<div className={styles.small}>
-						{!loading && product.urlImages.slice(1).map((img, index) => (
-							<div className={index === largeImg ? styles.active : ''} onClick={() => onClickImgHandle(index)} key={img}>
-								<img src={product.urlImages[index]} alt="small" />
-							</div>
-						))}
-
-
-
-					</div>
-				</div>
-				<div className={styles.body}>
-					<div className={styles.subtitle}>{product.desc}</div>
-					<div className={styles.price}>
-						<span>{product.price} ₽  </span>
-						<span onClick={() => addToFavorites(product)} className={styles.heartIcon}> {favorites ? <FavoriteOutlinedIcon color="success" /> : <FavoriteBorderOutlinedIcon color="success" />}</span>
-					</div>
-				</div>
-			</div>
-			<div className={styles.desc}>
-				<div className={styles.title}>{product.title}</div>
-				<div className={styles.body}>{product.characteristic}</div>
-			</div>
-		</div >);
+  return (
+    <div className={styles.product}>
+      <div className={styles.header}>
+        <PageTitle title={product.title} />
+      </div>
+      <div className={styles.content}>
+        <div className={styles.productImg}>
+          <div className={styles.large}>
+            {!loading && (
+              <img src={product.urlImages[largeImg]} alt="productImage" />
+            )}
+          </div>
+          <div className={styles.small}>
+            {!loading &&
+              product.urlImages.slice(1).map((img, index) => (
+                <div
+                  className={index === largeImg ? styles.active : ""}
+                  onClick={() => onClickImgHandle(index)}
+                  key={img}
+                >
+                  <img src={product.urlImages[index]} alt="small" />
+                </div>
+              ))}
+          </div>
+        </div>
+        <div className={styles.body}>
+          <div className={styles.subtitle}>{product.desc}</div>
+          <div className={styles.price}>
+            <span>{product.price} ₽ </span>
+            <span
+              onClick={() => addToFavorites(product)}
+              className={styles.heartIcon}
+            >
+              {" "}
+              {favorites ? (
+                <FavoriteOutlinedIcon color="success" />
+              ) : (
+                <FavoriteBorderOutlinedIcon color="success" />
+              )}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className={styles.desc}>
+        <div className={styles.title}>{product.title}</div>
+        <div className={styles.body}>{product.characteristic}</div>
+      </div>
+    </div>
+  );
 };
 
 export default Product;
