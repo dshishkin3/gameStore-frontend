@@ -1,7 +1,19 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
+import { IProduct } from "../../utils/interfaces";
+
+
+
 
 const Favories: FC = () => {
-  return <div>Favories</div>;
+	const [product, setProduct] = useState<IProduct[]>([])
+	const [productId, setProductId] = useState<string[]>([])
+
+
+	return (
+		<div>
+			{/* <Card product={ } /> */}
+		</div>
+	);
 };
 
 export default Favories;

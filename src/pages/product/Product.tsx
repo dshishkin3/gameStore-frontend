@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styles from "./product.module.scss";
 
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -12,12 +12,12 @@ import PageTitle from "../../components/ui/pageTitle/PageTitle";
 
 const Product: FC = () => {
 	const { id } = useParams<string>();
-
 	const [product, setProduct] = useState<IProduct>({} as IProduct);
 	const [loading, setLoading] = useState<boolean>(true);
 	const [largeImg, setLargeImg] = useState<number>(0);
 	// const [largeImg, setLargeImg] = useState<string>();
-	const [favorites, setFavorites] = useState<boolean>(false)
+	const [favorites, setFavorites] = useState<boolean>(false);
+
 	useEffect(() => {
 		fetchProduct();
 		if (localStorage.getItem(product._id)) {
@@ -25,13 +25,14 @@ const Product: FC = () => {
 		}
 		console.log('fetch')
 	}, []);
-	useEffect(() => {
 
+	useEffect(() => {
 		if (localStorage.getItem(product._id)) {
 			setFavorites(true);
 		}
 
 	}, [localStorage.getItem(product._id)]);
+
 	async function fetchProduct() {
 		try {
 			const response = await axios.get<IProduct>(`http://game-store12.herokuapp.com/api/products/product/${id}`)
@@ -41,7 +42,23 @@ const Product: FC = () => {
 			console.log(e)
 		}
 	}
-	function addToFavorites(obj: IProduct): void { // исправить типизацию
+
+	function addToFavorites(obj: IProduct): void {
+		if (localStorage.getItem('favorites')) {
+			let favorites: Array<IProduct> = JSON.parse(localStorage.getItem('favorites') || '');
+
+			if (favorites.length) {
+				favorites = favorites.filter(elem => elem._id !== obj._id);
+				localStorage.setItem('favorites', JSON.stringify(favorites))
+			} else {
+				localStorage.setItem('favorites', JSON.stringify([obj]));
+			}
+
+		} else {
+
+			localStorage.setItem('favorites', JSON.stringify([obj]));
+		}
+
 		if (!localStorage.getItem(obj._id)) {
 			localStorage.setItem(obj._id, JSON.stringify([obj]));
 			setFavorites(true);
@@ -50,9 +67,8 @@ const Product: FC = () => {
 			localStorage.removeItem(obj._id);
 			setFavorites(false);
 		}
-
-
 	}
+
 	const onClickImgHandle = (index: number): void => {
 		setLargeImg(index);
 	}
