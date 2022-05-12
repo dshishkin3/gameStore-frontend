@@ -1,18 +1,25 @@
 import axios from "axios";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
+import TuneIcon from "@mui/icons-material/Tune";
+import { FormControlLabel, FormGroup } from "@mui/material";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+
+import { CSSTransition } from "react-transition-group";
 
 import { IProduct } from "../../../utils/interfaces";
 
 import styles from "./Filters.module.scss";
-import { FormControlLabel, FormGroup } from "@mui/material";
+import "./styles.css";
 
 interface IFiltersProps {
   setProducts: (arg0: IProduct[]) => void;
   getCategoryProducts: () => void;
+  loading: boolean;
+  setLoading: (arg0: boolean) => void;
 }
 
 const filterCheckbox = [
@@ -34,15 +41,23 @@ const filterCheckbox = [
   },
 ];
 
-const Filters: FC<IFiltersProps> = ({ getCategoryProducts, setProducts }) => {
+const Filters: FC<IFiltersProps> = ({
+  getCategoryProducts,
+  setProducts,
+  loading,
+  setLoading,
+}) => {
   const [from, setFrom] = useState<string | number>("");
   const [to, setTo] = useState<string | number>("");
 
   const [labelPrice, setLabelPrice] = useState("");
 
+  const [showFilters, setShowFilters] = useState(false);
+
   let { name } = useParams();
 
   const search = async () => {
+    setLoading(true);
     const res = await axios.get<IProduct[]>(
       `http://game-store12.herokuapp.com/api/products/category/${name}`
     );
@@ -84,6 +99,7 @@ const Filters: FC<IFiltersProps> = ({ getCategoryProducts, setProducts }) => {
       }
     }
     setProducts(filteredProducts);
+    setLoading(false);
   };
 
   const reset = () => {
@@ -94,51 +110,68 @@ const Filters: FC<IFiltersProps> = ({ getCategoryProducts, setProducts }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <p className={styles.title}>Цена</p>
-      <div className={styles.inputs}>
-        <TextField
-          style={{ marginRight: 20, fontFamily: "Montserrat" }}
-          size="small"
-          id="outlined-multiline-flexible"
-          label={`от ${typeof from === "string" ? "150" : from} ₽`}
-          multiline
-          maxRows={4}
-          value={from}
-          onChange={(e) => setFrom(Number(e.target.value))}
-        />
-        <TextField
-          size="small"
-          id="outlined-multiline-flexible"
-          label={`до ${typeof to === "string" ? "99     999" : to} ₽`}
-          multiline
-          maxRows={4}
-          value={to}
-          onChange={(e) => setTo(Number(e.target.value))}
-        />
+    <div>
+      <div
+        className={styles.filtersButton}
+        onClick={() => setShowFilters(!showFilters)}
+      >
+        <TuneIcon />
+        <p>Фильтры</p>
+        <KeyboardArrowDownIcon />
       </div>
-      <FormGroup>
-        {filterCheckbox.map((checkbox) => (
-          <FormControlLabel
-            control={
-              <Checkbox
-                color="success"
-                checked={labelPrice === checkbox.title ? true : false}
-                onChange={() => setLabelPrice(checkbox.title)}
+      <CSSTransition
+        in={showFilters}
+        timeout={300}
+        classNames="alert"
+        unmountOnExit
+      >
+        <div className={styles.container}>
+          <p className={styles.title}>Цена</p>
+          <div className={styles.inputs}>
+            <TextField
+              style={{ marginRight: 20, fontFamily: "Montserrat" }}
+              size="small"
+              id="outlined-multiline-flexible"
+              label={`от ${typeof from === "string" ? "150" : from} ₽`}
+              multiline
+              maxRows={4}
+              value={from}
+              onChange={(e) => setFrom(Number(e.target.value))}
+            />
+            <TextField
+              size="small"
+              id="outlined-multiline-flexible"
+              label={`до ${typeof to === "string" ? "99     999" : to} ₽`}
+              multiline
+              maxRows={4}
+              value={to}
+              onChange={(e) => setTo(Number(e.target.value))}
+            />
+          </div>
+          <FormGroup>
+            {filterCheckbox.map((checkbox) => (
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    color="success"
+                    checked={labelPrice === checkbox.title ? true : false}
+                    onChange={() => setLabelPrice(checkbox.title)}
+                  />
+                }
+                label={checkbox.title}
               />
-            }
-            label={checkbox.title}
-          />
-        ))}
-      </FormGroup>
-      <div className={styles.buttons}>
-        <button className={styles.success} onClick={search}>
-          Применить
-        </button>
-        <button className={styles.reset} onClick={reset}>
-          Сбросить
-        </button>
-      </div>
+            ))}
+          </FormGroup>
+          <div className={styles.buttons}>
+            <button className={styles.success} onClick={search}>
+              Применить
+            </button>
+            <button className={styles.reset} onClick={reset}>
+              Сбросить
+            </button>
+          </div>
+        </div>
+      </CSSTransition>
     </div>
   );
 };
