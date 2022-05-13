@@ -79,7 +79,11 @@
 			}
 			.heartIcon{
 				cursor: pointer;
-				
+					display: flex;
+					align-items: center;
+					background-color: #f7f9fa;
+					padding: 5px;
+					border-radius: 50px;
 			}
 		}
 	}

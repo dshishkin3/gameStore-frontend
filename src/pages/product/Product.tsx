@@ -1,13 +1,14 @@
 import React, { FC, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import styles from "./product.module.scss";
 
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
+import { useParams } from "react-router-dom";
+
+
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import axios from "axios";
 
 import { IProduct } from "../../utils/interfaces";
-
-import axios from "axios";
 import PageTitle from "../../components/ui/pageTitle/PageTitle";
 import toggleProductLS from "../../hok/toggleProductLS";
 
@@ -19,15 +20,6 @@ const Product: FC = () => {
 	const [largeImg, setLargeImg] = useState<number>(0);
 
 	const [favorites, setFavorites] = useState<boolean>(false);
-
-	// useEffect(() => {
-	// 	fetchProduct();
-	// 	if (localStorage.getItem(product._id)) {
-	// 		setFavorites(true);
-	// 	}
-	// 	console.log("fetch");
-	// }, []);
-
 	useEffect(() => {
 		fetchProduct();
 		if (localStorage.getItem(product._id)) {
@@ -90,9 +82,9 @@ const Product: FC = () => {
 						>
 							{" "}
 							{favorites ? (
-								<FavoriteOutlinedIcon color="success" />
+								<FavoriteIcon color="success" />
 							) : (
-								<FavoriteBorderOutlinedIcon color="success" />
+								<FavoriteBorderIcon color="success" />
 							)}
 						</span>
 					</div>

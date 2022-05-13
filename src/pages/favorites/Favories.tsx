@@ -1,12 +1,10 @@
 
 import React, { FC, useEffect, useState } from "react";
 import styles from './Favories.module.scss';
+
 import Card from "../../components/ui/card/Card";
 import { IProduct } from "../../utils/interfaces";
 import PageTitle from "../../components/ui/pageTitle/PageTitle";
-
-
-
 
 const Favories: FC = () => {
 	const [product, setProduct] = useState<IProduct[]>([]);
@@ -20,7 +18,6 @@ const Favories: FC = () => {
 		}
 	}
 
-
 	return (
 		<div className="container">
 			<PageTitle title="Мои закладки" />
@@ -29,7 +26,6 @@ const Favories: FC = () => {
 				}
 			</div >
 		</div>
-
 	);
 };
 
