@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { IProduct } from "../../../utils/interfaces";
 
 import styles from "./Card.module.scss";
+import toggleProductLS from "../../../hok/toggleProductLS";
 interface ICardProps {
 	product: IProduct;
 }
@@ -18,34 +19,7 @@ const Card: FC<ICardProps> = ({ product }) => {
 	}, [localStorage.getItem(product._id)]);
 
 	function toggleFavorites(obj: IProduct): void {
-		console.log(obj);
-		let old = [];
-		if (localStorage.getItem("favorites")) {
-			old = JSON.parse(localStorage.getItem("favorites") || "");
-		} else {
-			setFavorites(true);
-			localStorage.setItem("favorites", JSON.stringify([obj]));
-		}
-
-		if (old.some((e: any) => e._id === obj._id)) {
-			let old2 = old.filter((item: any) => item._id !== obj._id);
-			console.log(old2);
-			setFavorites(false);
-			localStorage.setItem("favorites", JSON.stringify([...old2]));
-			console.log("exist");
-		} else {
-			setFavorites(true);
-			localStorage.setItem("favorites", JSON.stringify([...old, obj]));
-		}
-
-
-		if (!localStorage.getItem(obj._id)) {
-			localStorage.setItem(obj._id, JSON.stringify([obj]));
-			setFavorites(true);
-		} else {
-			localStorage.removeItem(obj._id);
-			setFavorites(false);
-		}
+		toggleProductLS(obj, setFavorites)
 	}
 
 	return (
