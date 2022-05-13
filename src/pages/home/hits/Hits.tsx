@@ -1,35 +1,25 @@
-import axios from "axios";
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 
-import { IProduct } from "../../../utils/interfaces";
+import { useProducts } from "../../../hooks/useProducts";
 
 import Card from "../../../components/ui/card/Card";
-import MyLoader from "../../../components/ui/contentLoader/ContentLoader";
+import { MyLoader } from "../../../components/ui/contentLoader/ContentLoader";
 
 import styles from "../Home.module.scss";
 
 const Hits: FC = () => {
-  const [hits, setHits] = useState<IProduct[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const { hits, getHits, isLoading } = useProducts();
 
   useEffect(() => {
     getHits();
   }, []);
 
-  const getHits = async () => {
-    const res = await axios.get<IProduct[]>(
-      "http://game-store12.herokuapp.com/api/products/hits"
-    );
-    setHits(res.data);
-    setLoading(false);
-  };
-
   return (
     <div className={styles.hits}>
       <p className={styles.title}>Хиты продаж</p>
-      {loading ? (
+      {isLoading ? (
         <MyLoader />
       ) : (
         <Swiper

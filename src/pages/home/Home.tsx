@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 import Hits from "./hits/Hits";
 import Promotions from "./promotions/Promotions";

@@ -1,46 +1,51 @@
-import React, { FC, useEffect, useState } from "react";
-import styles from "./product.module.scss";
-
+import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import axios from "axios";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper";
+
 
 import { IProduct } from "../../utils/interfaces";
-import PageTitle from "../../components/ui/pageTitle/PageTitle";
+
+import { useProducts } from "../../hooks/useProducts";
 import toggleProductLS from "../../hok/toggleProductLS";
 
+import PageTitle from "../../components/ui/pageTitle/PageTitle";
+
+import styles from "./product.module.scss";
+
+
+// можно ещё фильтровать импорты, чтобы удобно было, типо компоненты в одной куче, CSS в другой и тд
 
 const Product: FC = () => {
+	const { product, getProduct, isLoading } = useProducts(); // получаем данные из хука(контекста)
+
 	const { id } = useParams<string>();
-	const [product, setProduct] = useState<IProduct>({} as IProduct);
-	const [loading, setLoading] = useState<boolean>(true);
 	const [largeImg, setLargeImg] = useState<number>(0);
 
 	const [favorites, setFavorites] = useState<boolean>(false);
+
+	const [loading, setLoading] = useState(true);
+
 	useEffect(() => {
-		fetchProduct();
+		// при старте страницы отправляем запрос
+		if (id !== undefined) {
+			getProduct({ id });
+			setLoading(false);
+		}
+	}, []);
+
+	useEffect(() => {
 		if (localStorage.getItem(product._id)) {
 			setFavorites(true);
 		}
 	}, [localStorage.getItem(product._id)]);
 
-	async function fetchProduct() {
-		try {
-			const response = await axios.get<IProduct>(
-				`http://game-store12.herokuapp.com/api/products/product/${id}`
-			);
-			setProduct(response.data);
-			setLoading(false);
-		} catch (e) {
-			console.log(e);
-		}
-	}
-
 	function addToFavorites(obj: IProduct): void {
-		toggleProductLS(obj, setFavorites)
+		toggleProductLS(obj, setFavorites);
 	}
 
 	const onClickImgHandle = (index: number): void => {
@@ -48,53 +53,68 @@ const Product: FC = () => {
 	};
 
 	return (
-		<div className={styles.product}>
-			<div className={styles.header}>
-				<PageTitle title={product.title} />
-			</div>
-			<div className={styles.content}>
-				<div className={styles.productImg}>
-					<div className={styles.large}>
-						{!loading && (
-							<img src={product.urlImages[largeImg]} alt="productImage" />
-						)}
+		<>
+			{isLoading || loading ? ( // тут какой то баг, и пришлось добавить два loading, один из контекста, один тут, в остальных компнонентах все работает норм, хз почему тут так
+				<p>loading</p>
+			) : (
+				<div className={styles.product}>
+					<div className={styles.header}>
+						<PageTitle title={product.title} />
 					</div>
-					<div className={styles.small}>
-						{!loading &&
-							product.urlImages.slice(1).map((img, index) => (
-								<div
-									className={index === largeImg ? styles.active : ""}
-									onClick={() => onClickImgHandle(index)}
-									key={img}
+					<div className={styles.content}>
+						<div className={styles.productImgSwipper}>
+							<Swiper
+								slidesPerView={1}
+								spaceBetween={70}
+								navigation={true}
+								className="mySwiper"
+								style={{ maxWidth: 355 }}
+								modules={[Navigation]}
+							>
+								{product.urlImages.map(img => (<SwiperSlide><img src={img} alt="image" /></SwiperSlide>))}
+							</Swiper>
+						</div>
+						<div className={styles.productImg}>
+							<div className={styles.large}>
+								<img src={product.urlImages[largeImg]} alt="productImage" />
+							</div>
+							<div className={styles.small}>
+								{product.urlImages.slice(1).map((img, index) => (
+									<div
+										className={index === largeImg ? styles.active : ""}
+										onClick={() => onClickImgHandle(index)}
+										key={img}
+									>
+										<img src={product.urlImages[index]} alt="small" />
+									</div>
+								))}
+							</div>
+						</div>
+						<div className={styles.body}>
+							<div className={styles.subtitle}>{product.desc}</div>
+							<div className={styles.price}>
+								<span>{product.price} ₽ </span>
+								<span
+									onClick={() => addToFavorites(product)}
+									className={styles.heartIcon}
 								>
-									<img src={product.urlImages[index]} alt="small" />
-								</div>
-							))}
+									{" "}
+									{favorites ? (
+										<FavoriteOutlinedIcon color="success" />
+									) : (
+										<FavoriteBorderOutlinedIcon color="success" />
+									)}
+								</span>
+							</div>
+						</div>
+					</div>
+					<div className={styles.desc}>
+						<div className={styles.title}>{product.title}</div>
+						<div className={styles.body}>{product.characteristic}</div>
 					</div>
 				</div>
-				<div className={styles.body}>
-					<div className={styles.subtitle}>{product.desc}</div>
-					<div className={styles.price}>
-						<span>{product.price} ₽ </span>
-						<span
-							onClick={() => addToFavorites(product)}
-							className={styles.heartIcon}
-						>
-							{" "}
-							{favorites ? (
-								<FavoriteIcon color="success" />
-							) : (
-								<FavoriteBorderIcon color="success" />
-							)}
-						</span>
-					</div>
-				</div>
-			</div>
-			<div className={styles.desc}>
-				<div className={styles.title}>{product.title}</div>
-				<div className={styles.body}>{product.characteristic}</div>
-			</div>
-		</div>
+			)}
+		</>
 	);
 };
 

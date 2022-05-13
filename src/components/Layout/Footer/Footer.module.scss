@@ -2,8 +2,6 @@
   display: flex;
   justify-content: space-between;
   margin-top: 100px;
- 
-
 }
 
 .title {
@@ -12,11 +10,8 @@
 }
 
 .categories {
-  max-width: 550px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-bottom: 5px;
+  flex-direction: column;
 }
 
 .category {

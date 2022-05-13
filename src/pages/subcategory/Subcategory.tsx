@@ -1,14 +1,15 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { useParams, Link } from "react-router-dom";
 
 import PageTitle from "../../components/ui/pageTitle/PageTitle";
-
-import { categories } from "../../utils/categories";
+import { useCategories } from "../../hooks/useCategories";
 
 import styles from "./Subcategory.module.scss";
 
 const Subcategory: FC = () => {
   let { name } = useParams();
+
+  const { categories } = useCategories();
 
   const category = categories.filter((item) => item.title === name);
 

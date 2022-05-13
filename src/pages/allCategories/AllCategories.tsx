@@ -1,13 +1,15 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { Link } from "react-router-dom";
 
-import PageTitle from "../../components/ui/pageTitle/PageTitle";
+import { useCategories } from "../../hooks/useCategories";
 
-import { categories } from "../../utils/categories";
+import PageTitle from "../../components/ui/pageTitle/PageTitle";
 
 import styles from "./AllCategories.module.scss";
 
 const AllCategories: FC = () => {
+  const { categories } = useCategories();
+
   return (
     <div>
       <PageTitle title="Все категории" />
@@ -16,7 +18,7 @@ const AllCategories: FC = () => {
           <Link
             to={`/subcategory/${category.title}`}
             className={styles.category}
-            key={category.id}
+            key={category._id}
           >
             <img src={category.urlImg} alt="" />
             <p>{category.title}</p>

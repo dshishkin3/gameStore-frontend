@@ -1,26 +1,28 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { Link } from "react-router-dom";
 
 import CallIcon from "@mui/icons-material/Call";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TelegramIcon from "@mui/icons-material/Telegram";
 
-import { mainCategories } from "../../../utils/categories";
+import { useCategories } from "../../../hooks/useCategories";
 
 import logo from "../../../assets/images/header/logo.png";
 
 import styles from "./Footer.module.scss";
 
 const Footer: FC = () => {
+  const { categories } = useCategories();
+
   return (
     <div className={styles.container}>
       <div className={styles.navigation}>
         <p className={styles.title}>НАВИГАЦИЯ</p>
         <div className={styles.categories}>
-          {mainCategories.map((category) => (
+          {categories.slice(0, 3).map((category) => (
             <Link
               to={category.title}
-              key={category.id}
+              key={category._id}
               className={styles.category}
             >
               {category.title}

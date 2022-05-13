@@ -1,6 +1,7 @@
 import axios from "axios";
-import React, { FC, useEffect, useRef, useState } from "react";
+import { FC, useState } from "react";
 import { useParams } from "react-router-dom";
+import { CSSTransition } from "react-transition-group";
 
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
@@ -8,19 +9,12 @@ import TuneIcon from "@mui/icons-material/Tune";
 import { FormControlLabel, FormGroup } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
-import { CSSTransition } from "react-transition-group";
+import { useProducts } from "../../../hooks/useProducts";
 
 import { IProduct } from "../../../utils/interfaces";
 
 import styles from "./Filters.module.scss";
 import "./styles.css";
-
-interface IFiltersProps {
-  setProducts: (arg0: IProduct[]) => void;
-  getProducts: () => void;
-  loading: boolean;
-  setLoading: (arg0: boolean) => void;
-}
 
 const filterCheckbox = [
   {
@@ -41,12 +35,7 @@ const filterCheckbox = [
   },
 ];
 
-const Filters: FC<IFiltersProps> = ({
-  getProducts,
-  setProducts,
-  loading,
-  setLoading,
-}) => {
+const Filters: FC = () => {
   const [from, setFrom] = useState<string | number>("");
   const [to, setTo] = useState<string | number>("");
 
@@ -54,10 +43,13 @@ const Filters: FC<IFiltersProps> = ({
 
   const [showFilters, setShowFilters] = useState(false);
 
+  const { getCategoryProducts, setCategoryProducts, setIsLoading } =
+    useProducts();
+
   let { name } = useParams();
 
   const search = async () => {
-    setLoading(true);
+    setIsLoading(true);
     const res = await axios.get<IProduct[]>(
       `http://game-store12.herokuapp.com/api/products/category/${name}`
     );
@@ -98,12 +90,14 @@ const Filters: FC<IFiltersProps> = ({
           break;
       }
     }
-    setProducts(filteredProducts);
-    setLoading(false);
+    setCategoryProducts(filteredProducts);
+    setIsLoading(false);
   };
 
   const reset = () => {
-    getProducts();
+    if (name !== undefined) {
+      getCategoryProducts({ name });
+    }
     setFrom("");
     setTo("");
     setLabelPrice("");

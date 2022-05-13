@@ -1,4 +1,3 @@
-import React, { FC } from "react";
 import { Link } from "react-router-dom";
 
 import Drawer from "@mui/material/Drawer";
@@ -12,7 +11,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import logo from "../../../../assets/images/header/logo.png";
 
 import styles from "./Drawer.module.scss";
-import { mainCategories } from "../../../../utils/categories";
+import { useCategories } from "../../../../hooks/useCategories";
 
 interface IDrawerProps {
   drawer: boolean;
@@ -20,6 +19,8 @@ interface IDrawerProps {
 }
 
 const DrawerBlock = ({ drawer, setDrawer }: IDrawerProps) => {
+  const { categories } = useCategories();
+
   return (
     <div className={styles.drawer}>
       <Button onClick={() => setDrawer(!drawer)} color="inherit">
@@ -47,23 +48,17 @@ const DrawerBlock = ({ drawer, setDrawer }: IDrawerProps) => {
         </div>
         <div className={styles.body}>
           <div className={styles.categories}>
-            <Link
-              to={`subcategory/Компьютерная периферия`}
-              className={styles.category}
-              onClick={() => setDrawer(!drawer)}
-            >
-              <p>Компьютерная периферия</p>
-              <ArrowForwardIosIcon fontSize="small" />
-            </Link>
-
-            <Link
-              to={`subcategory/Офис и сеть`}
-              className={styles.category}
-              onClick={() => setDrawer(!drawer)}
-            >
-              <p>Офис и сеть</p>
-              <ArrowForwardIosIcon fontSize="small" />
-            </Link>
+            {categories.map((category) => (
+              <Link
+                key={category._id}
+                to={`subcategory/${category.title}`}
+                className={styles.category}
+                onClick={() => setDrawer(!drawer)}
+              >
+                <p>{category.title}</p>
+                <ArrowForwardIosIcon fontSize="small" />
+              </Link>
+            ))}
 
             <Link to="/allCategories" onClick={() => setDrawer(!drawer)}>
               <p className={styles.allCategories}>Все категории...</p>
