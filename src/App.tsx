@@ -1,15 +1,20 @@
 import React from "react";
 
+import { CategoriesProvider } from "./providers/CategoriesProvider";
+
 import Layout from "./components/Layout/Layout";
 import AppRouter from "./config/Routes";
+import { ProductsProvider } from "./providers/ProductsProvider";
 
 function App() {
   return (
-    <div>
-      <Layout>
-        <AppRouter />
-      </Layout>
-    </div>
+    <ProductsProvider>
+      <CategoriesProvider>
+        <Layout>
+          <AppRouter />
+        </Layout>
+      </CategoriesProvider>
+    </ProductsProvider>
   );
 }
 

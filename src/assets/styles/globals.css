@@ -81,6 +81,10 @@ input:focus {
   max-width: 1050px;
 }
 
+.swiper-slide {
+  text-align: center;
+}
+
 @media screen and (max-width: 400px) {
   select:focus,
   textarea:focus,
