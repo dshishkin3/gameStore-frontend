@@ -1,0 +1,37 @@
+.scrollToTop{
+		display: inline-flex;
+		cursor: pointer;
+		justify-content: center;
+		align-items: center;
+		background-color: #f7f9fa;
+		padding: 5px;
+		border-radius: 50px;
+		position: absolute;
+		top: 160%;
+		left: 50%;
+		opacity: 0;
+		visibility: hidden;
+		
+		
+
+}
+.scrollActive {
+		display: inline-flex;
+		cursor: pointer;
+		justify-content: center;
+		align-items: center;
+		background-color: #f7f9fa;
+		padding: 5px;
+		border-radius: 50px;
+		position: absolute;
+		top: 160%;
+		left: 50%;
+		opacity: 1;
+		visibility: visible;
+		transition: all 0.5s;
+		
+			&:hover {
+				transition: all 0.5s;
+				box-shadow: 0px 0px 8px -6px #000000;
+			}
+}

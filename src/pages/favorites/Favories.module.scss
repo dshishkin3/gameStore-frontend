@@ -44,9 +44,6 @@
 		display: flex;
 		flex-wrap: wrap;
 		margin: -15px;
-		// justify-content: space-between;
 		align-items: center;
-			@media (max-width:910px) {
-					// justify-content: center;
-				}
+		justify-content: space-between;
 }
