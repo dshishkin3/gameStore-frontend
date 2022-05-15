@@ -1,22 +1,29 @@
 .container {
-  width: fit-content;
-  margin-top: 30px;
-  text-align: center;
-  cursor: pointer;
-  padding: 0px 35px;
-  max-width: 272px;
-  margin-right: 60px;
+	
+//   width: fit-content;
+//   margin-top: 30px;
+cursor: pointer;
+padding: 0px 20px;
+//   max-width: 272px;
+//   margin-right: 60px;
+display:flex;
+flex-direction: column;
+text-align: center;
+min-height: 100%;
+max-width:264px;
+margin: 15px;
 }
-
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0px -33px;
+//   margin: 0px -33px;
 }
 
 .info {
   display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .hit {
@@ -25,7 +32,7 @@
   background-color: #1e5900;
   color: #fff;
   font-size: 14px;
-  height: fit-content;
+//   height: fit-content;
   padding: 7px 20px;
 }
 
@@ -40,21 +47,26 @@
 }
 
 .favorite {
-  cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   background-color: #f7f9fa;
   padding: 5px;
   border-radius: 50px;
 }
-
+.cardItem{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 .img {
-  margin-top: 35px;
+  margin-top: 30px;
   width: 200px;
   height: 200px;
 }
 
 .title {
+  align-self: flex-start;
   margin-top: 20px;
   font-weight: 500;
   text-align: left;
@@ -62,8 +74,9 @@
 }
 
 .prices {
+  align-self: flex-start;
   display: flex;
-  align-items: baseline;
+  justify-content: space-between;
   margin-top: 15px;
 }
 
@@ -75,24 +88,52 @@
 }
 
 .oldPrice {
-  text-align: left;
   font-weight: 700;
-  margin-top: 5px;
+  align-self: flex-end;
+//   margin-top: 5px;
   color: #1e5900;
   text-decoration: line-through;
 }
 
+
 @media (max-width: 1200px) {
   .container {
-    max-width: fit-content;
-    margin-right: 0px;
+	// flex: 1 0 25%;
+   //  max-width: fit-content;
+   //  margin-right: 0px;
+
   }
 }
+@media (max-width: 1200px) {
+	.wrapper {
+			display: flex;
+			justify-content: center;
+			flex: 0 0 33.333%;
+			//  margin-bottom: 30px;
+			.container {
+			// flex: 0 0 33.333%;
+			justify-content: center;
+					//  max-width: fit-content;
+					//  margin-right: 0px;
+			
+				}
+		}
+ 
+}
+@media (max-width: 900px) {
+	.wrapper{
+		flex: 1 0 50%;
+	.container {
+			flex: 1 0 50%;
+			justify-content: space-around;
+		}
+	}
 
-@media (max-width: 768px) {
+}
+
+@media (max-width: 620px) {
   .wrapper {
-    display: flex;
-    justify-content: center;
+  flex: 1 0 100%;
     margin-bottom: 30px;
   }
 }

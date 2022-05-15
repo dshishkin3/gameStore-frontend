@@ -24,9 +24,9 @@ const Favories: FC = () => {
 			<PageTitle title="Мои закладки" />
 			<div className={styles.favorites}>
 				{product.map((obj) => (
-					<div className={styles.card} key={obj._id}>
-						<Card product={obj} />
-					</div>
+
+					<Card key={obj._id} product={obj} />
+
 				))}
 			</div>
 		</div>
