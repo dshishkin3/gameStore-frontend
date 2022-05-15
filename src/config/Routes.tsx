@@ -10,17 +10,18 @@ import Favories from "../pages/favorites/Favories";
 import Subcategory from "../pages/subcategory/Subcategory";
 
 const AppRouter: FC = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/product/:id" element={<Product />} />
-      <Route path="/search/:name" element={<Search />} />
-      <Route path="/category/:name" element={<Category />} />
-      <Route path="/subcategory/:name" element={<Subcategory />} />
-      <Route path="/allCategories" element={<AllCategories />} />
-      <Route path="/favorites" element={<Favories />} />
-    </Routes>
-  );
+	return (
+		<Routes>
+			<Route path="/" element={<Home />} />
+			<Route path="/product/:id" element={<Product />} />
+			<Route path="/search/:name" element={<Search />} />
+			<Route path="/category/:name" element={<Category />} />
+			<Route path="/subcategory/:name" element={<Subcategory />} />
+			<Route path="/allCategories" element={<AllCategories />} />
+			<Route path="/favorites" element={<Favories />} />
+			<Route path="*" element={<Home />} />
+		</Routes>
+	);
 };
 
 export default AppRouter;

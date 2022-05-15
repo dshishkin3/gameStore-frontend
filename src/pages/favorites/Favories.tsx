@@ -6,6 +6,7 @@ import Card from "../../components/ui/card/Card";
 import PageTitle from "../../components/ui/pageTitle/PageTitle";
 
 import styles from "./Favories.module.scss";
+import Empty from "./Empty";
 
 const Favories: FC = () => {
 	const [product, setProduct] = useState<IProduct[]>([]);
@@ -20,17 +21,18 @@ const Favories: FC = () => {
 	}
 
 	return (
-		<div className="container">
-			<PageTitle title="Мои закладки" />
-			<div className={styles.favorites}>
-				{product.map((obj) => (
+		<div className={styles.container}>
+			{!product.length ? < Empty /> : product.length && <><PageTitle title="Мои закладки" />
+				<div className={styles.favorites}>
+					{product.map((obj) => (
+						<Card key={obj._id} product={obj} />
+					))}
+				</div> </>}
 
-					<Card key={obj._id} product={obj} />
 
-				))}
-			</div>
 		</div>
 	);
+
 };
 
 export default Favories;

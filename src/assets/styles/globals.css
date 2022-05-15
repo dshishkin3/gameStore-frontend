@@ -1,9 +1,13 @@
 html,
 body {
+  height: 100%;
   padding: 0;
   margin: 0;
   font-family: "Montserrat", sans-serif;
   scroll-behavior: smooth;
+}
+#root{
+	height: 100%;
 }
 
 input,
