@@ -93,34 +93,22 @@ margin: 15px;
   text-decoration: line-through;
 }
 
-
-@media (max-width: 1200px) {
-  .container {
-	// flex: 1 0 25%;
-   //  max-width: fit-content;
-   //  margin-right: 0px;
-
-  }
-}
 @media (max-width: 1200px) {
 	.wrapper {
 			display: flex;
 			flex: 0 0 33.333%;
 		}
- 
 }
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
 	.wrapper{
-		flex: 1 0 50%;
+		flex: 1 0 50%;	
 	.container {
 			flex: 1 0 50%;
-			justify-content: space-around;
 		}
 	}
-
 }
 
-@media (max-width: 620px) {
+@media (max-width: 770px) {
   .wrapper {
 	flex: 1 0 100%;
 	margin-bottom: 30px;
