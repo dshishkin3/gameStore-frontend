@@ -1,8 +1,9 @@
-import React, { FC, ReactNode } from "react";
+import { FC, ReactNode } from "react";
 
 import Footer from "./Footer/Footer";
 import Catalog from "./catalog/Catalog";
 import Header from "./Header/Header";
+import ScrollToTop from "../ui/scroll/ScrollToTop";
 
 import styles from "./Layout.module.scss";
 
@@ -17,6 +18,7 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
       <Catalog />
       {children}
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };

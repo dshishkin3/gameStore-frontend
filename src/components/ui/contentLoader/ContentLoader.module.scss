@@ -7,6 +7,15 @@
   margin-left: 10px;
 }
 
+.category {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  width: -webkit-fill-available;
+  flex-wrap: wrap;
+  margin-left: 10px;
+}
+
 .categories {
   margin-left: -80px;
 }
