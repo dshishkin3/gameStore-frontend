@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 import { useCategories } from "../../../../hooks/useCategories";
 
@@ -60,8 +61,16 @@ const MenuBlock: FC = () => {
                 className={styles.category}
                 onClick={handleClose}
               >
-                <img src={category.urlImg} alt="" />
-                <p>{category.title}</p>
+                <div className={styles.categoryBody}>
+                  <img src={category.urlImg} alt="" />
+                  <p>
+                    {" "}
+                    {category.title.length < 23
+                      ? category.title
+                      : category.title.slice(0, 23) + "..."}
+                  </p>
+                </div>
+                <ArrowForwardIosIcon color="action" fontSize="small" />
               </Link>
             ))}
           </div>

@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import BackButton from "../../components/ui/backButton/BackButton";
 import Card from "../../components/ui/card/Card";
 import { MyLoader } from "../../components/ui/contentLoader/ContentLoader";
+import Filters from "../../components/ui/filters/Filters";
 import PageTitle from "../../components/ui/pageTitle/PageTitle";
 
 import { useProducts } from "../../hooks/useProducts";
@@ -35,10 +36,13 @@ const Search: FC = () => {
                 <BackButton />
               </div>
             ) : (
-              searchProducts.map((product) => <Card product={product} />)
+              searchProducts.map((product) => (
+                <Card key={product._id} product={product} />
+              ))
             )}
           </div>
         )}
+        <Filters page="search" />
       </div>
     </div>
   );

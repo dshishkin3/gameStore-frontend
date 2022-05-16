@@ -45,7 +45,9 @@ const Catalog: FC = () => {
               <SwiperSlide key={category._id}>
                 {" "}
                 <Link to={`/subcategory/${category.title}`}>
-                  {category.title}
+                  {category.title.length < 23
+                    ? category.title
+                    : category.title.slice(0, 23) + "..."}
                 </Link>
               </SwiperSlide>
             ))}

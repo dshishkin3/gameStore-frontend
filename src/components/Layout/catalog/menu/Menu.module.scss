@@ -42,6 +42,19 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  transition: all 0.5s;
+  justify-content: space-between;
+  margin-bottom: 5px;
+
+  &Body {
+    display: flex;
+    align-items: center;
+  }
+
+  &:hover {
+    background-color: rgb(250, 250, 250);
+    transition: all 0.5s;
+  }
 
   & img {
     width: 50px;

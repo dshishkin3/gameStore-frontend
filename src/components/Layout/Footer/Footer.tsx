@@ -21,7 +21,7 @@ const Footer: FC = () => {
         <div className={styles.categories}>
           {categories.slice(0, 3).map((category) => (
             <Link
-              to={category.title}
+              to={`subcategory/${category.title}`}
               key={category._id}
               className={styles.category}
             >

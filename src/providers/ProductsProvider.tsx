@@ -1,11 +1,4 @@
-import {
-  FC,
-  useState,
-  useMemo,
-  createContext,
-  ReactNode,
-  useEffect,
-} from "react";
+import { FC, useState, useMemo, createContext, ReactNode } from "react";
 import axios from "axios";
 
 import { IProduct } from "../utils/interfaces";
@@ -27,10 +20,6 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
   const [product, setProduct] = useState<IProduct>({} as IProduct);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    console.log(product);
-  }, [product]);
 
   const getHits = async () => {
     setIsLoading(true);
@@ -109,6 +98,7 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
       hits,
       promotions,
       searchProducts,
+      setSearchProducts,
       categoryProducts,
       setCategoryProducts,
       product,

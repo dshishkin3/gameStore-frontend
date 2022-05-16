@@ -17,6 +17,7 @@ export interface IProductsContext {
 
   setCategoryProducts: (arg0: IProduct[]) => void;
   setIsLoading: (arg0: boolean) => void;
+  setSearchProducts: (arg0: IProduct[]) => void;
 
   getHits: () => void;
   getPromotions: () => void;
