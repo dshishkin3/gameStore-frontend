@@ -1,21 +1,23 @@
-	.wrapper {
-		display: flex;
-		flex: 0 0 25%;
-	}
+.wrapper {
+  display: flex;
+  flex: 0 0 25%;
+  margin-top: 15px;
+}
 .container {
-cursor: pointer;
-padding: 0px 20px;
-display:flex;
-flex-direction: column;
-text-align: center;
-min-height: 100%;
-max-width:264px;
-margin: 15px;
+  cursor: pointer;
+  padding: 0px 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  min-height: 100%;
+  min-width: 264px;
+  margin: 15px;
 }
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 0px -15px;
 }
 
 .info {
@@ -30,7 +32,7 @@ margin: 15px;
   background-color: #1e5900;
   color: #fff;
   font-size: 14px;
-//   height: fit-content;
+  //   height: fit-content;
   padding: 7px 20px;
 }
 
@@ -51,16 +53,31 @@ margin: 15px;
   background-color: #f7f9fa;
   padding: 5px;
   border-radius: 50px;
+  transition: all 0.5s;
+
+  &:hover {
+    // background-color: #596851;
+    opacity: 0.6;
+    transition: all 0.5s;
+  }
 }
-.cardItem{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+.cardItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .img {
   margin-top: 30px;
   width: 200px;
   height: 200px;
+  transition: all 0.5s;
+
+  &:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: all 0.5s;
+  }
 }
 
 .title {
@@ -88,32 +105,31 @@ margin: 15px;
 .oldPrice {
   font-weight: 700;
   align-self: flex-end;
-//   margin-top: 5px;
+  //   margin-top: 5px;
   color: #1e5900;
   text-decoration: line-through;
 }
 
 @media (max-width: 1200px) {
-	.wrapper {
-			display: flex;
-			flex: 0 0 33.333%;
-		}
+  .wrapper {
+    display: flex;
+    flex: 0 0 33.333%;
+  }
 }
 @media (max-width: 1000px) {
-	.wrapper{
-		flex: 1 0 50%;	
-	justify-content: center;
-	.container {
-			flex: 1 0 50%;
-		}
-	}
+  .wrapper {
+    flex: 1 0 50%;
+    justify-content: center;
+    .container {
+      flex: 1 0 50%;
+    }
+  }
 }
 
 @media (max-width: 770px) {
   .wrapper {
-	flex: 1 0 100%;
-	margin-bottom: 30px;
-	justify-content: center;
-
+    flex: 1 0 100%;
+    margin-bottom: 30px;
+    justify-content: center;
   }
 }

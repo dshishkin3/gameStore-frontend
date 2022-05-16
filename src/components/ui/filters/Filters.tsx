@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 
 import Checkbox from "@mui/material/Checkbox";
-import TextField from "@mui/material/TextField";
 import TuneIcon from "@mui/icons-material/Tune";
 import { FormControlLabel, FormGroup } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -12,30 +11,16 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useProducts } from "../../../hooks/useProducts";
 
 import { IProduct } from "../../../utils/interfaces";
+import { filterCheckbox } from "./data";
 
 import styles from "./Filters.module.scss";
 import "./styles.css";
 
-const filterCheckbox = [
-  {
-    id: 1,
-    title: "Менее 15 000 ₽",
-  },
-  {
-    id: 2,
-    title: "15 001 ₽ - 20 000 ₽",
-  },
-  {
-    id: 3,
-    title: "20 001 ₽ - 40 000 ₽",
-  },
-  {
-    id: 4,
-    title: "40 001 и более",
-  },
-];
+interface IFiltersProps {
+  page: "category" | "search";
+}
 
-const Filters: FC = () => {
+const Filters: FC<IFiltersProps> = ({ page }) => {
   const [from, setFrom] = useState<string | number>("");
   const [to, setTo] = useState<string | number>("");
 
@@ -43,15 +28,22 @@ const Filters: FC = () => {
 
   const [showFilters, setShowFilters] = useState(false);
 
-  const { getCategoryProducts, setCategoryProducts, setIsLoading } =
-    useProducts();
+  const {
+    getCategoryProducts,
+    getSearchProducts,
+    setCategoryProducts,
+    setSearchProducts,
+    setIsLoading,
+  } = useProducts();
 
   let { name } = useParams();
 
   const search = async () => {
     setIsLoading(true);
     const res = await axios.get<IProduct[]>(
-      `http://game-store12.herokuapp.com/api/products/category/${name}`
+      page === "category"
+        ? ` http://game-store12.herokuapp.com/api/products/category/${name}`
+        : `http://game-store12.herokuapp.com/api/products/search/${name}`
     );
 
     let filteredProducts = res.data.filter(
@@ -90,13 +82,15 @@ const Filters: FC = () => {
           break;
       }
     }
-    setCategoryProducts(filteredProducts);
+    page === "category" && setCategoryProducts(filteredProducts);
+    page === "search" && setSearchProducts(filteredProducts);
     setIsLoading(false);
   };
 
   const reset = () => {
     if (name !== undefined) {
-      getCategoryProducts({ name });
+      page === "category" && getCategoryProducts({ name });
+      page === "search" && getSearchProducts({ name });
     }
     setFrom("");
     setTo("");
@@ -122,29 +116,25 @@ const Filters: FC = () => {
         <div className={styles.container}>
           <p className={styles.title}>Цена</p>
           <div className={styles.inputs}>
-            <TextField
-              style={{ marginRight: 20, fontFamily: "Montserrat" }}
-              size="small"
-              id="outlined-multiline-flexible"
-              label={`от ${typeof from === "string" ? "150" : from} ₽`}
-              multiline
-              maxRows={4}
+            <input
+              className={styles.input}
               value={from}
               onChange={(e) => setFrom(Number(e.target.value))}
+              placeholder="от 100 ₽"
+              type="tel"
             />
-            <TextField
-              size="small"
-              id="outlined-multiline-flexible"
-              label={`до ${typeof to === "string" ? "99     999" : to} ₽`}
-              multiline
-              maxRows={4}
+            <input
+              className={styles.input}
               value={to}
               onChange={(e) => setTo(Number(e.target.value))}
+              placeholder="до 99 999 ₽"
+              type="tel"
             />
           </div>
           <FormGroup>
             {filterCheckbox.map((checkbox) => (
               <FormControlLabel
+                key={checkbox.title}
                 control={
                   <Checkbox
                     color="success"

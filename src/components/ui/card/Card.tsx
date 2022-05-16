@@ -9,7 +9,6 @@ import styles from "./Card.module.scss";
 import toggleProductLS from "../../../hok/toggleProductLS";
 interface ICardProps {
 	product: IProduct;
-
 }
 const Card: FC<ICardProps> = ({ product }) => {
 	const [favorites, setFavorites] = useState<boolean>(false);
@@ -25,7 +24,7 @@ const Card: FC<ICardProps> = ({ product }) => {
 
 	return (
 		<div className={styles.wrapper}>
-			<div className={styles.container} >
+			<div className={styles.container}>
 				<div className={styles.header}>
 					<div className={styles.info}>
 						{product.hit && <p className={styles.hit}>ХИТ</p>}
@@ -42,7 +41,7 @@ const Card: FC<ICardProps> = ({ product }) => {
 						)}
 					</div>
 				</div>
-				<Link className={styles.cardItem} to={`/product/${product._id}`}>
+				<Link to={`/product/${product._id}`} className={styles.cardItem}>
 					<img className={styles.img} src={product.urlImages[0]} alt="" />
 					<p className={styles.title}>
 						{product.title.length < 49

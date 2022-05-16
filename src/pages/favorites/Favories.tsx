@@ -7,6 +7,7 @@ import PageTitle from "../../components/ui/pageTitle/PageTitle";
 
 import styles from "./Favories.module.scss";
 import Empty from "./Empty";
+import ScrollToTop from "../../components/ui/scroll/ScrollToTop";
 
 const Favories: FC = () => {
 	const [product, setProduct] = useState<IProduct[]>([]);
@@ -28,8 +29,7 @@ const Favories: FC = () => {
 						<Card key={obj._id} product={obj} />
 					))}
 				</div> </>}
-
-
+			<ScrollToTop />
 		</div>
 	);
 

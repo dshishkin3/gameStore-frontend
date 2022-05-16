@@ -1,14 +1,17 @@
 import { FC, useEffect, useState } from "react";
 import ArrowUpwardSharpIcon from '@mui/icons-material/ArrowUpwardSharp';
 import styles from './ScrollToTop.module.scss';
+import cn from "classnames";
+
+
 const ScrollToTop: FC = () => {
-	const [isVisable, setIsVesable] = useState<boolean>(false);
+	const [isVisable, setIsVisable] = useState<boolean>(false);
 
 	const toggleVisibility = (): void => {
-		if (window.pageXOffset > 300) {
-			setIsVesable(true);
+		if (window.pageYOffset > 300) {
+			setIsVisable(true);
 		} else {
-			setIsVesable(false);
+			setIsVisable(false);
 		}
 	}
 
@@ -26,9 +29,9 @@ const ScrollToTop: FC = () => {
 	}, [])
 	return (
 
-		<span className={styles.scrollToTop + isVisable && styles.scrollActive} onClick={scrollToTop}>
+		<span className={cn(styles.scrollToTop, { [styles.scrollActive]: isVisable })} onClick={scrollToTop} >
 			<ArrowUpwardSharpIcon color="success" />
-		</span>
+		</span >
 	)
 }
 export default ScrollToTop;

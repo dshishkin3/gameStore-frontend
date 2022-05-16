@@ -37,14 +37,20 @@ const Category: FC = () => {
               </div>
             )}
 
-            <div className={styles.products}>
+            <div
+              className={styles.products}
+              style={{
+                justifyContent:
+                  categoryProducts.length > 2 ? "space-between" : "unset",
+              }}
+            >
               {categoryProducts.map((product) => (
                 <Card product={product} key={product._id} />
               ))}
             </div>
           </div>
         )}
-        <Filters />
+        <Filters page="category" />
       </div>
     </div>
   );

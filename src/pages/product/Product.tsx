@@ -16,6 +16,7 @@ import toggleProductLS from "../../hok/toggleProductLS";
 import PageTitle from "../../components/ui/pageTitle/PageTitle";
 
 import styles from "./product.module.scss";
+import ScrollToTop from "../../components/ui/scroll/ScrollToTop";
 
 
 // можно ещё фильтровать импорты, чтобы удобно было, типо компоненты в одной куче, CSS в другой и тд
@@ -112,6 +113,7 @@ const Product: FC = () => {
 						<div className={styles.title}>{product.title}</div>
 						<div className={styles.body}>{product.characteristic}</div>
 					</div>
+					<ScrollToTop />
 				</div>
 			)}
 		</>
