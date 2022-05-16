@@ -19,10 +19,13 @@ export const AuthProvider: FC<IAuthProviderProps> = ({ children }) => {
   const login = async () => {
     setIsLoading(true);
     try {
-      const res = await axios.post(`http://localhost:8800/api/auth/login`, {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        `http://game-store12.herokuapp.com/api/auth/login`,
+        {
+          email,
+          password,
+        }
+      );
 
       if (res.status === 200) {
         setAuth(!auth);
