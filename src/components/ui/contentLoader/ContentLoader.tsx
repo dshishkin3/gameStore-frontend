@@ -1,4 +1,3 @@
-import React from "react";
 import ContentLoader from "react-content-loader";
 
 import styles from "./ContentLoader.module.scss";
@@ -93,6 +92,101 @@ export const MyLoaderCategories = () => {
         <rect x="236" y="-5" rx="0" ry="0" width="226" height="24" />
         <rect x="474" y="-3" rx="0" ry="0" width="226" height="24" />
         <rect x="714" y="-3" rx="0" ry="0" width="226" height="24" />
+      </ContentLoader>
+    </div>
+  );
+};
+
+export const MyLoaderCategory = () => {
+  return (
+    <div className={styles.category}>
+      <ContentLoader
+        speed={2}
+        width={120}
+        height={140}
+        viewBox="0 0 120 140"
+        backgroundColor="#f3f3f3"
+        foregroundColor="#ecebeb"
+      >
+        <rect x="-9" y="2" rx="0" ry="0" width="129" height="76" />
+        <rect x="-1" y="99" rx="0" ry="0" width="120" height="15" />
+      </ContentLoader>
+      <ContentLoader
+        speed={2}
+        width={120}
+        height={140}
+        viewBox="0 0 120 140"
+        backgroundColor="#f3f3f3"
+        foregroundColor="#ecebeb"
+      >
+        <rect x="-9" y="2" rx="0" ry="0" width="129" height="76" />
+        <rect x="-1" y="99" rx="0" ry="0" width="120" height="15" />
+      </ContentLoader>
+      <ContentLoader
+        speed={2}
+        width={120}
+        height={140}
+        viewBox="0 0 120 140"
+        backgroundColor="#f3f3f3"
+        foregroundColor="#ecebeb"
+      >
+        <rect x="-9" y="2" rx="0" ry="0" width="129" height="76" />
+        <rect x="-1" y="99" rx="0" ry="0" width="120" height="15" />
+      </ContentLoader>
+      <ContentLoader
+        speed={2}
+        width={120}
+        height={140}
+        viewBox="0 0 120 140"
+        backgroundColor="#f3f3f3"
+        foregroundColor="#ecebeb"
+      >
+        <rect x="-9" y="2" rx="0" ry="0" width="129" height="76" />
+        <rect x="-1" y="99" rx="0" ry="0" width="120" height="15" />
+      </ContentLoader>
+      <ContentLoader
+        speed={2}
+        width={120}
+        height={140}
+        viewBox="0 0 120 140"
+        backgroundColor="#f3f3f3"
+        foregroundColor="#ecebeb"
+      >
+        <rect x="-9" y="2" rx="0" ry="0" width="129" height="76" />
+        <rect x="-1" y="99" rx="0" ry="0" width="120" height="15" />
+      </ContentLoader>
+      <ContentLoader
+        speed={2}
+        width={120}
+        height={140}
+        viewBox="0 0 120 140"
+        backgroundColor="#f3f3f3"
+        foregroundColor="#ecebeb"
+      >
+        <rect x="-9" y="2" rx="0" ry="0" width="129" height="76" />
+        <rect x="-1" y="99" rx="0" ry="0" width="120" height="15" />
+      </ContentLoader>
+      <ContentLoader
+        speed={2}
+        width={120}
+        height={140}
+        viewBox="0 0 120 140"
+        backgroundColor="#f3f3f3"
+        foregroundColor="#ecebeb"
+      >
+        <rect x="-9" y="2" rx="0" ry="0" width="129" height="76" />
+        <rect x="-1" y="99" rx="0" ry="0" width="120" height="15" />
+      </ContentLoader>
+      <ContentLoader
+        speed={2}
+        width={120}
+        height={140}
+        viewBox="0 0 120 140"
+        backgroundColor="#f3f3f3"
+        foregroundColor="#ecebeb"
+      >
+        <rect x="-9" y="2" rx="0" ry="0" width="129" height="76" />
+        <rect x="-1" y="99" rx="0" ry="0" width="120" height="15" />
       </ContentLoader>
     </div>
   );

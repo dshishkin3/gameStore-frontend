@@ -1,9 +1,9 @@
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 import styles from "./BackButton.module.scss";
-import { useNavigate } from "react-router-dom";
 
 const BackButton: FC = () => {
   let navigate = useNavigate();

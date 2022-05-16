@@ -3,6 +3,7 @@ import { IProduct } from "../utils/interfaces";
 function toggleProductLS(obj: IProduct, setFavorites: any): void {
 	let old = [];
 
+
 	if (localStorage.getItem("favorites")) {
 		old = JSON.parse(localStorage.getItem("favorites") || "");
 	} else {
@@ -11,9 +12,7 @@ function toggleProductLS(obj: IProduct, setFavorites: any): void {
 
 	if (old.some((e: any) => e._id === obj._id)) {
 		let old2 = old.filter((item: any) => item._id !== obj._id);
-
 		localStorage.setItem("favorites", JSON.stringify([...old2]));
-
 	} else {
 		localStorage.setItem("favorites", JSON.stringify([...old, obj]));
 	}

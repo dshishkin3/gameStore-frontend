@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
+import { Navigation, Autoplay } from "swiper";
 
 import { useProducts } from "../../../hooks/useProducts";
 
@@ -28,7 +28,9 @@ const Hits: FC = () => {
           navigation={true}
           className="mySwiper"
           style={{ maxWidth: 1550 }}
-          modules={[Navigation]}
+          modules={[Navigation, Autoplay]}
+          autoplay={{ delay: 2000 }}
+          loop={true}
           breakpoints={{
             768: {
               slidesPerView: 2,

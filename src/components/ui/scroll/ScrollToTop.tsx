@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from "react";
+
 import ArrowUpwardSharpIcon from '@mui/icons-material/ArrowUpwardSharp';
 import styles from './ScrollToTop.module.scss';
 import cn from "classnames";
@@ -35,3 +36,7 @@ const ScrollToTop: FC = () => {
 	)
 }
 export default ScrollToTop;
+
+
+
+

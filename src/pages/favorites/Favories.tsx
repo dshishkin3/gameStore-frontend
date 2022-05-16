@@ -4,10 +4,10 @@ import { IProduct } from "../../utils/interfaces";
 
 import Card from "../../components/ui/card/Card";
 import PageTitle from "../../components/ui/pageTitle/PageTitle";
-
-import styles from "./Favories.module.scss";
 import Empty from "./Empty";
 import ScrollToTop from "../../components/ui/scroll/ScrollToTop";
+
+import styles from "./Favories.module.scss";
 
 const Favories: FC = () => {
 	const [product, setProduct] = useState<IProduct[]>([]);
@@ -32,7 +32,6 @@ const Favories: FC = () => {
 			<ScrollToTop />
 		</div>
 	);
-
 };
 
 export default Favories;

@@ -6,8 +6,8 @@ body {
   font-family: "Montserrat", sans-serif;
   scroll-behavior: smooth;
 }
-#root{
-	height: 100%;
+#root {
+  height: 100%;
 }
 
 input,
@@ -63,12 +63,28 @@ input:focus {
 }
 
 .swiper-button-prev {
-  display: none;
+  color: #353535;
+  transition: all 0.5s;
+  padding: 50px 25px;
+  /* top: 80px; */
+  margin-left: -25px;
+}
+
+.swiper-button-prev:hover {
+  transition: all 0.5s;
+  color: #444444;
+}
+
+.swiper-button-prev::after {
+  font-size: 30px;
 }
 
 .swiper-button-next {
-  color: #767676;
+  color: #353535;
   transition: all 0.5s;
+  padding: 50px 25px;
+  /* top: 80px; */
+  margin-right: -25px;
 }
 
 .swiper-button-next:hover {
@@ -78,7 +94,6 @@ input:focus {
 
 .swiper-button-next::after {
   font-size: 20px;
-  margin-left: 35px;
 }
 
 .swiper {

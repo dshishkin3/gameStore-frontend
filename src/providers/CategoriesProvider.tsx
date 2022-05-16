@@ -23,7 +23,7 @@ export const CategoriesProvider: FC<ICategoryProviderProps> = ({
   children,
 }) => {
   const [categories, setCategories] = useState<ICategory[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     getCategories();

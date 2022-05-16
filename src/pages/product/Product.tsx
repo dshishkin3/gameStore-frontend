@@ -1,12 +1,10 @@
 import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 
 import { IProduct } from "../../utils/interfaces";
 
@@ -18,21 +16,16 @@ import PageTitle from "../../components/ui/pageTitle/PageTitle";
 import styles from "./product.module.scss";
 import ScrollToTop from "../../components/ui/scroll/ScrollToTop";
 
-
-// можно ещё фильтровать импорты, чтобы удобно было, типо компоненты в одной куче, CSS в другой и тд
-
 const Product: FC = () => {
-	const { product, getProduct, isLoading } = useProducts(); // получаем данные из хука(контекста)
+	const { product, getProduct, isLoading } = useProducts();
 
 	const { id } = useParams<string>();
+
 	const [largeImg, setLargeImg] = useState<number>(0);
-
 	const [favorites, setFavorites] = useState<boolean>(false);
-
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		// при старте страницы отправляем запрос
 		if (id !== undefined) {
 			getProduct({ id });
 			setLoading(false);
