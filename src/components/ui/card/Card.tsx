@@ -9,6 +9,7 @@ import styles from "./Card.module.scss";
 import toggleProductLS from "../../../hok/toggleProductLS";
 interface ICardProps {
 	product: IProduct;
+
 }
 const Card: FC<ICardProps> = ({ product }) => {
 	const [favorites, setFavorites] = useState<boolean>(false);
@@ -16,7 +17,7 @@ const Card: FC<ICardProps> = ({ product }) => {
 		if (localStorage.getItem(product._id)) {
 			setFavorites(true);
 		}
-	}, [localStorage.getItem(product._id)]);
+	}, []);
 
 	function toggleFavorites(obj: IProduct): void {
 		toggleProductLS(obj, setFavorites);
