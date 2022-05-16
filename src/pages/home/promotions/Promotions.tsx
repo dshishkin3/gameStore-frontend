@@ -29,7 +29,7 @@ const Promotions: FC = () => {
           className="mySwiper"
           style={{ maxWidth: 1550 }}
           modules={[Navigation, Autoplay]}
-          autoplay={{ delay: 2000 }}
+          autoplay={{ delay: 3000 }}
           loop={true}
           breakpoints={{
             768: {

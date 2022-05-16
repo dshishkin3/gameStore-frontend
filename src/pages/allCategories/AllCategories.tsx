@@ -6,24 +6,29 @@ import { useCategories } from "../../hooks/useCategories";
 import PageTitle from "../../components/ui/pageTitle/PageTitle";
 
 import styles from "./AllCategories.module.scss";
+import { MyLoaderCategory } from "../../components/ui/contentLoader/ContentLoader";
 
 const AllCategories: FC = () => {
-  const { categories } = useCategories();
+  const { categories, isLoading } = useCategories();
 
   return (
     <div>
       <PageTitle title="Все категории" />
       <div className={styles.categories}>
-        {categories.map((category) => (
-          <Link
-            to={`/subcategory/${category.title}`}
-            className={styles.category}
-            key={category._id}
-          >
-            <img src={category.urlImg} alt="" />
-            <p>{category.title}</p>
-          </Link>
-        ))}
+        {isLoading ? (
+          <MyLoaderCategory />
+        ) : (
+          categories.map((category) => (
+            <Link
+              to={`/subcategory/${category.title}`}
+              className={styles.category}
+              key={category._id}
+            >
+              <img src={category.urlImg} alt="" />
+              <p>{category.title}</p>
+            </Link>
+          ))
+        )}
       </div>
     </div>
   );
