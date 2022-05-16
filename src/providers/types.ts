@@ -27,3 +27,18 @@ export interface IProductsContext {
 
   isLoading: boolean;
 }
+
+export interface IAuthContext {
+  email: string;
+  password: string;
+  isLoading: boolean;
+  auth: boolean;
+  isError: null | string;
+
+  setEmail: (arg0: string) => void;
+  setPassword: (arg0: string) => void;
+  setIsLoading: (arg0: boolean) => void;
+  setIsError: (arg0: null | string) => void;
+
+  login: () => void;
+}

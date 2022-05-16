@@ -1,19 +1,11 @@
-import { CategoriesProvider } from "./providers/CategoriesProvider";
-import { ProductsProvider } from "./providers/ProductsProvider";
+import { PrivateRoutes, PublicRoutes } from "./config/Routes";
 
-import Layout from "./components/Layout/Layout";
-import AppRouter from "./config/Routes";
+import { useAuth } from "./hooks/useAuth";
 
 function App() {
-  return (
-    <ProductsProvider>
-      <CategoriesProvider>
-        <Layout>
-          <AppRouter />
-        </Layout>
-      </CategoriesProvider>
-    </ProductsProvider>
-  );
+  const { auth } = useAuth();
+
+  return auth ? <PrivateRoutes /> : <PublicRoutes />;
 }
 
 export default App;

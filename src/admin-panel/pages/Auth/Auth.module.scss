@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&display=swap");
+
+.container {
+  font-family: "Mulish", sans-serif;
+  position: fixed;
+  background: #363740;
+  width: 100%;
+  z-index: 999;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  background-color: #fff;
+  border-radius: 8px;
+  width: fit-content;
+  height: fit-content;
+  border: 1px solid #dfe0eb;
+  text-align: center;
+  padding: 40px 32px;
+}
+
+.login {
+  cursor: pointer;
+  background-color: #1e5900;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  width: -webkit-fill-available;
+  padding: 15px 0px;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 0px 10px 4px rgba(30, 89, 0, 0.2);
+  box-shadow: 0px 0px 10px 4px rgba(30, 89, 0, 0.2);
+  transition: all 0.5s;
+
+  &:hover {
+    background-color: #216300;
+    box-shadow: 0px 0px 10px 6px rgba(30, 89, 0, 0.3);
+    transition: all 0.5s;
+  }
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 10px;
+
+  & p {
+    color: #a4a6b3;
+    font-size: 19px;
+    font-weight: bold;
+  }
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #9fa2b4;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 35px;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: -webkit-fill-available;
+  margin-bottom: 20px;
+
+  & input {
+    width: -webkit-fill-available;
+    border: 1px solid #f0f1f7;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: #9fa2b4;
+  }
+
+  & p {
+    color: #9fa2b4;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+}
+
+.loading {
+  position: absolute;
+  top: 47%;
+  left: 49%;
+  z-index: 999;
+}
