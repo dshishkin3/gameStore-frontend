@@ -1,26 +1,25 @@
-.scrollToTop{
-		display: inline-flex;
-		cursor: pointer;
-		justify-content: center;
-		align-items: center;
-		background-color: #f7f9fa;
-		padding: 5px;
-		border-radius: 50px;
-		position: fixed;
-		bottom: 200px;
-		left: 82%;
-		opacity: 0;
-		visibility: hidden;
-		@media (max-width:1500px) {
-				
-		}
+.scrollToTop {
+  display: inline-flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f9fa;
+  padding: 10px;
+  border-radius: 50px;
+  position: fixed;
+  bottom: 80px;
+  left: 82%;
+  opacity: 0;
+  visibility: hidden;
+  @media (max-width: 1500px) {
+  }
 }
 .scrollToTop.scrollActive {
-		opacity: 1;
-		visibility: visible;
-		transition: all 0.5s;
-			&:hover {
-				transition: all 0.5s;
-				box-shadow: 0px 0px 8px -6px #000000;
-			}
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.5s;
+  &:hover {
+    transition: all 0.5s;
+    box-shadow: 0px 0px 8px -6px #000000;
+  }
 }

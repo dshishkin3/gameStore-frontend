@@ -78,8 +78,6 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
   };
 
   const getProduct = async ({ id }: { id: string }) => {
-    console.log("getProduct - started");
-
     setIsLoading(true);
     try {
       const res = await axios.get<IProduct>(

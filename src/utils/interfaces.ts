@@ -17,8 +17,3 @@ export interface ICategory {
 	subcategories: any[];
 }
 
-export interface IBreadcrumbs {
-	favorites: string;
-	allCategories: string;
-	product: string
-}

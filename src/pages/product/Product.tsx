@@ -15,12 +15,15 @@ import PageTitle from "../../components/ui/pageTitle/PageTitle";
 
 import styles from "./product.module.scss";
 import ScrollToTop from "../../components/ui/scroll/ScrollToTop";
-import ActiveLastBreadcrumb from "../../components/ui/breadcrumbs/Breadcrumbs";
+
+import { MyLoaderProduct } from "../../components/ui/contentLoader/ContentLoader";
+
 
 const Product: FC = () => {
 	const { product, getProduct, isLoading } = useProducts();
 
 	const { id } = useParams<string>();
+
 	const [largeImg, setLargeImg] = useState<number>(0);
 	const [favorites, setFavorites] = useState<boolean>(false);
 	const [loading, setLoading] = useState(true);
@@ -45,14 +48,12 @@ const Product: FC = () => {
 	const onClickImgHandle = (index: number): void => {
 		setLargeImg(index);
 	};
-
 	return (
 		<>
 			{isLoading || loading ? ( // тут какой то баг, и пришлось добавить два loading, один из контекста, один тут, в остальных компнонентах все работает норм, хз почему тут так
-				<p>loading</p>
+				<MyLoaderProduct />
 			) : (
 				<div className={styles.product}>
-					<ActiveLastBreadcrumb title={product.title} />
 					<div className={styles.header}>
 						<PageTitle title={product.title} />
 					</div>
@@ -66,7 +67,11 @@ const Product: FC = () => {
 								style={{ maxWidth: 355 }}
 								modules={[Navigation]}
 							>
-								{product.urlImages.map(img => (<SwiperSlide><img src={img} alt="image" /></SwiperSlide>))}
+								{product.urlImages.map((img) => (
+									<SwiperSlide>
+										<img src={img} alt="image" />
+									</SwiperSlide>
+								))}
 							</Swiper>
 						</div>
 						<div className={styles.productImg}>
