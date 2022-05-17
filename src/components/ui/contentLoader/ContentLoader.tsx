@@ -191,3 +191,24 @@ export const MyLoaderCategory = () => {
     </div>
   );
 };
+
+export const MyLoaderProduct = () => {
+  return (
+    <div className={styles.product}>
+      <ContentLoader
+        speed={2}
+        width={347}
+        height={500}
+        viewBox="0 0 347 500"
+        backgroundColor="#f3f3f3"
+        foregroundColor="#ecebeb"
+      >
+        <rect x="-12" y="6" rx="0" ry="0" width="350" height="35" />
+        <rect x="-10" y="71" rx="0" ry="0" width="347" height="337" />
+        <rect x="-9" y="437" rx="0" ry="0" width="80" height="63" />
+        <rect x="126" y="437" rx="0" ry="0" width="80" height="63" />
+        <rect x="256" y="434" rx="0" ry="0" width="80" height="63" />
+      </ContentLoader>
+    </div>
+  );
+};
