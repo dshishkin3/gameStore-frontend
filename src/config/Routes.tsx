@@ -10,10 +10,13 @@ import AllCategories from "../pages/allCategories/AllCategories";
 import Category from "../pages/category/Category";
 import Favories from "../pages/favorites/Favories";
 import Subcategory from "../pages/subcategory/Subcategory";
-import Nav from "../admin-panel/components/nav/Nav";
+import LayoutAdmin from "../admin-panel/components/nav/LayoutAdmin";
 
 import AdminAuth from "../admin-panel/pages/Auth/Auth";
 import AdminHome from "../admin-panel/pages/Home/Home";
+import AdminProducts from "../admin-panel/pages/Products/Products";
+import AdminHits from "../admin-panel/pages/Hits/Hits";
+import AdminPromotions from "../admin-panel/pages/Promotions/Promotions";
 
 export const PublicRoutes: FC = () => {
   return (
@@ -35,9 +38,15 @@ export const PublicRoutes: FC = () => {
 
 export const PrivateRoutes: FC = () => {
   return (
-    <Routes>
-      <Route path="/admin/home" element={<AdminHome />} />
-      <Route path="*" element={<AdminHome />} />
-    </Routes>
+    <LayoutAdmin>
+      <Routes>
+        <Route path="/admin/home" element={<AdminHome />} />
+        <Route path="/admin/products" element={<AdminProducts />} />
+        <Route path="/admin/hits" element={<AdminHits />} />
+        <Route path="/admin/promotions" element={<AdminPromotions />} />
+        {/* add categories page */}
+        <Route path="*" element={<AdminHome />} />
+      </Routes>
+    </LayoutAdmin>
   );
 };
