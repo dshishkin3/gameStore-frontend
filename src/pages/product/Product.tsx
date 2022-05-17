@@ -15,12 +15,12 @@ import PageTitle from "../../components/ui/pageTitle/PageTitle";
 
 import styles from "./product.module.scss";
 import ScrollToTop from "../../components/ui/scroll/ScrollToTop";
+import ActiveLastBreadcrumb from "../../components/ui/breadcrumbs/Breadcrumbs";
 
 const Product: FC = () => {
 	const { product, getProduct, isLoading } = useProducts();
 
 	const { id } = useParams<string>();
-
 	const [largeImg, setLargeImg] = useState<number>(0);
 	const [favorites, setFavorites] = useState<boolean>(false);
 	const [loading, setLoading] = useState(true);
@@ -52,6 +52,7 @@ const Product: FC = () => {
 				<p>loading</p>
 			) : (
 				<div className={styles.product}>
+					<ActiveLastBreadcrumb title={product.title} />
 					<div className={styles.header}>
 						<PageTitle title={product.title} />
 					</div>
