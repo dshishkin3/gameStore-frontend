@@ -1,0 +1,39 @@
+.header {
+  border-bottom: 2px solid #dfe0eb;
+  padding-bottom: 12px;
+
+  &Items {
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+
+    & p {
+      font-size: 14px;
+      font-weight: 600;
+      color: #9fa2b4;
+    }
+
+    & p:first-child {
+      margin-right: 230px;
+    }
+  }
+}
+
+.right {
+  display: flex;
+  align-items: center;
+
+  & p {
+    margin-right: 100px;
+  }
+
+  & p:last-child {
+    margin-right: 0px;
+  }
+}
+
+.addProductBlock {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+}

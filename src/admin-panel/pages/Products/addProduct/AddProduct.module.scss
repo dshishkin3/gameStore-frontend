@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #dfe0eb;
+  width: fit-content;
+  border-radius: 8px;
+
+  & p {
+    margin-left: 5px;
+    font-weight: bold;
+  }
+}

@@ -1,16 +1,29 @@
 import { FC, ReactNode } from "react";
 
+import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
+
 import styles from "./Wrapper.module.scss";
+import { useNavigate } from "react-router-dom";
 
 interface IWrapperProps {
   children: ReactNode;
   title: string;
+  backBtn?: boolean;
 }
 
-const Wrapper: FC<IWrapperProps> = ({ children, title }) => {
+const Wrapper: FC<IWrapperProps> = ({ children, title, backBtn }) => {
+  let navigate = useNavigate();
+
   return (
     <div className={styles.container}>
-      <p className={styles.title}>{title}</p>
+      <div className={styles.header}>
+        {backBtn && (
+          <button className={styles.leftArrow} onClick={() => navigate(-1)}>
+            <ChevronLeftOutlinedIcon color="disabled" fontSize="medium" />
+          </button>
+        )}
+        <p className={styles.title}>{title}</p>
+      </div>
       {children}
     </div>
   );
