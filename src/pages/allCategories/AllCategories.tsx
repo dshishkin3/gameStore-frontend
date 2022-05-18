@@ -14,7 +14,7 @@ const AllCategories: FC = () => {
 
 	return (
 		<div>
-			<ActiveLastBreadcrumb />
+			<ActiveLastBreadcrumb /> 
 			<PageTitle title="Все категории" />
 			<div className={styles.categories}>
 				{isLoading ? (

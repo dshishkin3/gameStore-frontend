@@ -1,0 +1,28 @@
+.item {
+	display: flex;
+
+	align-items: center;
+	margin: 14px 0px;
+
+	&:first-child {
+		margin-top: 33px;
+	}
+
+	&:last-child {
+		margin-bottom: 33px;
+}
+
+	.image {
+		margin-right: 10px;
+		align-self: center;
+
+		img {
+			max-width: 80px
+		}
+
+	}
+
+	.title {
+		
+	}
+}

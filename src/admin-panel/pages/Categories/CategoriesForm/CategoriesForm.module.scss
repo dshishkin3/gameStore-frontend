@@ -1,0 +1,36 @@
+		.form {
+			display: flex;
+			align-items: center;
+
+			.input {
+				flex: 0 0 20%;
+				padding: 11px 14px;
+				margin-right: 25px;
+				border: 1px solid #F5F5F5;
+				border-radius: 5px;
+
+				input {
+					width: 100%;
+					font-weight: 400;
+					font-size: 14px;
+					line-height: 20px;
+					letter-spacing: 0.2px;
+					color: #B0B0B0;
+				}
+			}
+
+			.addCategory {
+				display: flex;
+				align-items: center;
+
+				input {
+					align-self: center;
+					background: #FFFFFF;
+					margin-bottom: 5px;
+					margin-left: 5px;
+				}
+
+				span {}
+
+			}
+		}

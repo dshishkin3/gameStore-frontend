@@ -48,10 +48,26 @@ button:active,
 button:focus {
   outline: none;
 }
+button {
+	outline: none;
+	padding: 0;
+	border: none;
+	font: inherit;
+	color: inherit;
+	background-color: transparent;
+	cursor: pointer;
+}
+
 
 input:active,
 input:focus {
   outline: none;
+}
+input[type=text],input[type=submit] {
+	border: none;
+	background: none;
+	outline: none;
+	padding: 0;
 }
 
 ::placeholder {
