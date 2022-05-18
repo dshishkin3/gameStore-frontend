@@ -19,7 +19,7 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
   const [categoryProducts, setCategoryProducts] = useState<IProduct[]>([]);
   const [product, setProduct] = useState<IProduct>({} as IProduct);
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const getHits = async () => {
     setIsLoading(true);
