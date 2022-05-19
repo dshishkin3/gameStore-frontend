@@ -1,12 +1,18 @@
-import React, { FC, useEffect } from "react";
+import axios from "axios";
+import React, { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { useProducts } from "../../../hooks/useProducts";
 
 import Wrapper from "../../components/ui/wrapper/Wrapper";
-import ImageBlock from "./image/Image";
+import Category from "./category/Category";
+
+import ImagesBlock from "./images/Images";
+
+import Price from "./price/Price";
 
 import styles from "./Product.module.scss";
+import Title from "./title/Title";
 
 const AdminProduct: FC = () => {
   const { id } = useParams();
@@ -17,6 +23,18 @@ const AdminProduct: FC = () => {
       getProduct({ id });
     }
   }, []);
+
+  const updateProduct = async () => {
+    try {
+      const res = await axios.put(
+        `https://game-store12.herokuapp.com/api/products/${id}`,
+        product
+      );
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Wrapper title={product.title} backBtn>
@@ -30,15 +48,26 @@ const AdminProduct: FC = () => {
               <div className={styles.right}>
                 <p>Наименование товара</p>
                 <p>Цена</p>
-                <p>Старая цена</p>
+                <p>{`Старая цена (не обяз.)`}</p>
               </div>
             </div>
           </div>
-          <div className={styles.images}>
-            {product.urlImages.map((image) => (
-              <ImageBlock image={image} />
-            ))}
+          <div style={{ display: "flex" }}>
+            <ImagesBlock />
+            <Title />
+            <Price />
           </div>
+          <div className={styles.header}>
+            <div className={styles.headerItems}>
+              <div className={styles.right}>
+                <p>Подкатегория</p>
+                <p>Хит</p>
+                <p>Акция</p>
+              </div>
+            </div>
+          </div>
+          <Category />
+          <button onClick={updateProduct}>сохранить</button>
         </>
       )}
     </Wrapper>
