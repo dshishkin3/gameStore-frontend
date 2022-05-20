@@ -3,15 +3,20 @@ import React, { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { useProducts } from "../../../hooks/useProducts";
+import HeaderItems from "../../components/ui/headerItems/HeaderItems";
 
 import Wrapper from "../../components/ui/wrapper/Wrapper";
 import Category from "./category/Category";
+import Characteristics from "./characteristics/Characteristics";
+import Desc from "./desc/Desc";
+import Hit from "./hit/Hit";
 
 import ImagesBlock from "./images/Images";
 
 import Price from "./price/Price";
 
 import styles from "./Product.module.scss";
+import Promotion from "./promotion/Promotion";
 import Title from "./title/Title";
 
 const AdminProduct: FC = () => {
@@ -42,32 +47,33 @@ const AdminProduct: FC = () => {
         <h1>loading...</h1>
       ) : (
         <>
-          <div className={styles.header}>
-            <div className={styles.headerItems}>
-              <p>Изображения товара</p>
-              <div className={styles.right}>
-                <p>Наименование товара</p>
-                <p>Цена</p>
-                <p>{`Старая цена (не обяз.)`}</p>
-              </div>
-            </div>
-          </div>
+          <HeaderItems
+            items={[
+              "Изображения товара",
+              "Наименование товара",
+              "Цена",
+              "Старая цена (не обяз.)",
+            ]}
+          />
           <div style={{ display: "flex" }}>
             <ImagesBlock />
             <Title />
             <Price />
           </div>
-          <div className={styles.header}>
-            <div className={styles.headerItems}>
-              <div className={styles.right}>
-                <p>Подкатегория</p>
-                <p>Хит</p>
-                <p>Акция</p>
-              </div>
-            </div>
+          <HeaderItems items={["Подкатегория", "Хит", "Акция"]} />
+          <div style={{ display: "flex" }}>
+            <Category />
+            <Hit />
+            <Promotion />
           </div>
-          <Category />
-          <button onClick={updateProduct}>сохранить</button>
+          <HeaderItems items={["Описание", "Характеристики"]} />
+          <div style={{ display: "flex" }}>
+            <Desc />
+            <Characteristics />
+          </div>
+
+          <button onClick={updateProduct}>Сохранить</button>
+          <button>Удалить</button>
         </>
       )}
     </Wrapper>
