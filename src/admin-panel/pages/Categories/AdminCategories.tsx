@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Wrapper from "../../components/ui/wrapper/Wrapper";
@@ -11,10 +11,29 @@ import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 
 import CategoriesItem from "./CategoriesItem/AdminCategoriesItem";
 import CategoriesForm from "./CategoriesForm/CategoriesForm";
+import axios from "axios";
+import { ICategory } from "../../../utils/interfaces";
+import PaginationControl from "../../components/ui/pagination/Pagination";
 
 const AdminCategories: FC = () => {
 	const { categories, isLoading } = useCategories();
-	const array = categories.slice(4)
+	const [propduct, setProduct] = useState<ICategory[]>([]);
+
+	const [page, setPage] = useState<number>(1);
+	const [pageQty, setPageQty] = useState<number>(13);
+
+	const init = Math.ceil(pageQty / 2)
+
+	useEffect(() => {
+		getCategories();
+	}, [page, isLoading]);
+
+	async function getCategories() {
+		const response = await axios.get<ICategory[]>(`http://game-store12.herokuapp.com/api/categories?page=${page}&size=2`);
+		setProduct(response.data);
+		console.log(categories.length)
+		setPageQty(categories.length);
+	}
 
 	return (
 		<Wrapper title="Акции">
@@ -26,7 +45,7 @@ const AdminCategories: FC = () => {
 						<h2 className={styles.subtitle}>Подкатегории</h2>
 					</div>
 					<div className={styles.body}>
-						{array.map(obj => (
+						{propduct.map(obj => (
 							<div key={obj._id} className={styles.column}>
 								<div className={styles.categorie}>
 									<div className={styles.image}><img src={obj.urlImg} alt="" /></div>
@@ -47,6 +66,9 @@ const AdminCategories: FC = () => {
 						))}
 					</div>
 					<CategoriesForm />
+				</div>
+				<div className={styles.pagination}>
+					<PaginationControl count={init} page={page} setPage={setPage} />
 				</div>
 			</div>
 		</Wrapper >

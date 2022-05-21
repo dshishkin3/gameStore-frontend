@@ -1,13 +1,16 @@
 
 .container{
+	display:flex;
+	flex-direction: column;
+
 	margin:0px 30px;
 	.categories{
-		
+		border-bottom: 1.5px solid #DFE0EB;
 		.subtitles {
 			display: flex;
 			border-bottom: 1.5px solid #DFE0EB;
-		
 			.subtitle{
+				margin-bottom: 10px;
 				flex: 1 0 50%;
 				font-weight: 700;
 				font-size: 14px;
@@ -48,6 +51,11 @@
 		
 		}
 
+	}
+	.pagination{
+		flex: 1 0 100%;
+		margin: 27px 0px;
+		align-self: center;
 	}
 
 }
