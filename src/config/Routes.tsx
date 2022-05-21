@@ -20,6 +20,7 @@ import AdminPromotions from "../admin-panel/pages/Promotions/Promotions";
 import AdminCategories from "../admin-panel/pages/Categories/AdminCategories";
 import AdminCategory from "../admin-panel/pages/Category/AdminCategory";
 import AdminProduct from "../admin-panel/pages/Product/Product";
+import AdminCreateProduct from "../admin-panel/pages/CreateProduct/CreateProduct";
 
 export const PublicRoutes: FC = () => {
   return (
@@ -46,6 +47,10 @@ export const PrivateRoutes: FC = () => {
         <Route path="/admin/home" element={<AdminHome />} />
         <Route path="/admin/products" element={<AdminProducts />} />
         <Route path="/admin/products/product/:id" element={<AdminProduct />} />
+        <Route
+          path="/admin/products/product/create"
+          element={<AdminCreateProduct />}
+        />
         <Route path="/admin/hits" element={<AdminHits />} />
         <Route path="/admin/promotions" element={<AdminPromotions />} />
         <Route path="/admin/categories" element={<AdminCategories />} />

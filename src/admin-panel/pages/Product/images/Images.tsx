@@ -11,7 +11,7 @@ const ImagesBlock: FC = () => {
   return (
     <div className={styles.container}>
       {product.urlImages.map((image, i) => (
-        <ImageBlock key={image} image={image} index={i} />
+        <ImageBlock type="change" key={image} image={image} index={i} />
       ))}
     </div>
   );

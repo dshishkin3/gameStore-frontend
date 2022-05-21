@@ -25,17 +25,19 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
   const [promotions, setPromotions] = useState<IProduct[]>([]);
   const [searchProducts, setSearchProducts] = useState<IProduct[]>([]);
   const [categoryProducts, setCategoryProducts] = useState<IProduct[]>([]);
+
   const [product, setProduct] = useState<IProduct>({} as IProduct);
+  const [newProduct, setNewProduct] = useState<IProduct>({} as IProduct);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log(isLoading);
-  }, [isLoading]);
-
-  useEffect(() => {
     console.log(product);
   }, [product]);
+
+  useEffect(() => {
+    console.log(newProduct);
+  }, [newProduct]);
 
   const getHits = async () => {
     setIsLoading(true);
@@ -130,6 +132,8 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
       categoryProducts,
       setCategoryProducts,
       product,
+      newProduct,
+      setNewProduct,
       setProduct,
       getAllProducts,
       getHits,
@@ -140,7 +144,7 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
       isLoading,
       setIsLoading,
     }),
-    [hits, isLoading, product]
+    [hits, isLoading, product, newProduct]
   );
 
   return (

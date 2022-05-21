@@ -15,11 +15,13 @@ export interface IProductsContext {
   searchProducts: IProduct[];
   categoryProducts: IProduct[];
   product: IProduct;
+  newProduct: IProduct;
 
   setCategoryProducts: (arg0: IProduct[]) => void;
   setIsLoading: (arg0: boolean) => void;
   setSearchProducts: (arg0: IProduct[]) => void;
   setProduct: (arg0: IProduct) => void;
+  setNewProduct: (arg0: IProduct) => void;
 
   getAllProducts: () => void;
   getHits: () => void;
