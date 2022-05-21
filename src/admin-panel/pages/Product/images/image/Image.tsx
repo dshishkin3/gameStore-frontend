@@ -10,7 +10,7 @@ interface IImageBlockProps {
 }
 
 const ImageBlock: FC<IImageBlockProps> = ({ image, index }) => {
-  const [value, setValue] = useState(image);
+  const [value, setValue] = useState<string>(image);
 
   const { setProduct, product } = useProducts();
 

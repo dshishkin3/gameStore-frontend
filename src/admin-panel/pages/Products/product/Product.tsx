@@ -1,11 +1,11 @@
-import React, { FC } from "react";
+import { FC } from "react";
+import { Link } from "react-router-dom";
 
 import { IProduct } from "../../../../utils/interfaces";
 
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 import styles from "./Product.module.scss";
-import { Link } from "react-router-dom";
 
 interface IProductProps {
   product: IProduct;

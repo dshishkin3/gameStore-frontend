@@ -20,13 +20,18 @@ interface IProductsProviderProps {
 }
 
 export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
+  const [allProducts, setAllProducts] = useState<IProduct[]>([]);
   const [hits, setHits] = useState<IProduct[]>([]);
   const [promotions, setPromotions] = useState<IProduct[]>([]);
   const [searchProducts, setSearchProducts] = useState<IProduct[]>([]);
   const [categoryProducts, setCategoryProducts] = useState<IProduct[]>([]);
   const [product, setProduct] = useState<IProduct>({} as IProduct);
 
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    console.log(isLoading);
+  }, [isLoading]);
 
   useEffect(() => {
     console.log(product);
@@ -102,8 +107,22 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
     }
   };
 
+  const getAllProducts = async () => {
+    setIsLoading(true);
+    try {
+      const res = await axios.get(
+        "https://game-store12.herokuapp.com/api/products/"
+      );
+      setAllProducts(res.data);
+    } catch (err: any) {
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const value = useMemo(
     () => ({
+      allProducts,
       hits,
       promotions,
       searchProducts,
@@ -112,6 +131,7 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
       setCategoryProducts,
       product,
       setProduct,
+      getAllProducts,
       getHits,
       getPromotions,
       getSearchProducts,

@@ -1,27 +1,41 @@
+.toggleBtn {
+  cursor: pointer;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 10px;
+  border: 1px solid #dfe0eb;
+  border-radius: 10px;
 
+  button {
+    align-self: center;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    color: #ffffff;
+  }
 
-.toggleBtn{
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding:13px 10px;
-		border: 1px solid #DFE0EB;
-		border-radius: 10px;
-			button {
-					align-self: center;
-					font-weight: 700;
-					font-size: 16px;
-					line-height: 20px;
-					letter-spacing: 0.4px;
-					color: #FFFFFF;		
-				}
-				span{
-					margin-right: 10px;
-				}
+  span {
+    margin-right: 10px;
+  }
 }
 .toggleBtn.save {
-	background: #1BC100;
+  background: #1bc100;
+  transition: all 0.5s;
+
+  &:hover {
+    transition: all 0.5s;
+    box-shadow: 0px 0px 12px 0px rgba(27, 193, 0, 0.5);
+  }
 }
 .delete {
-	background: #D80101;
+  background: #d80101;
+  transition: all 0.5s;
+
+  &:hover {
+    transition: all 0.5s;
+    box-shadow: 0px 0px 12px 0px rgba(216, 1, 1, 0.5);
+  }
 }

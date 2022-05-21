@@ -6,7 +6,7 @@ import styles from "./Characteristics.module.scss";
 const Characteristics: FC = () => {
   const { product, setProduct } = useProducts();
 
-  const [characteristics, setCharacteristics] = useState(
+  const [characteristics, setCharacteristics] = useState<string>(
     product.characteristic
   );
 

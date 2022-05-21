@@ -1,27 +1,37 @@
-
 import { FC } from "react";
 import classNames from "classnames";
 
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import CheckCircleOutlineSharpIcon from '@mui/icons-material/CheckCircleOutlineSharp';
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import CheckCircleOutlineSharpIcon from "@mui/icons-material/CheckCircleOutlineSharp";
 
-import styles from './ToggleBtn.module.scss';
+import styles from "./ToggleBtn.module.scss";
 
 interface ToggleBtnProps {
-	saveBtn: boolean;
-	deleteBtn: boolean;
-	text: string;
-
+  onClick?: () => void;
+  type: "saveBtn" | "deleteBtn";
+  text: string;
+  style?: string;
 }
 
-const ToggleBtn: FC<ToggleBtnProps> = ({ saveBtn, deleteBtn, text }) => {
-	return (
-		<div className={classNames(styles.toggleBtn, { [styles.save]: saveBtn, [styles.delete]: deleteBtn })}>
-			<span>{saveBtn ? <CheckCircleOutlineSharpIcon htmlColor="#FFFFFF" /> : <DeleteOutlineIcon htmlColor="#FFFFFF" />}</span>
-			<button>{text}</button>
-		</div>
-
-	);
-}
+const ToggleBtn: FC<ToggleBtnProps> = ({ type, onClick, text, style }) => {
+  return (
+    <div
+      onClick={onClick}
+      className={classNames(styles.toggleBtn, {
+        [styles.save]: type === "saveBtn",
+        [styles.delete]: type === "deleteBtn",
+      })}
+    >
+      <span>
+        {type === "saveBtn" ? (
+          <CheckCircleOutlineSharpIcon htmlColor="#FFFFFF" />
+        ) : (
+          <DeleteOutlineIcon htmlColor="#FFFFFF" />
+        )}
+      </span>
+      <button>{text}</button>
+    </div>
+  );
+};
 
 export default ToggleBtn;

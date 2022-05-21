@@ -12,7 +12,7 @@ const HeaderItems: FC<IHeaderItemsProps> = ({ items }) => {
       <div className={styles.headerItems}>
         <div className={styles.right}>
           {items.map((item) => (
-            <p>{item}</p>
+            <p key={item}>{item}</p>
           ))}
         </div>
       </div>

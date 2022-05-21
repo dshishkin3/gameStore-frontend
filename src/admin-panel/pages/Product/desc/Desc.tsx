@@ -1,4 +1,5 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
+
 import { useProducts } from "../../../../hooks/useProducts";
 
 import styles from "./Desc.module.scss";
@@ -6,7 +7,7 @@ import styles from "./Desc.module.scss";
 const Desc: FC = () => {
   const { product, setProduct } = useProducts();
 
-  const [desc, setDesc] = useState(product.desc);
+  const [desc, setDesc] = useState<string>(product.desc);
 
   return (
     <div className={styles.container}>

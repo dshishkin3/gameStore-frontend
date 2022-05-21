@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { useProducts } from "../../../../hooks/useProducts";
 
 import styles from "./Price.module.scss";
@@ -6,9 +6,11 @@ import styles from "./Price.module.scss";
 const Price: FC = () => {
   const { product, setProduct } = useProducts();
 
-  const [price, setPrice] = useState(product.price);
+  const [price, setPrice] = useState<number>(product.price);
 
-  const [oldPrice, setOldPrice] = useState(product.oldPrice);
+  const [oldPrice, setOldPrice] = useState<number | undefined>(
+    product.oldPrice
+  );
 
   return (
     <div className={styles.container}>

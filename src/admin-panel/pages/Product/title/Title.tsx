@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import { useProducts } from "../../../../hooks/useProducts";
 
 import styles from "../Product.module.scss";
@@ -6,7 +6,7 @@ import styles from "../Product.module.scss";
 const Title: FC = () => {
   const { product, setProduct } = useProducts();
 
-  const [title, setTitle] = useState(product.title);
+  const [title, setTitle] = useState<string>(product.title);
 
   return (
     <div style={{ padding: "30px 70px" }}>

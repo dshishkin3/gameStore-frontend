@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { useProducts } from "../../../../hooks/useProducts";
 
 import ImageBlock from "./image/Image";
@@ -11,7 +11,7 @@ const ImagesBlock: FC = () => {
   return (
     <div className={styles.container}>
       {product.urlImages.map((image, i) => (
-        <ImageBlock image={image} index={i} />
+        <ImageBlock key={image} image={image} index={i} />
       ))}
     </div>
   );

@@ -9,6 +9,7 @@ export interface ICategoryContext {
 }
 
 export interface IProductsContext {
+  allProducts: IProduct[];
   hits: IProduct[];
   promotions: IProduct[];
   searchProducts: IProduct[];
@@ -20,6 +21,7 @@ export interface IProductsContext {
   setSearchProducts: (arg0: IProduct[]) => void;
   setProduct: (arg0: IProduct) => void;
 
+  getAllProducts: () => void;
   getHits: () => void;
   getPromotions: () => void;
   getSearchProducts: ({ name }: { name: string }) => void;
