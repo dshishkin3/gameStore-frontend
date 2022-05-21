@@ -3,21 +3,29 @@ import { useProducts } from "../../../../hooks/useProducts";
 
 import styles from "../Product.module.scss";
 
-const Title: FC = () => {
-  const { product, setProduct } = useProducts();
+interface ITitleProps {
+  type: "change" | "create";
+}
 
-  const [title, setTitle] = useState<string>(product.title);
+const Title: FC<ITitleProps> = ({ type }) => {
+  const { product, newProduct, setProduct, setNewProduct } = useProducts();
+
+  const [title, setTitle] = useState<string>(
+    type === "change" ? product.title : newProduct.title
+  );
+
+  const changeTitle = (e: any) => {
+    setTitle(e.target.value);
+    if (type === "change") {
+      setProduct({ ...product, title: e.target.value });
+    } else {
+      setNewProduct({ ...newProduct, title: e.target.value });
+    }
+  };
 
   return (
     <div style={{ padding: "30px 70px" }}>
-      <input
-        className={styles.input}
-        value={title}
-        onChange={(e) => {
-          setTitle(e.target.value);
-          setProduct({ ...product, title: e.target.value });
-        }}
-      />
+      <input className={styles.input} value={title} onChange={changeTitle} />
     </div>
   );
 };

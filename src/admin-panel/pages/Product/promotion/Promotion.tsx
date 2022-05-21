@@ -9,14 +9,25 @@ import { useProducts } from "../../../../hooks/useProducts";
 
 import styles from "./Promotion.module.scss";
 
-const Promotion: FC = () => {
-  const { setProduct, product } = useProducts();
+interface IPromotionProps {
+  type: "change" | "create";
+}
+
+const Promotion: FC<IPromotionProps> = ({ type }) => {
+  const { setProduct, setNewProduct, product, newProduct } = useProducts();
 
   const handleChange = (event: SelectChangeEvent) => {
-    setProduct({
-      ...product,
-      promotion: event.target.value === "Да" ? true : false,
-    });
+    if (type === "change") {
+      setProduct({
+        ...product,
+        promotion: event.target.value === "Да" ? true : false,
+      });
+    } else {
+      setNewProduct({
+        ...newProduct,
+        promotion: event.target.value === "Да" ? true : false,
+      });
+    }
   };
 
   return (
@@ -26,7 +37,15 @@ const Promotion: FC = () => {
         <Select
           labelId="demo-select-small"
           id="demo-select-small"
-          value={product.promotion ? "Да" : "Нет"}
+          value={
+            type === "change"
+              ? product.promotion
+                ? "Да"
+                : "Нет"
+              : newProduct.promotion
+              ? "Да"
+              : "Нет"
+          }
           label="Age"
           onChange={handleChange}
         >

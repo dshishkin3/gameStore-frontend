@@ -19,6 +19,7 @@ import Price from "./price/Price";
 import styles from "./Product.module.scss";
 import Promotion from "./promotion/Promotion";
 import Title from "./title/Title";
+import Flex from "../../components/ui/flexBox/Flex";
 
 // navigation alert
 
@@ -80,23 +81,22 @@ const AdminProduct: FC = () => {
               "Старая цена (не обяз.)",
             ]}
           />
-          <div style={{ display: "flex" }}>
+          <Flex>
             <ImagesBlock />
-            <Title />
-            <Price />
-          </div>
+            <Title type="change" />
+            <Price type="change" />
+          </Flex>
           <HeaderItems items={["Подкатегория", "Хит", "Акция"]} />
-          <div style={{ display: "flex" }}>
-            <Category />
-            <Hit />
-            <Promotion />
-          </div>
+          <Flex>
+            <Category type="change" />
+            <Hit type="change" />
+            <Promotion type="change" />
+          </Flex>
           <HeaderItems items={["Описание", "Характеристики"]} />
-          <div style={{ display: "flex" }}>
-            <Desc />
-            <Characteristics />
-          </div>
-
+          <Flex>
+            <Desc type="change" />
+            <Characteristics type="change" />
+          </Flex>
           <div className={styles.buttons}>
             <ToggleBtn
               onClick={updateProduct}

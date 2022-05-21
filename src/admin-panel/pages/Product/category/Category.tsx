@@ -10,12 +10,20 @@ import { useProducts } from "../../../../hooks/useProducts";
 
 import styles from "./Category.module.scss";
 
-const Category: FC = () => {
-  const { product, setProduct } = useProducts();
+interface ICategoryProps {
+  type: "change" | "create";
+}
+
+const Category: FC<ICategoryProps> = ({ type }) => {
+  const { product, newProduct, setProduct, setNewProduct } = useProducts();
   const { categories } = useCategories();
 
   const handleChange = (event: SelectChangeEvent) => {
-    setProduct({ ...product, category: event.target.value });
+    if (type === "change") {
+      setProduct({ ...product, category: event.target.value });
+    } else {
+      setNewProduct({ ...newProduct, category: event.target.value });
+    }
   };
 
   const subcategories = [];

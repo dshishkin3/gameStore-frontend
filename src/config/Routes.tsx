@@ -20,6 +20,7 @@ import AdminPromotions from "../admin-panel/pages/Promotions/Promotions";
 import AdminCategories from "../admin-panel/pages/Categories/AdminCategories";
 import AdminCategory from "../admin-panel/pages/Categories/AdminCategory/AdminCategory";
 import AdminProduct from "../admin-panel/pages/Product/Product";
+import AdminCreateProduct from "../admin-panel/pages/CreateProduct/CreateProduct";
 
 export const PublicRoutes: FC = () => {
 	return (
@@ -54,4 +55,5 @@ export const PrivateRoutes: FC = () => {
 			</Routes>
 		</LayoutAdmin>
 	);
+
 };

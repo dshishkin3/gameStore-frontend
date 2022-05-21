@@ -3,34 +3,56 @@ import { useProducts } from "../../../../hooks/useProducts";
 
 import styles from "./Price.module.scss";
 
-const Price: FC = () => {
-  const { product, setProduct } = useProducts();
+interface IPrice {
+  type: "change" | "create";
+}
 
-  const [price, setPrice] = useState<number>(product.price);
+const Price: FC<IPrice> = ({ type }) => {
+  const { product, newProduct, setNewProduct, setProduct } = useProducts();
+
+  const [price, setPrice] = useState<number>(
+    type === "change" ? product.price : newProduct.price
+  );
 
   const [oldPrice, setOldPrice] = useState<number | undefined>(
-    product.oldPrice
+    type === "change" ? product.price : newProduct.price
   );
+
+  const changePrice = (e: any) => {
+    setPrice(Number(e.target.value));
+    if (type === "change") {
+      setProduct({ ...product, price: Number(e.target.value) });
+    } else {
+      setNewProduct({ ...newProduct, price: Number(e.target.value) });
+    }
+  };
+
+  const changeOldPrice = (e: any) => {
+    setOldPrice(Number(e.target.value));
+    if (type === "change") {
+      setProduct({ ...product, oldPrice: Number(e.target.value) });
+    } else {
+      setNewProduct({ ...newProduct, oldPrice: Number(e.target.value) });
+    }
+  };
 
   return (
     <div className={styles.container}>
-      <input
-        className={styles.input}
-        value={price}
-        onChange={(e) => {
-          setPrice(Number(e.target.value));
-          setProduct({ ...product, price: Number(e.target.value) });
-        }}
-      />
+      <input className={styles.input} value={price} onChange={changePrice} />
 
       <input
-        disabled={product.oldPrice ? false : true}
+        disabled={
+          type === "change"
+            ? product.oldPrice
+              ? false
+              : true
+            : newProduct.promotion
+            ? false
+            : true
+        }
         className={styles.input}
         value={oldPrice}
-        onChange={(e) => {
-          setOldPrice(Number(e.target.value));
-          setProduct({ ...product, oldPrice: Number(e.target.value) });
-        }}
+        onChange={changeOldPrice}
       />
     </div>
   );
