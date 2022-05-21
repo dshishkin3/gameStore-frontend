@@ -1,12 +1,12 @@
 import { FC } from "react";
-import styles from './CategoriesItem.module.scss';
+import styles from './AdminSubcategory.module.scss';
 
-interface AdminCategoriesItemProps {
+interface AdminSubcategoryProps {
 	urlImg: string;
 	title: string;
 }
 
-const AdminCategoriesItem: FC<AdminCategoriesItemProps> = ({ urlImg, title }) => {
+const AdminSubcategory: FC<AdminSubcategoryProps> = ({ urlImg, title }) => {
 	return (
 		<div className={styles.item}>
 			<div className={styles.image}><img src={urlImg} alt="" /></div>
@@ -15,4 +15,4 @@ const AdminCategoriesItem: FC<AdminCategoriesItemProps> = ({ urlImg, title }) =>
 	);
 }
 
-export default AdminCategoriesItem;
+export default AdminSubcategory;
