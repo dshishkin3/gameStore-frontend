@@ -1,11 +1,9 @@
 import axios from "axios";
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import Snackbar from "@mui/material/Snackbar";
-import MuiAlert, { AlertProps } from "@mui/material/Alert";
-
 import { useProducts } from "../../../hooks/useProducts";
+import { useNotification } from "../../../hooks/useNotification";
 
 import HeaderItems from "../../components/ui/headerItems/HeaderItems";
 import ToggleBtn from "../../components/ui/toggleBtn/ToggleBtn";
@@ -21,27 +19,13 @@ import Promotion from "./promotion/Promotion";
 import Title from "./title/Title";
 import Flex from "../../components/ui/flexBox/Flex";
 
-// navigation alert
-
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
-  props,
-  ref
-) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
-
 const AdminProduct: FC = () => {
   const { id } = useParams();
-  const { getProduct, product, isLoading } = useProducts();
+
+  const { getProduct, product, isLoading, updateProduct, deleteProduct } =
+    useProducts();
 
   const [loading, setLoading] = useState<boolean>(true);
-
-  // notifications
-  const [open, setOpen] = useState<boolean>(false);
-  const [message, setMessage] = useState<null | string>("");
-
-  const [openError, setOpenError] = useState<boolean>(false);
-  const [error, setError] = useState<null | string>("");
 
   useEffect(() => {
     if (id !== undefined) {
@@ -49,23 +33,6 @@ const AdminProduct: FC = () => {
       setLoading(false);
     }
   }, []);
-
-  const updateProduct = async () => {
-    try {
-      const res = await axios.put(
-        `https://game-store12.herokuapp.com/api/products/${id}`,
-        product
-      );
-      if (res.status === 200) {
-        setMessage(res.data.message);
-        setOpen(true);
-      }
-    } catch (error: any) {
-      console.log(error);
-      setError(error.message);
-      setOpenError(true);
-    }
-  };
 
   return (
     <Wrapper title={product.title} backBtn>
@@ -99,41 +66,16 @@ const AdminProduct: FC = () => {
           </Flex>
           <div className={styles.buttons}>
             <ToggleBtn
-              onClick={updateProduct}
+              onClick={() => updateProduct(String(id))}
               type="saveBtn"
               text="Сохранить изменения"
             />
-            <ToggleBtn type="deleteBtn" text="Удалить продукт" />
+            <ToggleBtn
+              type="deleteBtn"
+              text="Удалить продукт"
+              onClick={() => deleteProduct(String(id))}
+            />
           </div>
-
-          {/* notifications */}
-          <Snackbar
-            open={open}
-            autoHideDuration={4000}
-            onClose={() => setOpen(false)}
-          >
-            <Alert
-              onClose={() => setOpen(false)}
-              severity="success"
-              sx={{ width: "100%" }}
-            >
-              {message}
-            </Alert>
-          </Snackbar>
-
-          <Snackbar
-            open={openError}
-            autoHideDuration={4000}
-            onClose={() => setOpenError(false)}
-          >
-            <Alert
-              severity="error"
-              onClose={() => setOpenError(false)}
-              sx={{ width: "100%" }}
-            >
-              {error}
-            </Alert>
-          </Snackbar>
         </>
       )}
     </Wrapper>

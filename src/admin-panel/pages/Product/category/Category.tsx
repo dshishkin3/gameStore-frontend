@@ -44,8 +44,8 @@ const Category: FC<ICategoryProps> = ({ type }) => {
           label="Age"
           onChange={handleChange}
         >
-          {subcategories.map((subcategory) => (
-            <MenuItem key={subcategory.title} value={subcategory.title}>
+          {subcategories.map((subcategory, i) => (
+            <MenuItem key={subcategory.title + i} value={subcategory.title}>
               {subcategory.title}
             </MenuItem>
           ))}

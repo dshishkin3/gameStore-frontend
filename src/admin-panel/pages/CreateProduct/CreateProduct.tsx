@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { FC } from "react";
+import { useNotification } from "../../../hooks/useNotification";
 import { useProducts } from "../../../hooks/useProducts";
 import Flex from "../../components/ui/flexBox/Flex";
 
@@ -16,19 +17,7 @@ import Title from "../Product/title/Title";
 import ImagesBlock from "./images/ImagesBlock";
 
 const AdminCreateProduct: FC = () => {
-  const { newProduct } = useProducts();
-
-  const addProduct = async () => {
-    try {
-      const res = await axios.post(
-        "http://game-store12.herokuapp.com/api/products",
-        newProduct
-      );
-      console.log(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { addProduct } = useProducts();
 
   return (
     <Wrapper title="Добавление нового продукта" backBtn>

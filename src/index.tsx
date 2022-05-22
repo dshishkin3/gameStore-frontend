@@ -9,20 +9,23 @@ import { ProductsProvider } from "./providers/ProductsProvider";
 import App from "./App";
 
 import "./assets/styles/globals.css";
+import { NotificationProvider } from "./providers/NotificationProvider";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <AuthProvider>
-    <ProductsProvider>
-      <CategoriesProvider>
-        <React.StrictMode>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </React.StrictMode>
-      </CategoriesProvider>
-    </ProductsProvider>
+    <NotificationProvider>
+      <ProductsProvider>
+        <CategoriesProvider>
+          <React.StrictMode>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </React.StrictMode>
+        </CategoriesProvider>
+      </ProductsProvider>
+    </NotificationProvider>
   </AuthProvider>
 );

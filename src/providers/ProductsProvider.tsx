@@ -10,6 +10,7 @@ import axios from "axios";
 
 import { IProduct } from "../utils/interfaces";
 import { IProductsContext } from "./types";
+import { useNotification } from "../hooks/useNotification";
 
 export const ProductsContext = createContext<IProductsContext>(
   {} as IProductsContext
@@ -30,6 +31,13 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
   const [newProduct, setNewProduct] = useState<IProduct>({} as IProduct);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const {
+    setSuccessMessage,
+    setNotificaionSuccess,
+    setErrorMessage,
+    setNotificationError,
+  } = useNotification();
 
   useEffect(() => {
     console.log(product);
@@ -109,16 +117,66 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
     }
   };
 
-  const getAllProducts = async () => {
+  const getAllProducts = async (page: number) => {
     setIsLoading(true);
     try {
       const res = await axios.get(
-        "https://game-store12.herokuapp.com/api/products/"
+        `https://game-store12.herokuapp.com/api/products/?page=${page}`
       );
       setAllProducts(res.data);
     } catch (err: any) {
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const updateProduct = async (id: string) => {
+    try {
+      const res = await axios.put(
+        `https://game-store12.herokuapp.com/api/products/${id}`,
+        product
+      );
+      if (res.status === 200) {
+        setSuccessMessage(res.data.message);
+        setNotificaionSuccess(true);
+      }
+    } catch (error: any) {
+      console.log(error);
+      setErrorMessage(error.message);
+      setNotificationError(true);
+    }
+  };
+
+  const deleteProduct = async (id: string) => {
+    try {
+      const res = await axios.delete(
+        `https://game-store12.herokuapp.com/api/products/${id}`
+      );
+      if (res.status === 200) {
+        setSuccessMessage(res.data.message);
+        setNotificaionSuccess(true);
+      }
+    } catch (error: any) {
+      console.log(error);
+      setErrorMessage(error.message);
+      setNotificationError(true);
+    }
+  };
+
+  const addProduct = async () => {
+    try {
+      const res = await axios.post(
+        "http://game-store12.herokuapp.com/api/products",
+        newProduct
+      );
+      if (res.status === 200) {
+        setSuccessMessage(res.data.message);
+        setNotificaionSuccess(true);
+      }
+    } catch (error: any) {
+      console.log(error);
+      setErrorMessage(error.response.data.error);
+      setNotificationError(true);
     }
   };
 
@@ -141,6 +199,9 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
       getSearchProducts,
       getCategoryProducts,
       getProduct,
+      updateProduct,
+      deleteProduct,
+      addProduct,
       isLoading,
       setIsLoading,
     }),

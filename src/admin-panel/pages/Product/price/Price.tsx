@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import { useProducts } from "../../../../hooks/useProducts";
 
 import styles from "./Price.module.scss";
@@ -15,7 +15,7 @@ const Price: FC<IPrice> = ({ type }) => {
   );
 
   const [oldPrice, setOldPrice] = useState<number | undefined>(
-    type === "change" ? product.price : newProduct.price
+    type === "change" ? product.oldPrice : newProduct.oldPrice
   );
 
   const changePrice = (e: any) => {
@@ -43,10 +43,10 @@ const Price: FC<IPrice> = ({ type }) => {
       <input
         disabled={
           type === "change"
-            ? product.oldPrice
+            ? product.oldPrice || product.oldPrice === 0
               ? false
               : true
-            : newProduct.promotion
+            : newProduct.oldPrice
             ? false
             : true
         }

@@ -1,7 +1,8 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 
 import { useProducts } from "../../../hooks/useProducts";
 
+import PaginationControl from "../../components/ui/pagination/Pagination";
 import Wrapper from "../../components/ui/wrapper/Wrapper";
 import AddProduct from "./addProduct/AddProduct";
 import Product from "./product/Product";
@@ -11,9 +12,14 @@ import styles from "./Products.module.scss";
 const AdminProducts: FC = () => {
   const { allProducts, getAllProducts, isLoading } = useProducts();
 
+  const [page, setPage] = useState<number>(1);
+  const [pageQty, setPageQty] = useState<number>(13);
+
+  const init = Math.ceil(pageQty / 2);
+
   useEffect(() => {
-    getAllProducts();
-  }, []);
+    getAllProducts(page);
+  }, [page]);
 
   return (
     <Wrapper title="Все продукты">
@@ -37,6 +43,9 @@ const AdminProducts: FC = () => {
             <Product product={product} key={product._id} />
           ))
         )}
+      </div>
+      <div className={styles.pagination}>
+        <PaginationControl count={init} page={page} setPage={setPage} />
       </div>
     </Wrapper>
   );
