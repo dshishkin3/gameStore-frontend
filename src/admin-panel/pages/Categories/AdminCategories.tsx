@@ -31,12 +31,11 @@ const AdminCategories: FC = () => {
 		getCategories();
 	}, [page, isLoading]);
 
-	const addCategory = (titleForm: string, urlImageFrom: string) => {
+	const addCategory = async (titleForm: string, urlImageFrom: string) => {
 		try {
-			axios.post('https://game-store12.herokuapp.com/api/categories/', { titleForm, urlImageFrom })
-				.then(response => {
-					console.log(response.data)
-				})
+			const response = await axios.post('https://game-store12.herokuapp.com/api/categories/', { title: titleForm, urlImg: urlImageFrom })
+			console.log(response.data)
+			getCategories();
 		} catch (e) {
 			console.log(e)
 		}
