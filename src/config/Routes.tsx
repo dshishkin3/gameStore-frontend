@@ -24,43 +24,43 @@ import AdminCreateProduct from "../admin-panel/pages/CreateProduct/CreateProduct
 import Notification from "../admin-panel/components/ui/notification/Notification";
 
 export const PublicRoutes: FC = () => {
-  return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/product/:id" element={<Product />} />
-        <Route path="/search/:name" element={<Search />} />
-        <Route path="/category/:name" element={<Category />} />
-        <Route path="/subcategory/:name" element={<Subcategory />} />
-        <Route path="/allCategories" element={<AllCategories />} />
-        <Route path="/favorites" element={<Favories />} />
-        <Route path="/admin/auth" element={<AdminAuth />} />
-        <Route path="*" element={<Home />} />
-      </Routes>
-    </Layout>
-  );
+	return (
+		<Layout>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/product/:id" element={<Product />} />
+				<Route path="/search/:name" element={<Search />} />
+				<Route path="/category/:name" element={<Category />} />
+				<Route path="/subcategory/:name" element={<Subcategory />} />
+				<Route path="/allCategories" element={<AllCategories />} />
+				<Route path="/favorites" element={<Favories />} />
+				<Route path="/admin/auth" element={<AdminAuth />} />
+				<Route path="*" element={<Home />} />
+			</Routes>
+		</Layout>
+	);
 };
 
 export const PrivateRoutes: FC = () => {
-  return (
-    <LayoutAdmin>
-      <>
-        <Notification />
-        <Routes>
-          <Route path="/admin/home" element={<AdminHome />} />
-          <Route path="/admin/products" element={<AdminProducts />} />
-          <Route path="/admin/product/:id" element={<AdminProduct />} />
-          <Route
-            path="/admin/products/product/create"
-            element={<AdminCreateProduct />}
-          />
-          <Route path="/admin/hits" element={<AdminHits />} />
-          <Route path="/admin/promotions" element={<AdminPromotions />} />
-          <Route path="/admin/categories" element={<AdminCategories />} />
-          <Route path="/admin/category" element={<AdminCategory />} />
-          <Route path="*" element={<AdminHome />} />
-        </Routes>
-      </>
-    </LayoutAdmin>
-  );
+	return (
+		<LayoutAdmin>
+			<>
+				<Notification />
+				<Routes>
+					<Route path="/admin/home" element={<AdminHome />} />
+					<Route path="/admin/products" element={<AdminProducts />} />
+					<Route path="/admin/product/:id" element={<AdminProduct />} />
+					<Route
+						path="/admin/products/product/create"
+						element={<AdminCreateProduct />}
+					/>
+					<Route path="/admin/hits" element={<AdminHits />} />
+					<Route path="/admin/promotions" element={<AdminPromotions />} />
+					<Route path="/admin/categories" element={<AdminCategories />} />
+					<Route path="/admin/categories/:id" element={<AdminCategory />} />
+					<Route path="*" element={<AdminHome />} />
+				</Routes>
+			</>
+		</LayoutAdmin>
+	);
 };

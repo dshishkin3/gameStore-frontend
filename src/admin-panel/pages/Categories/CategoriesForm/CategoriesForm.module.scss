@@ -1,20 +1,4 @@
-		.container{
-				display: flex;
-				align-items: center;
-				margin-bottom: 267px;
-				cursor: pointer;
-				.addCategory {
-						display: flex;
-						align-items: center;
-						background: #FFFFFF;
-						span {
-							margin-left: 5px;
-							&:last-child{
-								margin-top: -6px;
-							}
-						}
-					}	
-		}
+				
 		.form {
 			flex: 0 1 60%;
 			display: flex;

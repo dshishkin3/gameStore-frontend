@@ -1,0 +1,16 @@
+.addCategory {
+	display: flex;
+	align-items: center;
+	background: #FFFFFF;
+	span {
+		margin-left: 5px;
+	}
+}
+.deleteCategory{
+	display: flex;
+	padding: 6px 6px;
+	align-items: flex-end;
+	justify-content: center;
+	background: #D80101;
+	border-radius: 5px;
+}
