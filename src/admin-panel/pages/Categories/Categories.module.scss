@@ -19,37 +19,7 @@
 				color: #9FA2B4;
 			}
 		}
-		.body{
-			margin-bottom: 45px;
-			.column{
-				display: flex;
-				align-items: center;
-				border-bottom:1.5px solid #DFE0EB;
-				.categorie {
-					padding: 45px 0px;
-					flex: 0 1 50%;
-					display: flex;
-					align-items: center;
-				}
 
-				.subcategorie {
-					flex: 0 1 30%;
-				}
-				.toCategorie{
-					flex:0 0 15%;
-					align-self: center;
-					display: flex;
-					text-align: center;
-					.btn{
-						display: flex;
-						align-items: center;
-					}
-				
-				}
-				
-			}
-		
-		}
 
 	}
 	.pagination{

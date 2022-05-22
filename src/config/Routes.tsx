@@ -18,7 +18,7 @@ import AdminProducts from "../admin-panel/pages/Products/Products";
 import AdminHits from "../admin-panel/pages/Hits/Hits";
 import AdminPromotions from "../admin-panel/pages/Promotions/Promotions";
 import AdminCategories from "../admin-panel/pages/Categories/AdminCategories";
-import AdminCategory from "../admin-panel/pages/Category/AdminCategory";
+import AdminCategory from "../admin-panel/pages/Categories/AdminCategory/AdminCategory";
 import AdminProduct from "../admin-panel/pages/Product/Product";
 import AdminCreateProduct from "../admin-panel/pages/CreateProduct/CreateProduct";
 import Notification from "../admin-panel/components/ui/notification/Notification";
