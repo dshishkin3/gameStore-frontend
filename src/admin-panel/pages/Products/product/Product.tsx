@@ -13,7 +13,7 @@ interface IProductProps {
 
 const Product: FC<IProductProps> = ({ product }) => {
   return (
-    <Link to={`product/${product._id}`} className={styles.container}>
+    <Link to={`/admin/product/${product._id}`} className={styles.container}>
       <img src={product.urlImages[0]} alt="" />
       <p className={styles.title}>{product.title}</p>
       <div className={styles.priceBlock}>
@@ -23,7 +23,7 @@ const Product: FC<IProductProps> = ({ product }) => {
         )}
       </div>
       <p className={styles.category}>{product.category}</p>
-      <Link to={`product/${product._id}`} className={styles.link}>
+      <Link to={`/admin/product/${product._id}`} className={styles.link}>
         <p>
           Перейти на <br /> страницу товара
         </p>

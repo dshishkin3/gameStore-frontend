@@ -49,10 +49,7 @@ export const PrivateRoutes: FC = () => {
         <Routes>
           <Route path="/admin/home" element={<AdminHome />} />
           <Route path="/admin/products" element={<AdminProducts />} />
-          <Route
-            path="/admin/products/product/:id"
-            element={<AdminProduct />}
-          />
+          <Route path="/admin/product/:id" element={<AdminProduct />} />
           <Route
             path="/admin/products/product/create"
             element={<AdminCreateProduct />}
