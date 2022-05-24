@@ -63,7 +63,7 @@ export const CategoriesProvider: FC<ICategoryProviderProps> = ({
         { title: titleForm, urlImg: urlImageFrom }
       );
       console.log(response.data);
-      getCategories(1, 99);
+      getCategories(1, 4);
     } catch (e) {
       console.log(e);
     }
