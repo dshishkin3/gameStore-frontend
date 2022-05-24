@@ -28,9 +28,9 @@ const Category: FC<ICategoryProps> = ({ type }) => {
 
   const subcategories = [];
 
-  for (let i = 0; i < categories.length; i++) {
-    for (let j = 0; j < categories[i].subcategories.length; j++) {
-      subcategories.push(categories[i].subcategories[j]);
+  for (let i = 0; i < categories.categories.length; i++) {
+    for (let j = 0; j < categories.categories[i].subcategories.length; j++) {
+      subcategories.push(categories.categories[i].subcategories[j]);
     }
   }
   return (

@@ -13,12 +13,13 @@ const AdminProducts: FC = () => {
   const { allProducts, getAllProducts, isLoading } = useProducts();
 
   const [page, setPage] = useState<number>(1);
-  const [pageQty, setPageQty] = useState<number>(13);
+  const [loading, setLoading] = useState(true);
 
-  const init = Math.ceil(pageQty / 2);
+  const init = Math.ceil(allProducts.count / 8);
 
   useEffect(() => {
     getAllProducts(page);
+    setLoading(false);
   }, [page]);
 
   return (
@@ -36,10 +37,10 @@ const AdminProducts: FC = () => {
         </div>
       </div>
       <div className={styles.products}>
-        {isLoading ? (
+        {isLoading || loading ? (
           <h1>loading...</h1>
         ) : (
-          allProducts.map((product) => (
+          allProducts.products.map((product) => (
             <Product product={product} key={product._id} />
           ))
         )}

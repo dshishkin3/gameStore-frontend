@@ -19,7 +19,7 @@ const Footer: FC = () => {
       <div className={styles.navigation}>
         <p className={styles.title}>НАВИГАЦИЯ</p>
         <div className={styles.categories}>
-          {categories.slice(0, 3).map((category) => (
+          {categories.categories.slice(0, 3).map((category) => (
             <Link
               to={`subcategory/${category.title}`}
               key={category._id}

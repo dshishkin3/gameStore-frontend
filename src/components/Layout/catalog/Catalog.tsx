@@ -41,7 +41,7 @@ const Catalog: FC = () => {
               },
             }}
           >
-            {categories.map((category) => (
+            {categories.categories.map((category) => (
               <SwiperSlide key={category._id}>
                 {" "}
                 <Link to={`/subcategory/${category.title}`}>

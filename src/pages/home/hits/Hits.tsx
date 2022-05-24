@@ -47,11 +47,11 @@ const Hits: FC = () => {
             },
           }}
         >
-          {hits.map((product) => (
+          {/* {hits.map((product) => (
             <SwiperSlide key={product._id}>
               <Card product={product} />
             </SwiperSlide>
-          ))}
+          ))} */}
         </Swiper>
       )}
     </div>

@@ -47,11 +47,11 @@ const Promotions: FC = () => {
             },
           }}
         >
-          {promotions.map((product) => (
+          {/* {promotions.map((product) => (
             <SwiperSlide key={product._id}>
               <Card product={product} />
             </SwiperSlide>
-          ))}
+          ))} */}
         </Swiper>
       )}
     </div>

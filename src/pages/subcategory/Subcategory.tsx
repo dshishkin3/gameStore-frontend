@@ -10,38 +10,40 @@ import { useCategories } from "../../hooks/useCategories";
 import styles from "./Subcategory.module.scss";
 
 const Subcategory: FC = () => {
-	let { name } = useParams();
+  let { name } = useParams();
 
-	const { categories, isLoading, getCategories } = useCategories();
+  const { categories, isLoading, getCategories } = useCategories();
 
-	useEffect(() => {
-		getCategories();
-	}, []);
+  useEffect(() => {
+    getCategories(1, 99);
+  }, []);
 
-	const category = categories.filter((item) => item.title === name);
+  const category = categories.categories.filter((item) => item.title === name);
 
-	return (
-		<div>
-			<ActiveLastBreadcrumb categorie={["Компьютерная периферия", String(name)]} />
-			<PageTitle title={String(name)} />
-			<div className={styles.categories}>
-				{isLoading ? (
-					<MyLoaderCategory />
-				) : (
-					category[0].subcategories.map((item) => (
-						<Link
-							to={`/category/${item.title}`}
-							className={styles.category}
-							key={item.id}
-						>
-							<img src={item.urlImg} alt="" />
-							<p>{item.title}</p>
-						</Link>
-					))
-				)}
-			</div>
-		</div>
-	);
+  return (
+    <div>
+      <ActiveLastBreadcrumb
+        categorie={["Компьютерная периферия", String(name)]}
+      />
+      <PageTitle title={String(name)} />
+      <div className={styles.categories}>
+        {isLoading ? (
+          <MyLoaderCategory />
+        ) : (
+          category[0].subcategories.map((item) => (
+            <Link
+              to={`/category/${item.title}`}
+              className={styles.category}
+              key={item.id}
+            >
+              <img src={item.urlImg} alt="" />
+              <p>{item.title}</p>
+            </Link>
+          ))
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Subcategory;

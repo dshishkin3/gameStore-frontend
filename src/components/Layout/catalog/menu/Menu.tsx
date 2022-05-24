@@ -54,7 +54,7 @@ const MenuBlock: FC = () => {
             <CloseIcon onClick={handleClose} cursor="pointer" />
           </div>
           <div className={styles.categories}>
-            {categories.map((category) => (
+            {categories.categories.map((category) => (
               <Link
                 key={category._id}
                 to={`/subcategory/${category.title}`}

@@ -49,7 +49,7 @@ const DrawerBlock = ({ drawer, setDrawer }: IDrawerProps) => {
         </div>
         <div className={styles.body}>
           <div className={styles.categories}>
-            {categories.slice(0, 5).map((category) => (
+            {categories.categories.slice(0, 5).map((category) => (
               <Link
                 key={category._id}
                 to={`subcategory/${category.title}`}
