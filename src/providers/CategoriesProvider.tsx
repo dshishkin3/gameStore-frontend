@@ -10,6 +10,8 @@ import axios from "axios";
 
 import { ICategory } from "../utils/interfaces";
 import { ICategoryContext } from "./types";
+import { useNavigate } from "react-router-dom";
+import { useNotification } from "../hooks/useNotification";
 
 export const CategoriesContext = createContext<ICategoryContext>(
   {} as ICategoryContext
