@@ -15,7 +15,7 @@ import CategoryHeader from "../CategoryHeader/CategoryHeader";
 import styles from "./AdminCategory.module.scss";
 
 const AdminCategory: FC = () => {
-	const { categories, isLoading } = useCategories();
+	const { categories, isLoading, updateCategory, deleteCategory, page } = useCategories();
 	const { id } = useParams<string>();
 	const obj = categories.filter(item => item._id === id);
 
@@ -27,33 +27,15 @@ const AdminCategory: FC = () => {
 		setCategoryImg(obj[0] && obj[0].urlImg)
 		setCategoryTitle(obj[0] && obj[0].title)
 
-	}, [isLoading])
+	}, [isLoading, page])
 
-	const addCategory = async () => {
-		console.log('add categfory')
-		try {
-			console.log(obj[0]._id)
-			const response = await axios.put(`https://game-store12.herokuapp.com/api/categories/${obj[0]._id}`)
-			console.log(response.data)
-
-		} catch (e: any) {
-			console.log(e)
-		}
-
-
-
-	}
-	const deleteCategory = () => {
-		console.log('delete category')
-	}
-
-	const deleteSubcategory = () => {
-		console.log('delete subcategory')
+	const deleteSubcategory = async (id: number) => {
+		const response = await axios.put(`https://game-store12.herokuapp.com/api/categories/${id}`, {})
 	}
 	const addSubcategory = () => {
 		console.log('add subcategory')
 	}
-
+	console.log(page)
 	return (
 		<Wrapper title={''}>
 			<div className={styles.category}>
@@ -79,7 +61,7 @@ const AdminCategory: FC = () => {
 							setTitleForm={setSubCategoryTitle}
 							setUrlImageForm={setSubCategoryImg}
 						/>
-						<AddOrDeleteBtnForm addCat={false} onChangeHandler={deleteSubcategory} />
+						<AddOrDeleteBtnForm addCat={false} onChangeHandler={() => deleteSubcategory(item.id)} />
 					</div>
 				))}
 				<div className={styles.lastblockForm}>
@@ -93,8 +75,8 @@ const AdminCategory: FC = () => {
 				</div>
 
 				<div className={styles.toggleBtn}>
-					<ToggleBtn text="Сохранить изменения" type="saveBtn" onClick={addCategory} />
-					<ToggleBtn text="Удалить категорию" type="deleteBtn" onClick={deleteCategory} />
+					<ToggleBtn text="Сохранить изменения" type="saveBtn" onClick={() => updateCategory(obj[0]._id)} />
+					<ToggleBtn text="Удалить категорию" type="deleteBtn" onClick={() => deleteCategory(obj[0]._id)} />
 				</div>
 
 			</div>

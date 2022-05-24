@@ -10,6 +10,8 @@ import axios from "axios";
 
 import { ICategory } from "../utils/interfaces";
 import { ICategoryContext } from "./types";
+import { useNavigate } from "react-router-dom";
+import { useNotification } from "../hooks/useNotification";
 
 export const CategoriesContext = createContext<ICategoryContext>(
 	{} as ICategoryContext
@@ -28,6 +30,14 @@ export const CategoriesProvider: FC<ICategoryProviderProps> = ({
 	const [pageQty, setPageQty] = useState<number>(13);
 	const [product, setProduct] = useState<ICategory[]>([]);
 
+	const {
+		setSuccessMessage,
+		setNotificaionSuccess,
+		setErrorMessage,
+		setNotificationError,
+	} = useNotification();
+
+
 	useEffect(() => {
 		getCategories();
 	}, []);
@@ -45,20 +55,54 @@ export const CategoriesProvider: FC<ICategoryProviderProps> = ({
 			setIsLoading(false);
 		}
 	};
-	const addCategory = async (titleForm: string, urlImageFrom: string) => {
-		try {
-			const response = await axios.post('https://game-store12.herokuapp.com/api/categories/', { title: titleForm, urlImg: urlImageFrom })
-			console.log(response.data)
-			getCategories();
-		} catch (e) {
-			console.log(e)
-		}
-	}
+
 	async function getPageCategories() {
 		const response = await axios.get<ICategory[]>(`http://game-store12.herokuapp.com/api/categories?page=${page}&size=2`);
 		setProduct(response.data);
 		setPageQty(categories.length);
+	};
+	const addCategory = async (titleForm: string, urlImageFrom: string) => {
+		try {
+			const response = await axios.post('https://game-store12.herokuapp.com/api/categories/', { title: titleForm, urlImg: urlImageFrom })
+			setSuccessMessage(response.data.message);
+			setNotificaionSuccess(true);
+			getCategories();
+		} catch (error: any) {
+
+			setErrorMessage(error.message);
+			setNotificationError(true);
+		}
+	};
+	const updateCategory = async (id: string) => {
+		console.log('add category 1')
+		try {
+			const response = await axios.put(`https://game-store12.herokuapp.com/api/categories/${id}`)
+			setSuccessMessage(response.data.message);
+			setNotificaionSuccess(true);
+
+		} catch (error: any) {
+			setErrorMessage(error.message);
+			setNotificationError(true);
+		}
+	};
+
+	const deleteCategory = async (id: string) => {
+
+		try {
+			const response = await axios.delete(`https://game-store12.herokuapp.com/api/categories/${id}`);
+			setSuccessMessage(response.data.message);
+			setNotificaionSuccess(true);
+			if (page === null) {
+				setPage(page - 1)
+			}
+		} catch (error: any) {
+			setErrorMessage(error.message);
+			setNotificationError(true);
+		}
+
 	}
+
+
 
 	const value = useMemo(
 		() => ({
@@ -70,7 +114,9 @@ export const CategoriesProvider: FC<ICategoryProviderProps> = ({
 			product,
 			pageQty,
 			setPage,
-			page
+			page,
+			updateCategory,
+			deleteCategory
 		}),
 		[categories, page, product, isLoading]
 	);

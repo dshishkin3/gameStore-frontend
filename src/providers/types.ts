@@ -5,10 +5,13 @@ export interface ICategoryContext {
 	getCategories: () => void;
 	addCategory: (titleForm: string, urlImageFrom: string) => void;
 	getPageCategories: () => void;
+	updateCategory: (id: string) => void;
+	deleteCategory: (id: string) => void;
+	setPage: (num: number) => void;
 	isLoading: boolean;
 	product: ICategory[];
 	pageQty: number;
-	setPage: (num: number) => void;
+
 	page: number;
 }
 

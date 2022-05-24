@@ -61,7 +61,7 @@ const AdminCategories: FC = () => {
 							setTitleForm={setTitleForm}
 							titleForm={titleForm}
 							setUrlImageForm={setUrlImageForm} />
-						<AddOrDeleteBtnForm addCat onChangeHandler={onChangeHandler} text="Добавить подкатегорию" />
+						<AddOrDeleteBtnForm addCat onChangeHandler={onChangeHandler} text="Добавить категорию" />
 					</div>
 				</div>
 				<div className={styles.pagination}>
