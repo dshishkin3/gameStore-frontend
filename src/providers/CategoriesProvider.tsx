@@ -24,6 +24,9 @@ export const CategoriesProvider: FC<ICategoryProviderProps> = ({
 }) => {
 	const [categories, setCategories] = useState<ICategory[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
+	const [page, setPage] = useState<number>(1);
+	const [pageQty, setPageQty] = useState<number>(13);
+	const [product, setProduct] = useState<ICategory[]>([]);
 
 	useEffect(() => {
 		getCategories();
@@ -33,7 +36,7 @@ export const CategoriesProvider: FC<ICategoryProviderProps> = ({
 		setIsLoading(true);
 		try {
 			const res = await axios.get<ICategory[]>(
-				"http://game-store12.herokuapp.com/api/categories"
+				`http://game-store12.herokuapp.com/api/categories`
 			);
 			setCategories(res.data);
 		} catch (err: any) {
@@ -42,14 +45,34 @@ export const CategoriesProvider: FC<ICategoryProviderProps> = ({
 			setIsLoading(false);
 		}
 	};
+	const addCategory = async (titleForm: string, urlImageFrom: string) => {
+		try {
+			const response = await axios.post('https://game-store12.herokuapp.com/api/categories/', { title: titleForm, urlImg: urlImageFrom })
+			console.log(response.data)
+			getCategories();
+		} catch (e) {
+			console.log(e)
+		}
+	}
+	async function getPageCategories() {
+		const response = await axios.get<ICategory[]>(`http://game-store12.herokuapp.com/api/categories?page=${page}&size=2`);
+		setProduct(response.data);
+		setPageQty(categories.length);
+	}
 
 	const value = useMemo(
 		() => ({
 			categories,
 			isLoading,
 			getCategories,
+			addCategory,
+			getPageCategories,
+			product,
+			pageQty,
+			setPage,
+			page
 		}),
-		[categories, isLoading]
+		[categories, page, product, isLoading]
 	);
 
 	return (

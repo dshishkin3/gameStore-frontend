@@ -1,3 +1,4 @@
+import axios from "axios";
 import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import PageTitle from "../../../../components/ui/pageTitle/PageTitle";
@@ -28,8 +29,19 @@ const AdminCategory: FC = () => {
 
 	}, [isLoading])
 
-	const addCategory = () => {
+	const addCategory = async () => {
 		console.log('add categfory')
+		try {
+			console.log(obj[0]._id)
+			const response = await axios.put(`https://game-store12.herokuapp.com/api/categories/${obj[0]._id}`)
+			console.log(response.data)
+
+		} catch (e: any) {
+			console.log(e)
+		}
+
+
+
 	}
 	const deleteCategory = () => {
 		console.log('delete category')
@@ -58,7 +70,7 @@ const AdminCategory: FC = () => {
 				</div>
 				<h3 className={styles.title}>Подкатегории</h3>
 				<CategoryHeader title={['Изображение подкатегории', 'Наименование подкатегории']} />
-				{obj[0].subcategories.map(item => (
+				{obj[0] && obj[0].subcategories.map(item => (
 					<div key={item.id} className={styles.blockForm}>
 						<img src={item.urlImg && item.urlImg} alt="" />
 						<CategoriesForm

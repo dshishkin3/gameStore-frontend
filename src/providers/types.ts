@@ -3,7 +3,13 @@ import { ICategory, IProduct } from "../utils/interfaces";
 export interface ICategoryContext {
 	categories: ICategory[];
 	getCategories: () => void;
+	addCategory: (titleForm: string, urlImageFrom: string) => void;
+	getPageCategories: () => void;
 	isLoading: boolean;
+	product: ICategory[];
+	pageQty: number;
+	setPage: (num: number) => void;
+	page: number;
 }
 
 export interface IProductsContext {

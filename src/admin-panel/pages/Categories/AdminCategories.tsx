@@ -16,41 +16,36 @@ import AddOrDeleteBtnForm from "../../components/ui/addOrDeleteBtnForm/AddOrDele
 
 
 const AdminCategories: FC = () => {
+
 	const [urlImageFrom, setUrlImageForm] = useState<string>('');
 	const [titleForm, setTitleForm] = useState<string>('');
 
-	const { categories, isLoading } = useCategories();
-	const [product, setProduct] = useState<ICategory[]>([]);
+	const { categories,
+		isLoading,
+		getCategories,
+		addCategory,
+		getPageCategories,
+		product,
+		pageQty,
+		setPage,
+		page
+	} = useCategories();
+	// const [product, setProduct] = useState<ICategory[]>([]);
 
-	const [page, setPage] = useState<number>(1);
-	const [pageQty, setPageQty] = useState<number>(13);
-
+	// const [page, setPage] = useState<number>(1);
+	// const [pageQty, setPageQty] = useState<number>(13);
+	console.log(pageQty)
 	const init = Math.ceil(pageQty / 2)
 
 	useEffect(() => {
-		getCategories();
+		getPageCategories();
 	}, [page, isLoading]);
 
-	const addCategory = async (titleForm: string, urlImageFrom: string) => {
-		try {
-			const response = await axios.post('https://game-store12.herokuapp.com/api/categories/', { title: titleForm, urlImg: urlImageFrom })
-			console.log(response.data)
-			getCategories();
-		} catch (e) {
-			console.log(e)
-		}
-	}
-
-	async function getCategories() {
-		const response = await axios.get<ICategory[]>(`http://game-store12.herokuapp.com/api/categories?page=${page}&size=2`);
-		setProduct(response.data);
-		setPageQty(categories.length);
-	}
 	const onChangeHandler = (e: any): void => {
 		e.preventDefault();
 		addCategory(titleForm, urlImageFrom);
 	}
-
+	console.log(page)
 	return (
 		<Wrapper title="Акции">
 			<div className={styles.container}>
