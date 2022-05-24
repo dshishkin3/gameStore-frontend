@@ -61,7 +61,7 @@ const AdminCategories: FC = () => {
 					</div>
 					<AdminCategoryItem product={product} />
 					<div className={styles.formContent}>
-						<CategoriesForm addCategory={addCategory}
+						<CategoriesForm
 							urlImageFrom={urlImageFrom}
 							setTitleForm={setTitleForm}
 							titleForm={titleForm}

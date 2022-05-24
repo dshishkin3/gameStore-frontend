@@ -1,15 +1,14 @@
 .toggleBtn {
   cursor: pointer;
   margin-right: 15px;
-  display: flex;
+  display:inline-flex;
   align-items: center;
-  justify-content: center;
   padding: 13px 10px;
   border: 1px solid #dfe0eb;
   border-radius: 10px;
 
   button {
-    align-self: center;
+	align-self: center;
     font-weight: 700;
     font-size: 16px;
     line-height: 20px;

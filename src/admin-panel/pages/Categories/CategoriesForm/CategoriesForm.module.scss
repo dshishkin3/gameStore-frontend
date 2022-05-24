@@ -3,11 +3,11 @@
 			flex: 0 1 60%;
 			display: flex;
 			align-items: center;
-
+			
 			.input {
-				flex: 0 1 50%;
+				width: 307px;
 				padding: 11px 14px;
-				margin-right: 25px;
+				margin-right: 27px;
 				border: 1px solid #F5F5F5;
 				border-radius: 5px;
 				input {
@@ -17,7 +17,9 @@
 					line-height: 20px;
 					letter-spacing: 0.2px;
 					color: #B0B0B0;
+				
 				}
+			
 			}
 
 			

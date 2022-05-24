@@ -1,31 +1,35 @@
 .category{
-	margin: -30px 30px;
-	
-}
-		.form {
-			display: flex;
+	margin: -30px 30px 30px 30px;
+	.title{
+		margin-bottom: 21px;
+		font-weight: 700;
+		font-size: 16px;
+		line-height: 20px;
+		letter-spacing: 0.2px;		
+		color: #252733;
+	}
+		.blockForm{
+			margin: 33px 0px 0px 0px;
+			display:inline-flex;
 			align-items: center;
-			.image{
-				margin-right: 10px;
-				img{
-					width:80px
-				}
+			img{
+				width: 60px;
+				margin-right: 14px;
 			}
-			.input {
-				flex: 0 0 32.5%;
-				padding: 11px 14px;
-				margin-right: 25px;
-				border: 1px solid #F5F5F5;
-				border-radius: 5px;
-				input {
-					width: 100%;
-					font-weight: 400;
-					font-size: 14px;
-					line-height: 20px;
-					letter-spacing: 0.2px;
-					color: #B0B0B0;
-				}
-			}
-	
+		
+		
 		}
+		.lastblockForm{
+					margin: 33px 0px 0px 0px;
+					display: inline-flex;
+					align-items: center;
+			
+		}
+		.toggleBtn{
+			display: flex;
+			margin-top: 67px;
+			margin-bottom: 250px;
+		}
+}
+
 		
