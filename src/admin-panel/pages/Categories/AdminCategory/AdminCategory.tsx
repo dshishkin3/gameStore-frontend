@@ -10,89 +10,135 @@ import Wrapper from "../../../components/ui/wrapper/Wrapper";
 import CategoriesForm from "../CategoriesForm/CategoriesForm";
 import CategoryHeader from "../CategoryHeader/CategoryHeader";
 
+import { ICategory } from "../../../../utils/interfaces";
+
 import styles from "./AdminCategory.module.scss";
 
 const AdminCategory: FC = () => {
-	const { categories, isLoading, updateCategory, deleteCategory, deleteSubcategory, addSubcategory, setPage, page, setSubCategory } = useCategories();
-	const { id } = useParams<string>();
-	const obj = categories.categories && categories.categories.filter(item => item._id === id);
-	const [categoryTitle, setCategoryTitle] = useState<string>("");
-	const [categoryImg, setCategoryImg] = useState<string>("");
+  const { categories, isLoading, updateCategory, deleteCategory } =
+    useCategories();
+  const { id } = useParams<string>();
 
-	const [subCategoryTitle, setSubCategoryTitle] = useState<string>("");
-	const [subCategoryImg, setSubCategoryImg] = useState<string>("");
-	const [lastSubCategoryTitle, setLastSubCategoryTitle] = useState<string>("");
-	const [lastSubCategoryImg, setLastSubCategoryImg] = useState<string>("");
+  const [category, setCategory] = useState<ICategory>({} as ICategory);
+  const [loading, setLoading] = useState(true);
 
+  const [newSubcategory, setNewSubcategory] = useState({
+    title: "",
+    urlImg: "",
+  });
 
-	useEffect(() => {
-		if (obj) {
-			setCategoryImg(obj[0] && obj[0].urlImg);
-			setCategoryTitle(obj[0] && obj[0].title);
-			setSubCategory(obj[0] && obj[0].subcategories)
-		}
-	}, [isLoading, page, categories]);
+  useEffect(() => {
+    if (!isLoading) {
+      setCategory(categories.categories.filter((item) => item._id === id)[0]);
+      setLoading(false);
+    }
+  }, []);
 
-	return (
-		<Wrapper title={''}>
-			{isLoading ? (
-				<h1>loading...</h1>
-			) : (
-				<div className={styles.category}>
-					<PageTitle title={obj[0] ? obj[0].title : ''} />
-					<CategoryHeader title={['Изображение категории', 'Наименование категории']} />
-					<div className={styles.blockForm}>
-						<img src={obj[0] && obj[0].urlImg} alt="" />
-						<CategoriesForm
-							urlImageFrom={categoryImg}
-							titleForm={categoryTitle}
-							setTitleForm={setCategoryTitle}
-							setUrlImageForm={setCategoryImg}
-						/>
-					</div>
-					<h3 className={styles.title}>Подкатегории</h3>
-					<CategoryHeader title={['Изображение подкатегории', 'Наименование подкатегории']} />
-					{obj[0] && obj[0].subcategories.map(item => (
-						<div key={item.id} className={styles.blockForm}>
-							<img src={item.urlImg && item.urlImg} alt="" />
-							<CategoriesForm
-								urlImageFrom={item.urlImg}
-								titleForm={item.title}
-								setTitleForm={setSubCategoryTitle}
-								setUrlImageForm={setSubCategoryImg}
-							/>
-							<AddOrDeleteBtnForm
-								addCat={false}
-								onChangeHandler={() => deleteSubcategory(item.id, obj[0]._id, obj[0].urlImg, obj[0].title)} />
-						</div>
-					))}
-					<div className={styles.lastblockForm}>
-						<CategoriesForm
-							urlImageFrom={lastSubCategoryImg}
-							titleForm={lastSubCategoryTitle}
-							setTitleForm={setLastSubCategoryTitle}
-							setUrlImageForm={setLastSubCategoryImg}
-						/>
-						<AddOrDeleteBtnForm
-							addCat
-							onChangeHandler={() => addSubcategory(obj[0]._id, obj[0].urlImg, obj[0].title, lastSubCategoryTitle, lastSubCategoryImg)}
-							text="Добавить подкатегорию" />
-					</div>
+  const changeSubcategoriesTitle = (index: number, e: any) => {
+    let subcategories = category.subcategories;
+    subcategories[index].title = e;
+    setCategory({ ...category, subcategories: subcategories });
+  };
 
-					<div className={styles.toggleBtn}>
-						<ToggleBtn
-							text="Сохранить изменения"
-							type="saveBtn"
-							onClick={() => updateCategory(obj[0]._id)} />
-						<ToggleBtn
-							text="Удалить категорию"
-							type="deleteBtn"
-							onClick={() => deleteCategory(obj[0]._id)} />
-					</div>
+  const changeSubcategoriesUrlImg = (index: number, e: any) => {
+    let subcategories = category.subcategories;
+    subcategories[index].urlImg = e;
+    setCategory({ ...category, subcategories: subcategories });
+  };
 
-				</div>)}
-		</Wrapper >
-	);
+  const addNewSubcategory = () => {
+    const newSubcategories = category.subcategories;
+    newSubcategories[category.subcategories.length] = newSubcategory;
+    setCategory({ ...category, subcategories: newSubcategories });
+  };
 
+  const deleteSubcategory = (title: string) => {
+    const newSubcategories = category.subcategories.filter(
+      (item) => item.title !== title
+    );
+    setCategory({ ...category, subcategories: newSubcategories });
+  };
+
+  return (
+    <Wrapper title={""}>
+      {isLoading || loading ? (
+        <h1>loading...</h1>
+      ) : (
+        <div className={styles.category}>
+          <PageTitle title={category.title} />
+          <CategoryHeader
+            title={["Изображение категории", "Наименование категории"]}
+          />
+
+          <div className={styles.blockForm}>
+            <img src={category.urlImg} alt="" />
+            <CategoriesForm
+              title={category.title}
+              setTitle={(e: any) =>
+                setCategory({ ...category, title: e.target.value })
+              }
+              urlImg={category.urlImg}
+              setUrlImg={(e: any) =>
+                setCategory({ ...category, urlImg: e.target.value })
+              }
+            />
+          </div>
+          <h3 className={styles.title}>Подкатегории</h3>
+          <CategoryHeader
+            title={["Изображение подкатегории", "Наименование подкатегории"]}
+          />
+          {category.subcategories.map((item, i) => (
+            <div key={item.title} className={styles.blockForm}>
+              <img src={item.urlImg && item.urlImg} alt="" />
+              <CategoriesForm
+                title={item.title}
+                setTitle={(e: any) =>
+                  changeSubcategoriesTitle(i, e.target.value)
+                }
+                urlImg={item.urlImg}
+                setUrlImg={(e: any) =>
+                  changeSubcategoriesUrlImg(i, e.target.value)
+                }
+              />
+              <AddOrDeleteBtnForm
+                addCat={false}
+                onChangeHandler={() => deleteSubcategory(item.title)}
+              />
+            </div>
+          ))}
+          <div className={styles.lastblockForm}>
+            <CategoriesForm
+              title={newSubcategory.title}
+              setTitle={(e: any) =>
+                setNewSubcategory({ ...newSubcategory, title: e.target.value })
+              }
+              urlImg={newSubcategory.urlImg}
+              setUrlImg={(e: any) =>
+                setNewSubcategory({ ...newSubcategory, urlImg: e.target.value })
+              }
+            />
+            <AddOrDeleteBtnForm
+              addCat
+              onChangeHandler={addNewSubcategory}
+              text="Добавить подкатегорию"
+            />
+          </div>
+
+          <div className={styles.toggleBtn}>
+            <ToggleBtn
+              text="Сохранить изменения"
+              type="saveBtn"
+              onClick={() => updateCategory(category)}
+            />
+            <ToggleBtn
+              text="Удалить категорию"
+              type="deleteBtn"
+              onClick={() => deleteCategory(category._id)}
+            />
+          </div>
+        </div>
+      )}
+    </Wrapper>
+  );
 };
 export default AdminCategory;
