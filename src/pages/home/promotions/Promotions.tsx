@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper";
 
@@ -10,7 +10,7 @@ import { useProducts } from "../../../hooks/useProducts";
 import styles from "../Home.module.scss";
 
 const Promotions: FC = () => {
-  const { promotions, getPromotions, isLoading } = useProducts();
+  const { promotions, getPromotions, promotionsIsLoading } = useProducts();
 
   useEffect(() => {
     getPromotions();
@@ -19,7 +19,7 @@ const Promotions: FC = () => {
   return (
     <div className={styles.promotions}>
       <p className={styles.title}>Акции</p>
-      {isLoading ? (
+      {promotionsIsLoading ? (
         <MyLoader />
       ) : (
         <Swiper
@@ -47,11 +47,11 @@ const Promotions: FC = () => {
             },
           }}
         >
-          {/* {promotions.map((product) => (
+          {promotions.products.map((product) => (
             <SwiperSlide key={product._id}>
               <Card product={product} />
             </SwiperSlide>
-          ))} */}
+          ))}
         </Swiper>
       )}
     </div>

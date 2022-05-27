@@ -1,0 +1,14 @@
+.more {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+
+  &Button {
+    background-color: #1e5900;
+    padding: 15px 20px;
+    border-radius: 18px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}

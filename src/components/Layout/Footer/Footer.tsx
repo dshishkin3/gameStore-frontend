@@ -12,22 +12,23 @@ import logo from "../../../assets/images/header/logo.png";
 import styles from "./Footer.module.scss";
 
 const Footer: FC = () => {
-  const { categories } = useCategories();
+  const { categories, isLoading } = useCategories();
 
   return (
     <div className={styles.container}>
       <div className={styles.navigation}>
         <p className={styles.title}>НАВИГАЦИЯ</p>
         <div className={styles.categories}>
-          {categories.categories.slice(0, 3).map((category) => (
-            <Link
-              to={`subcategory/${category.title}`}
-              key={category._id}
-              className={styles.category}
-            >
-              {category.title}
-            </Link>
-          ))}
+          {!isLoading &&
+            categories.categories.slice(0, 3).map((category) => (
+              <Link
+                to={`subcategory/${category.title}`}
+                key={category._id}
+                className={styles.category}
+              >
+                {category.title}
+              </Link>
+            ))}
         </div>
         <div className={styles.refs}>
           <p className={styles.stock}>Акции</p>
@@ -44,7 +45,10 @@ const Footer: FC = () => {
             <CallIcon fontSize="small" />
             <p className={styles.linkTitle}>8 (928) 89 68 896</p>
           </a>
-          <a href="tel:89288968896" className={styles.link}>
+          <a
+            href="https://instagram.com/game_store_95?igshid=YmMyMTA2M2Y="
+            className={styles.link}
+          >
             <InstagramIcon fontSize="small" />
             <p className={styles.linkTitle}>instagram</p>
           </a>

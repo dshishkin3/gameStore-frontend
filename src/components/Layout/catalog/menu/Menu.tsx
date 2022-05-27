@@ -13,7 +13,7 @@ import styles from "./Menu.module.scss";
 const MenuBlock: FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-  const { categories } = useCategories();
+  const { categories, isLoading } = useCategories();
 
   const open = Boolean(anchorEl);
 
@@ -54,25 +54,26 @@ const MenuBlock: FC = () => {
             <CloseIcon onClick={handleClose} cursor="pointer" />
           </div>
           <div className={styles.categories}>
-            {categories.categories.map((category) => (
-              <Link
-                key={category._id}
-                to={`/subcategory/${category.title}`}
-                className={styles.category}
-                onClick={handleClose}
-              >
-                <div className={styles.categoryBody}>
-                  <img src={category.urlImg} alt="" />
-                  <p>
-                    {" "}
-                    {category.title.length < 23
-                      ? category.title
-                      : category.title.slice(0, 23) + "..."}
-                  </p>
-                </div>
-                <ArrowForwardIosIcon color="action" fontSize="small" />
-              </Link>
-            ))}
+            {!isLoading &&
+              categories.categories.slice(0, 6).map((category) => (
+                <Link
+                  key={category._id}
+                  to={`/subcategory/${category.title}`}
+                  className={styles.category}
+                  onClick={handleClose}
+                >
+                  <div className={styles.categoryBody}>
+                    <img src={category.urlImg} alt="" />
+                    <p>
+                      {" "}
+                      {category.title.length < 23
+                        ? category.title
+                        : category.title.slice(0, 23) + "..."}
+                    </p>
+                  </div>
+                  <ArrowForwardIosIcon color="action" fontSize="small" />
+                </Link>
+              ))}
           </div>
           <Link
             to={`allCategories`}

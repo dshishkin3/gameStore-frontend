@@ -10,7 +10,7 @@ import { MyLoader } from "../../../components/ui/contentLoader/ContentLoader";
 import styles from "../Home.module.scss";
 
 const Hits: FC = () => {
-  const { hits, getHits, isLoading } = useProducts();
+  const { hits, getHits, hitsIsLoading } = useProducts();
 
   useEffect(() => {
     getHits();
@@ -19,7 +19,7 @@ const Hits: FC = () => {
   return (
     <div className={styles.hits}>
       <p className={styles.title}>Хиты продаж</p>
-      {isLoading ? (
+      {hitsIsLoading ? (
         <MyLoader />
       ) : (
         <Swiper
@@ -47,11 +47,11 @@ const Hits: FC = () => {
             },
           }}
         >
-          {/* {hits.map((product) => (
+          {hits.products.map((product) => (
             <SwiperSlide key={product._id}>
               <Card product={product} />
             </SwiperSlide>
-          ))} */}
+          ))}
         </Swiper>
       )}
     </div>

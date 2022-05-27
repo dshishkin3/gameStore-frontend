@@ -20,7 +20,7 @@ interface IDrawerProps {
 }
 
 const DrawerBlock = ({ drawer, setDrawer }: IDrawerProps) => {
-  const { categories } = useCategories();
+  const { categories, isLoading } = useCategories();
 
   return (
     <div className={styles.drawer}>
@@ -32,49 +32,59 @@ const DrawerBlock = ({ drawer, setDrawer }: IDrawerProps) => {
           </div>
         </IconButton>
       </Button>
-      <Drawer anchor={"left"} open={drawer} onClose={() => setDrawer(!drawer)}>
-        <div className={styles.header}>
-          <div className={styles.logo}>
-            <img src={logo} alt="" />
-            <p className={styles.logoText}>GAME STORE</p>
-          </div>
-          <Button onClick={() => setDrawer(!drawer)} color="inherit">
-            <IconButton color="inherit" aria-label="close drawer" edge="start">
-              <div className={styles.drawerText}>
-                <CloseIcon />
-                <p>Меню</p>
-              </div>
-            </IconButton>
-          </Button>
-        </div>
-        <div className={styles.body}>
-          <div className={styles.categories}>
-            {categories.categories.slice(0, 5).map((category) => (
-              <Link
-                key={category._id}
-                to={`subcategory/${category.title}`}
-                className={styles.category}
-                onClick={() => setDrawer(!drawer)}
+      {!isLoading && (
+        <Drawer
+          anchor={"left"}
+          open={drawer}
+          onClose={() => setDrawer(!drawer)}
+        >
+          <div className={styles.header}>
+            <div className={styles.logo}>
+              <img src={logo} alt="" />
+              <p className={styles.logoText}>GAME STORE</p>
+            </div>
+            <Button onClick={() => setDrawer(!drawer)} color="inherit">
+              <IconButton
+                color="inherit"
+                aria-label="close drawer"
+                edge="start"
               >
-                <p>{category.title}</p>
-                <ArrowForwardIosIcon fontSize="small" />
-              </Link>
-            ))}
+                <div className={styles.drawerText}>
+                  <CloseIcon />
+                  <p>Меню</p>
+                </div>
+              </IconButton>
+            </Button>
+          </div>
+          <div className={styles.body}>
+            <div className={styles.categories}>
+              {categories.categories.slice(0, 5).map((category) => (
+                <Link
+                  key={category._id}
+                  to={`subcategory/${category.title}`}
+                  className={styles.category}
+                  onClick={() => setDrawer(!drawer)}
+                >
+                  <p>{category.title}</p>
+                  <ArrowForwardIosIcon fontSize="small" />
+                </Link>
+              ))}
 
-            <Link to="/allCategories" onClick={() => setDrawer(!drawer)}>
-              <p className={styles.allCategories}>Все категории...</p>
+              <Link to="/allCategories" onClick={() => setDrawer(!drawer)}>
+                <p className={styles.allCategories}>Все категории...</p>
+              </Link>
+            </div>
+            <Link
+              to="/favorites"
+              onClick={() => setDrawer(!drawer)}
+              className={styles.favorites}
+            >
+              <FavoriteBorderIcon color="success" fontSize="small" />
+              <p>Избранное</p>
             </Link>
           </div>
-          <Link
-            to="/favorites"
-            onClick={() => setDrawer(!drawer)}
-            className={styles.favorites}
-          >
-            <FavoriteBorderIcon color="success" fontSize="small" />
-            <p>Избранное</p>
-          </Link>
-        </div>
-      </Drawer>
+        </Drawer>
+      )}
     </div>
   );
 };

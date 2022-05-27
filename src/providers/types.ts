@@ -65,6 +65,8 @@ export interface IProductsContext {
   addProduct: () => void;
 
   isLoading: boolean;
+  hitsIsLoading: boolean;
+  promotionsIsLoading: boolean;
 }
 
 export interface IAuthContext {

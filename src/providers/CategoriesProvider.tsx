@@ -48,12 +48,12 @@ export const CategoriesProvider: FC<ICategoryProviderProps> = ({
   } = useNotification();
 
   useEffect(() => {
-    getCategories(1, 99);
+    getCategories(1, 14);
   }, []);
 
   useEffect(() => {
-    console.log(category);
-  }, [category]);
+    console.log(categories);
+  }, [categories]);
 
   const getCategories = async (page: number, size: number) => {
     setIsLoading(true);

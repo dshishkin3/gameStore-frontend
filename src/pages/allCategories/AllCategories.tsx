@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { useCategories } from "../../hooks/useCategories";
@@ -8,12 +8,21 @@ import PageTitle from "../../components/ui/pageTitle/PageTitle";
 import styles from "./AllCategories.module.scss";
 import { MyLoaderCategory } from "../../components/ui/contentLoader/ContentLoader";
 import ActiveLastBreadcrumb from "../../components/ui/breadcrumbs/Breadcrumbs";
+import PaginationControl from "../../admin-panel/components/ui/pagination/Pagination";
 
 const AllCategories: FC = () => {
-  const { categories, isLoading } = useCategories();
+  const { categories, getCategories, isLoading } = useCategories();
+
+  const [page, setPage] = useState<number>(1);
+
+  const init = Math.round(categories.count / 8);
+
+  useEffect(() => {
+    getCategories(page, 14);
+  }, [page]);
 
   return (
-    <div>
+    <div style={{ flex: "1 0 auto" }}>
       <ActiveLastBreadcrumb />
       <PageTitle title="Все категории" />
       <div className={styles.categories}>
@@ -31,6 +40,9 @@ const AllCategories: FC = () => {
             </Link>
           ))
         )}
+      </div>
+      <div className={styles.pagination}>
+        <PaginationControl count={init} page={page} setPage={setPage} />
       </div>
     </div>
   );

@@ -35,7 +35,10 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
   const [product, setProduct] = useState<IProduct>({} as IProduct);
   const [newProduct, setNewProduct] = useState<IProduct>({} as IProduct);
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const [hitsIsLoading, setHitsIsLoading] = useState(true);
+  const [promotionsIsLoading, setPromotionsIsLoading] = useState(true);
 
   const {
     setSuccessMessage,
@@ -44,10 +47,13 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
     setNotificationError,
   } = useNotification();
 
+  useEffect(() => {
+    console.log(isLoading);
+  }, [isLoading]);
+
   const getHits = async () => {
-    setIsLoading(true);
+    setHitsIsLoading(true);
     try {
-      console.log("get hits");
       const res = await axios.get(
         "http://game-store12.herokuapp.com/api/products/hits"
       );
@@ -55,12 +61,12 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
     } catch (err: any) {
       console.log(err);
     } finally {
-      setIsLoading(false);
+      setHitsIsLoading(false);
     }
   };
 
   const getPromotions = async () => {
-    setIsLoading(true);
+    setPromotionsIsLoading(true);
     try {
       const res = await axios.get(
         "http://game-store12.herokuapp.com/api/products/promotions"
@@ -69,7 +75,7 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
     } catch (err: any) {
       console.log(err);
     } finally {
-      setIsLoading(false);
+      setPromotionsIsLoading(false);
     }
   };
 
@@ -203,8 +209,10 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
       addProduct,
       isLoading,
       setIsLoading,
+      hitsIsLoading,
+      promotionsIsLoading,
     }),
-    [hits, isLoading, product, newProduct]
+    [hits, isLoading, promotions, product, newProduct]
   );
 
   return (

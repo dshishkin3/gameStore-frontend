@@ -8,8 +8,15 @@ import styles from "./Home.module.scss";
 import "swiper/css";
 import "swiper/css/navigation";
 import { useAuth } from "../../hooks/useAuth";
+import { useCategories } from "../../hooks/useCategories";
 
 const Home: FC = () => {
+  const { getCategories, isLoading } = useCategories();
+
+  useEffect(() => {
+    getCategories(1, 99);
+  }, []);
+
   return (
     <div className={styles.container}>
       <Hits />
