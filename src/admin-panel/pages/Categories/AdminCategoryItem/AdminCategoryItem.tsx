@@ -23,9 +23,9 @@ const AdminCategoryItem: FC<AdminCategoryProps> = ({ product }) => {
 						<h3 className={styles.title}>{obj.title}</h3>
 					</div>
 					<div className={styles.subcategorie}>
-						{obj.subcategories.map((elem) => (
+						{obj.subcategories.map((elem, index) => (
 							<AdminSubcategory
-								key={obj._id + elem.title}
+								key={obj._id + index}
 								urlImg={elem.urlImg}
 								title={elem.title}
 							/>
