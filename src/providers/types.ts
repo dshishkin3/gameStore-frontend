@@ -67,6 +67,7 @@ export interface IProductsContext {
   isLoading: boolean;
   hitsIsLoading: boolean;
   promotionsIsLoading: boolean;
+  productIsLoading: boolean;
 }
 
 export interface IAuthContext {

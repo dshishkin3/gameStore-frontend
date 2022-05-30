@@ -41,15 +41,6 @@ const Price: FC<IPrice> = ({ type }) => {
       <input className={styles.input} value={price} onChange={changePrice} />
 
       <input
-        disabled={
-          type === "change"
-            ? product.oldPrice || product.oldPrice === 0
-              ? false
-              : true
-            : newProduct.oldPrice
-            ? false
-            : true
-        }
         className={styles.input}
         value={oldPrice}
         onChange={changeOldPrice}

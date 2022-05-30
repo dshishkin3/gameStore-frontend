@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -16,7 +16,11 @@ interface ICategoryProps {
 
 const Category: FC<ICategoryProps> = ({ type }) => {
   const { product, newProduct, setProduct, setNewProduct } = useProducts();
-  const { categories } = useCategories();
+  const { categories, isLoading, getCategories } = useCategories();
+
+  useEffect(() => {
+    getCategories(1, 99);
+  }, []);
 
   const handleChange = (event: SelectChangeEvent) => {
     if (type === "change") {
@@ -26,13 +30,16 @@ const Category: FC<ICategoryProps> = ({ type }) => {
     }
   };
 
-  const subcategories = [];
+  const subcategories: any[] = [];
 
-  for (let i = 0; i < categories.categories.length; i++) {
-    for (let j = 0; j < categories.categories[i].subcategories.length; j++) {
-      subcategories.push(categories.categories[i].subcategories[j]);
+  if (!isLoading) {
+    for (let i = 0; i < categories.categories.length; i++) {
+      for (let j = 0; j < categories.categories[i].subcategories.length; j++) {
+        subcategories.push(categories.categories[i].subcategories[j]);
+      }
     }
   }
+
   return (
     <div className={styles.container}>
       <FormControl sx={{ m: 1, minWidth: 250 }} size="medium">

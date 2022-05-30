@@ -10,32 +10,32 @@ import Product from "../Products/product/Product";
 import styles from "../Products/Products.module.scss";
 
 const AdminPromotions: FC = () => {
-  const { getPromotions, promotions, isLoading } = useProducts();
+  const { getPromotions, promotions, isLoading, promotionsIsLoading } =
+    useProducts();
 
   const [page, setPage] = useState<number>(1);
-  const [loading, setLoading] = useState(true);
 
   const init = Math.ceil(promotions.count / 8);
 
   useEffect(() => {
     getPromotions();
-    setLoading(false);
   }, []);
 
   return (
     <Wrapper title="Акции">
-      {isLoading || loading ? (
+      {promotionsIsLoading ? (
         <h1>loading...</h1>
       ) : (
         <>
-          <HeaderItems
-            items={[
-              "Изображения товара",
-              "Наименование товара",
-              "Цена",
-              "Старая цена (не обяз.)",
-            ]}
-          />
+          <div className={styles.header}>
+            <div className={styles.headerItems}>
+              <p>Информация о товаре</p>
+              <div className={styles.right}>
+                <p>Цена</p>
+                <p>Категория</p>
+              </div>
+            </div>
+          </div>
           {promotions.products.map((product) => (
             <Product product={product} key={product._id} />
           ))}

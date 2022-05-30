@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useProducts } from "../../../../hooks/useProducts";
 
 import styles from "./Characteristics.module.scss";
@@ -10,9 +10,15 @@ interface ICharacteristicsProps {
 const Characteristics: FC<ICharacteristicsProps> = ({ type }) => {
   const { product, newProduct, setNewProduct, setProduct } = useProducts();
 
-  const [characteristics, setCharacteristics] = useState<string>(
-    product.characteristic
-  );
+  const [characteristics, setCharacteristics] = useState<string>("");
+
+  useEffect(() => {
+    if (type === "change") {
+      setCharacteristics(product.desc);
+    } else {
+      setCharacteristics(newProduct.desc);
+    }
+  }, []);
 
   const changeCharacteristics = (e: any) => {
     if (type === "change") {

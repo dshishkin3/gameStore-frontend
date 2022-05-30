@@ -22,21 +22,24 @@ import Flex from "../../components/ui/flexBox/Flex";
 const AdminProduct: FC = () => {
   const { id } = useParams();
 
-  const { getProduct, product, isLoading, updateProduct, deleteProduct } =
-    useProducts();
-
-  const [loading, setLoading] = useState<boolean>(true);
+  const {
+    getProduct,
+    product,
+    isLoading,
+    updateProduct,
+    deleteProduct,
+    productIsLoading,
+  } = useProducts();
 
   useEffect(() => {
     if (id !== undefined) {
       getProduct({ id });
-      setLoading(false);
     }
   }, []);
 
   return (
     <Wrapper title={product.title} backBtn>
-      {isLoading || loading ? (
+      {productIsLoading ? (
         <h1>loading...</h1>
       ) : (
         <>

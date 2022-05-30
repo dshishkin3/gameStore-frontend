@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 import { useProducts } from "../../../../hooks/useProducts";
 
@@ -9,15 +9,26 @@ interface IDescProps {
 }
 
 const Desc: FC<IDescProps> = ({ type }) => {
+  console.log(type);
+
   const { product, newProduct, setNewProduct, setProduct } = useProducts();
 
-  const [desc, setDesc] = useState<string>(product.desc);
+  const [desc, setDesc] = useState<string>("");
+
+  useEffect(() => {
+    if (type === "change") {
+      setDesc(product.desc);
+    } else {
+      setDesc(newProduct.desc);
+    }
+  }, []);
 
   const changeDesc = (e: any) => {
     if (type === "change") {
       setDesc(e.target.value);
       setProduct({ ...product, desc: e.target.value });
     } else {
+      setDesc(product.desc);
       setDesc(e.target.value);
       setNewProduct({ ...newProduct, desc: e.target.value });
     }

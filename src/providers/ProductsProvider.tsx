@@ -39,6 +39,7 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
 
   const [hitsIsLoading, setHitsIsLoading] = useState(true);
   const [promotionsIsLoading, setPromotionsIsLoading] = useState(true);
+  const [productIsLoading, setProductIsLoading] = useState(true);
 
   const {
     setSuccessMessage,
@@ -48,7 +49,7 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
   } = useNotification();
 
   useEffect(() => {
-    console.log(isLoading);
+    console.log("isLoading- ", isLoading);
   }, [isLoading]);
 
   const getHits = async () => {
@@ -108,7 +109,7 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
   };
 
   const getProduct = async ({ id }: { id: string }) => {
-    setIsLoading(true);
+    setProductIsLoading(true);
     try {
       const res = await axios.get(
         `http://game-store12.herokuapp.com/api/products/product/${id}`
@@ -117,7 +118,7 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
     } catch (err: any) {
       console.log(err);
     } finally {
-      setIsLoading(false);
+      setProductIsLoading(false);
     }
   };
 
@@ -211,6 +212,7 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
       setIsLoading,
       hitsIsLoading,
       promotionsIsLoading,
+      productIsLoading,
     }),
     [hits, isLoading, promotions, product, newProduct]
   );
