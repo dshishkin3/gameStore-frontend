@@ -55,10 +55,81 @@
 }
 
 .information {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
+   display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: center;
+	@media (max-width: 1000px) {
+		flex-direction: row;
+		align-self: flex-start;
+		margin-top: 25px;
+			.logoImage {
+					margin-right: 340px;
+					@media (max-width: 900px) {
+						margin-right: 300px;
+					}
+					@media (max-width: 845px) {
+						margin-right: 270px;
+					}
+					@media (max-width: 805px) {
+						margin-right: 240px;
+					}
+					@media (max-width: 777px) {
+						margin-right: 210px;
+					}
+					@media (max-width: 760px) {
+						margin-right: 180px;
+					}
+					@media (max-width: 715px) {
+						margin-right: 150px;
+					}
+					@media (max-width: 690px) {
+						margin-right: 100px;
+					}
+					@media (max-width: 640px) {
+						margin-right: 80px;
+					}
+					@media (max-width: 620px) {
+						margin-right: 50px;
+					}
+					@media (max-width: 590px) {
+						margin-right: 30px;
+					}
+					@media (max-width: 525px) {
+						margin-right: 15px;
+					}
+					@media (max-width: 490px) {
+						margin-right: 2px;
+					}
+				}
+				.infoItem {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+				}
+		}
+			
+	@media (max-width: 560px) {
+			.logoImage {
+					display: flex;
+					align-self: center;
+					justify-content: center;
+				}
+				.infoItem {
+					align-self: center;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+				}
+				.link {
+					margin-left: 7px;
+				}
+				.linkTitle {
+					margin-left: 5px;
+				}
+		}	
 }
 
 .logo {
@@ -115,7 +186,7 @@
     margin-bottom: 15px;
   }
 	.navigation{
-	   align-items: center;
+	   align-self: flex-start;
 	   }
 }
 

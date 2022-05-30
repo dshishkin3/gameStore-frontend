@@ -1,10 +1,14 @@
 		.body {
 			margin-bottom: 45px;
-
+	
 			.column {
 				display: flex;
 				align-items: center;
 				border-bottom: 1.5px solid #DFE0EB;
+			&:hover {
+					transition: all 0.5s;
+					background-color: rgba(55, 81, 255, 0.04);
+				}
 
 				.categorie {
 					padding: 45px 0px;
@@ -36,10 +40,15 @@
 					align-self: center;
 					display: flex;
 					text-align: center;
-
+					&:hover span {
+						color: #636363;
+						transition: all 0.5s;
+					}
 					.btn {
 						display: flex;
 						align-items: center;
+						color: #9FA2B4;
+					
 						.arrow{
 							
 						}

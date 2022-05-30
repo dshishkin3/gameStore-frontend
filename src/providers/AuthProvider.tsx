@@ -10,7 +10,7 @@ interface IAuthProviderProps {
 }
 
 export const AuthProvider: FC<IAuthProviderProps> = ({ children }) => {
-	const [auth, setAuth] = useState(true);
+	const [auth, setAuth] = useState(false);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [isLoading, setIsLoading] = useState<boolean>(false);
