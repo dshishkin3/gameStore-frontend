@@ -14,7 +14,7 @@ import ActiveLastBreadcrumb from "../../components/ui/breadcrumbs/Breadcrumbs";
 
 const Favories: FC = () => {
 	const [product, setProduct] = useState<IProduct[]>([]);
-
+	
 	useEffect(() => {
 		getProductFormLS();
 	}, []);
@@ -24,6 +24,7 @@ const Favories: FC = () => {
 			setProduct(JSON.parse(localStorage.getItem("favorites") || ""));
 		}
 	}
+
 
 	return (
 		<div className={styles.container}>

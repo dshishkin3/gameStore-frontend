@@ -58,7 +58,6 @@ const AdminCategory: FC = () => {
 		);
 		setCategory({ ...category, subcategories: newSubcategories });
 	};
-
 	return (
 		<Wrapper title={""}>
 			{isLoading || loading ? (
@@ -88,8 +87,8 @@ const AdminCategory: FC = () => {
 						title={["Изображение подкатегории", "Наименование подкатегории"]}
 					/>
 					{category.subcategories.map((item, i) => (
-						<div key={item.title} className={styles.blockForm}>
-							<img src={item.urlImg && item.urlImg} alt="" />
+						<div key={item.title + i} className={styles.blockForm}>
+							<img src={item.urlImg} alt="" />
 							<CategoriesForm
 								title={item.title}
 								setTitle={(e: any) =>

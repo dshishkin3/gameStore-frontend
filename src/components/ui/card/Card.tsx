@@ -18,7 +18,6 @@ const Card: FC<ICardProps> = ({ product }) => {
 		if (localStorage.getItem(product._id)) {
 			setFavorites(true);
 		}
-
 	}, []);
 
 	function toggleFavorites(obj: IProduct): void {
