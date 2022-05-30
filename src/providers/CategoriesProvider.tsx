@@ -53,14 +53,6 @@ export const CategoriesProvider: FC<ICategoryProviderProps> = ({
     getCategories(1, 14);
   }, []);
 
-  useEffect(() => {
-    console.log("categories- ", categories);
-  }, [categories]);
-
-  useEffect(() => {
-    console.log("category- ", category);
-  }, [category]);
-
   const config = {
     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
   };
@@ -82,9 +74,12 @@ export const CategoriesProvider: FC<ICategoryProviderProps> = ({
 
   const getCategory = async (name: string) => {
     console.log(name);
+    console.log("вызов getCategory");
     setIsLoadingCategory(true);
     try {
-      const res = await axios.get(`http://localhost:5000/categories/${name}`);
+      const res = await axios.get(
+        `https://gamestore4.herokuapp.com/categories/${name}`
+      );
       setCategory(res.data[0]);
     } catch (err: any) {
       console.log(err);
@@ -100,11 +95,11 @@ export const CategoriesProvider: FC<ICategoryProviderProps> = ({
         { title: titleForm, urlImg: urlImageFrom },
         config
       );
-      setSuccessMessage(response.data.message);
+      setSuccessMessage("Категория добавлена!");
       setNotificaionSuccess(true);
       getCategories(1, 4);
     } catch (error: any) {
-      setErrorMessage(error.message);
+      setErrorMessage(error.response.data.message);
       setNotificationError(true);
     }
   };
@@ -119,10 +114,10 @@ export const CategoriesProvider: FC<ICategoryProviderProps> = ({
       );
       console.log(response);
 
-      setSuccessMessage(response.data.message);
+      setSuccessMessage("Категория обновлена!");
       setNotificaionSuccess(true);
     } catch (error: any) {
-      setErrorMessage(error.message);
+      setErrorMessage(error.response.data.message);
       setNotificationError(true);
     }
   };
@@ -133,10 +128,10 @@ export const CategoriesProvider: FC<ICategoryProviderProps> = ({
         `https://gamestore4.herokuapp.com/categories/${id}`,
         config
       );
-      setSuccessMessage(response.data.message);
+      setSuccessMessage("Категория удалена!");
       setNotificaionSuccess(true);
     } catch (error: any) {
-      setErrorMessage(error.message);
+      setErrorMessage(error.response.data.message);
       setNotificationError(true);
     }
   };

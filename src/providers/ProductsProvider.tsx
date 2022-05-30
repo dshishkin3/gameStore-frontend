@@ -95,7 +95,7 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
     setSearchIsLoading(true);
     try {
       const res = await axios.get(
-        `http://localhost:5000/products/search/${name}/?page=${page}&size=${size}`
+        `https://gamestore4.herokuapp.com/products/search/${name}/?page=${page}&size=${size}`
       );
       setSearchProducts(res.data);
     } catch (err: any) {
@@ -109,7 +109,7 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
     setIsLoading(true);
     try {
       const res = await axios.get(
-        `http://game-store12.herokuapp.com/api/products/category/${name}`
+        `https://gamestore4.herokuapp.com/products/category/${name}`
       );
       setCategoryProducts(res.data.products);
     } catch (err: any) {

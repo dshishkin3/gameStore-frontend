@@ -23,12 +23,17 @@ const AdminCategory: FC = () => {
     isLoadingCategory,
     setCategory,
   } = useCategories();
-  const { id } = useParams<string>();
+
+  let { id } = useParams<string>();
 
   const [newSubcategory, setNewSubcategory] = useState({
     title: "",
     urlImg: "",
   });
+
+  useEffect(() => {
+    console.log("id- ", id);
+  }, [id]);
 
   useEffect(() => {
     if (id !== undefined) {
