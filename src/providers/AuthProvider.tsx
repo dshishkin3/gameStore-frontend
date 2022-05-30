@@ -10,7 +10,7 @@ interface IAuthProviderProps {
 }
 
 export const AuthProvider: FC<IAuthProviderProps> = ({ children }) => {
-  const [auth, setAuth] = useState(true);
+  const [auth, setAuth] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -20,16 +20,17 @@ export const AuthProvider: FC<IAuthProviderProps> = ({ children }) => {
     setIsLoading(true);
     try {
       const res = await axios.post(
-        `http://game-store12.herokuapp.com/api/auth/login`,
+        `https://gamestore4.herokuapp.com/auth/login`,
         {
           email,
           password,
         }
       );
 
-      if (res.status === 200) {
+      if (res.status === 201) {
         setAuth(!auth);
         setIsError(null);
+        localStorage.setItem("token", res.data.token);
       }
     } catch (err: any) {
       setIsError(err.response.data.error);
