@@ -12,13 +12,17 @@ import { useCategories } from "../../hooks/useCategories";
 import styles from "./Subcategory.module.scss";
 
 const Subcategory: FC = () => {
-  let { name } = useParams();
+  let { name } = useParams<string>();
+
+  const { category, getCategory, isLoadingCategory } = useCategories();
 
   const [maxItems, setMaxItems] = useState(14);
 
-  const { categories, isLoading, getCategories } = useCategories();
-
-  const category = categories.categories.filter((item) => item.title === name);
+  useEffect(() => {
+    if (name !== undefined) {
+      getCategory(name);
+    }
+  }, []);
 
   return (
     <div>
@@ -27,14 +31,14 @@ const Subcategory: FC = () => {
       />
       <PageTitle title={String(name)} />
       <div className={styles.categories}>
-        {isLoading ? (
+        {isLoadingCategory ? (
           <MyLoaderCategory />
         ) : (
-          category[0].subcategories.slice(0, maxItems).map((item) => (
+          category.subcategories.slice(0, maxItems).map((item, i) => (
             <Link
               to={`/category/${item.title}`}
               className={styles.category}
-              key={item.id}
+              key={item.title + i}
             >
               <img src={item.urlImg} alt="" />
               <p>{item.title}</p>
@@ -42,9 +46,11 @@ const Subcategory: FC = () => {
           ))
         )}
       </div>
-      {category[0].subcategories.length >= 14 && (
-        <SeeMore onClick={() => setMaxItems(maxItems + 14)} />
-      )}
+      {!isLoadingCategory &&
+        category.subcategories.length > 14 &&
+        category.subcategories.length > maxItems && (
+          <SeeMore onClick={() => setMaxItems(maxItems + 14)} />
+        )}
     </div>
   );
 };

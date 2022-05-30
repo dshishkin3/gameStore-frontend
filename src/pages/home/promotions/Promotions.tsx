@@ -13,7 +13,7 @@ const Promotions: FC = () => {
   const { promotions, getPromotions, promotionsIsLoading } = useProducts();
 
   useEffect(() => {
-    getPromotions();
+    getPromotions(1);
   }, []);
 
   return (

@@ -8,6 +8,8 @@ interface ITitleProps {
 }
 
 const Title: FC<ITitleProps> = ({ type }) => {
+  console.log(type);
+
   const { product, newProduct, setProduct, setNewProduct } = useProducts();
 
   const [title, setTitle] = useState<string>(

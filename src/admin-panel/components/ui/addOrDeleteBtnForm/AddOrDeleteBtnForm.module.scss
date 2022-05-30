@@ -1,16 +1,39 @@
 .addCategory {
+	cursor: pointer;
 	display: flex;
 	align-items: center;
 	background: #FFFFFF;
 	span {
 		margin-left: 5px;
 	}
+		&:hover {
+			span{
+				transition: all 0.5s;
+				font-size: 17px;
+			}
+			svg {
+				transition: all 0.5s;
+				transform: rotate(360deg);
+			}
+			
+		}
+		
 }
 .deleteCategory{
+	cursor: pointer;
 	display: flex;
 	padding: 6px 6px;
 	align-items: flex-end;
 	justify-content: center;
 	background: #D80101;
 	border-radius: 5px;
+	&:hover {
+			transition: all 0.5s;
+			box-shadow: 0px 0px 12px 0px rgba(216, 1, 1, 0.5);
+				svg {
+						transition: all 0.5s;
+						transform: rotate(360deg);
+					}
+		}
+
 }

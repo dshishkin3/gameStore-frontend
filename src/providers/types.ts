@@ -12,17 +12,12 @@ export interface ICategoryContext {
   addCategory: (titleForm: string, urlImageFrom: string) => void;
   updateCategory: (arg0: ICategory) => void;
   deleteCategory: (id: string) => void;
+  getCategory: (name: string) => void;
 
-  addSubcategory: (
-    objId: string,
-    urlImg: string,
-    title: string,
-    subCategoryTitle: string,
-    subCategoryImg: string
-  ) => void;
   setSubCategory: (arg: any) => void;
   setPage: (num: number) => void;
   isLoading: boolean;
+  isLoadingCategory: boolean;
   product: {
     categories: ICategory[];
     count: number;
@@ -43,21 +38,24 @@ export interface IProductsContext {
     products: IProduct[];
     count: number;
   };
-  searchProducts: IProduct[];
+  searchProducts: {
+    products: IProduct[];
+    count: number;
+  };
   categoryProducts: IProduct[];
   product: IProduct;
   newProduct: IProduct;
 
   setCategoryProducts: (arg0: IProduct[]) => void;
   setIsLoading: (arg0: boolean) => void;
-  setSearchProducts: (arg0: IProduct[]) => void;
+  setSearchProducts: (arg0: any) => void;
   setProduct: (arg0: IProduct) => void;
   setNewProduct: (arg0: IProduct) => void;
 
   getAllProducts: (arg0: number) => void;
-  getHits: () => void;
-  getPromotions: () => void;
-  getSearchProducts: ({ name }: { name: string }) => void;
+  getHits: (arg0: number) => void;
+  getPromotions: (arg0: number) => void;
+  getSearchProducts: (name: string, page: number, size: number) => void;
   getCategoryProducts: ({ name }: { name: string }) => void;
   getProduct: ({ id }: { id: string }) => void;
   updateProduct: (id: string) => void;
@@ -68,6 +66,7 @@ export interface IProductsContext {
   hitsIsLoading: boolean;
   promotionsIsLoading: boolean;
   productIsLoading: boolean;
+  searchIsLoading: boolean;
 }
 
 export interface IAuthContext {

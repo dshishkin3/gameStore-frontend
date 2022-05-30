@@ -1,5 +1,6 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import PaginationControl from "../../admin-panel/components/ui/pagination/Pagination";
 
 import BackButton from "../../components/ui/backButton/BackButton";
 import Card from "../../components/ui/card/Card";
@@ -12,37 +13,44 @@ import { useProducts } from "../../hooks/useProducts";
 import styles from "./Search.module.scss";
 
 const Search: FC = () => {
-  const { searchProducts, getSearchProducts, isLoading } = useProducts();
+  const { searchProducts, getSearchProducts, searchIsLoading } = useProducts();
 
   const { name } = useParams();
 
+  const [page, setPage] = useState<number>(1);
+
+  let init = Math.ceil(searchProducts.count / 8);
+
   useEffect(() => {
     if (name !== undefined) {
-      getSearchProducts({ name });
+      getSearchProducts(name, page, 99);
     }
-  }, [name]);
+  }, [page]);
 
   return (
     <div>
       <PageTitle title="Поиск в каталоге" />
       <div className={styles.container}>
-        {isLoading ? (
+        {searchIsLoading ? (
           <MyLoader />
         ) : (
           <div className={styles.products}>
-            {searchProducts.length < 1 ? (
+            {searchProducts.count < 1 ? (
               <div className={styles.empty}>
                 <p>К сожалению, по вашему запросу ничего не найдено :(</p>
                 <BackButton />
               </div>
             ) : (
-              searchProducts.map((product) => (
+              searchProducts.products.map((product) => (
                 <Card key={product._id} product={product} />
               ))
             )}
           </div>
         )}
         <Filters page="search" />
+      </div>
+      <div className={styles.pagination}>
+        <PaginationControl count={init} page={page} setPage={setPage} />
       </div>
     </div>
   );

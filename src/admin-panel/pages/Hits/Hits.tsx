@@ -10,15 +10,15 @@ import Product from "../Products/product/Product";
 import styles from "../Products/Products.module.scss";
 
 const AdminHits: FC = () => {
-  const { getHits, hits, isLoading, hitsIsLoading } = useProducts();
+  const { getHits, hits, hitsIsLoading } = useProducts();
 
   const [page, setPage] = useState<number>(1);
 
   const init = Math.ceil(hits.count / 8);
 
   useEffect(() => {
-    getHits();
-  }, []);
+    getHits(page);
+  }, [page]);
 
   return (
     <Wrapper title="Хиты">
