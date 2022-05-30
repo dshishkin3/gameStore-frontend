@@ -2,6 +2,7 @@
 	cursor: pointer;
 	display: flex;
 	align-items: center;
+	color:  #B0B0B0;
 	background: #FFFFFF;
 	span {
 		margin-left: 5px;
@@ -9,7 +10,9 @@
 		&:hover {
 			span{
 				transition: all 0.5s;
-				font-size: 17px;
+				// font-size: 17px;
+				color: #252733;
+	
 			}
 			svg {
 				transition: all 0.5s;

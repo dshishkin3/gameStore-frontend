@@ -1,4 +1,5 @@
 .container {
+
   display: flex;
   justify-content: space-between;
   margin-top: 30px;
@@ -8,6 +9,7 @@
 }
 
 .category {
+	
   display: flex;
   justify-content: space-between;
   margin-top: 30px;
@@ -17,10 +19,12 @@
 }
 
 .categories {
+	
   margin-left: -80px;
 }
 
 .product {
+  flex: 1 0 auto;
   margin-top: 30px;
 }
 
