@@ -42,8 +42,8 @@ const Filters: FC<IFiltersProps> = ({ page }) => {
     setIsLoading(true);
     const res = await axios.get<IProduct[]>(
       page === "category"
-        ? ` http://game-store12.herokuapp.com/api/products/category/${name}`
-        : `http://game-store12.herokuapp.com/api/products/search/${name}`
+        ? ` http://localhost:5000/products/category/${name}`
+        : `http://localhost:5000/products/search/${name}`
     );
 
     let filteredProducts = res.data.filter(
@@ -90,7 +90,7 @@ const Filters: FC<IFiltersProps> = ({ page }) => {
   const reset = () => {
     if (name !== undefined) {
       page === "category" && getCategoryProducts({ name });
-      page === "search" && getSearchProducts({ name });
+      page === "search" && getSearchProducts(name, 1, 99);
     }
     setFrom("");
     setTo("");

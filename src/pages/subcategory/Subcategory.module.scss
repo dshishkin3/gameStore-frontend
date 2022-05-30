@@ -20,6 +20,12 @@
   }
 }
 
+.pagination {
+  margin: 27px 0px;
+  display: flex;
+  justify-content: center;
+}
+
 @media (max-width: 1000px) {
   .categories {
     justify-content: space-around;

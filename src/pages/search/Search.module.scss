@@ -23,6 +23,12 @@
   }
 }
 
+.pagination {
+  margin: 27px 0px;
+  display: flex;
+  justify-content: center;
+}
+
 @media (max-width: 1200px) {
   .products {
     justify-content: space-around;

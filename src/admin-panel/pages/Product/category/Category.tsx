@@ -43,11 +43,13 @@ const Category: FC<ICategoryProps> = ({ type }) => {
   return (
     <div className={styles.container}>
       <FormControl sx={{ m: 1, minWidth: 250 }} size="medium">
-        <InputLabel id="demo-select-small">{product.category}</InputLabel>
+        <InputLabel id="demo-select-small">
+          {type === "change" ? product.category : newProduct.category}
+        </InputLabel>
         <Select
           labelId="demo-select-small"
           id="demo-select-small"
-          value={product.category}
+          value={type === "change" ? product.category : newProduct.category}
           label="Age"
           onChange={handleChange}
         >

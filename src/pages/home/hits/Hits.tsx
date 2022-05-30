@@ -13,7 +13,7 @@ const Hits: FC = () => {
   const { hits, getHits, hitsIsLoading } = useProducts();
 
   useEffect(() => {
-    getHits();
+    getHits(1);
   }, []);
 
   return (

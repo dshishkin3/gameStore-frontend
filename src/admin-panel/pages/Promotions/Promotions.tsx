@@ -10,16 +10,19 @@ import Product from "../Products/product/Product";
 import styles from "../Products/Products.module.scss";
 
 const AdminPromotions: FC = () => {
-  const { getPromotions, promotions, isLoading, promotionsIsLoading } =
-    useProducts();
+  const { getPromotions, promotions, promotionsIsLoading } = useProducts();
 
   const [page, setPage] = useState<number>(1);
 
   const init = Math.ceil(promotions.count / 8);
 
   useEffect(() => {
-    getPromotions();
-  }, []);
+    console.log(init);
+  }, [init]);
+
+  useEffect(() => {
+    getPromotions(page);
+  }, [page]);
 
   return (
     <Wrapper title="Акции">

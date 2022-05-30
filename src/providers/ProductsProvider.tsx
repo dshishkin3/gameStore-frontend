@@ -29,7 +29,9 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
   const [allProducts, setAllProducts] = useState<IProducts>({} as IProducts);
   const [hits, setHits] = useState<IProducts>({} as IProducts);
   const [promotions, setPromotions] = useState<IProducts>({} as IProducts);
-  const [searchProducts, setSearchProducts] = useState<IProduct[]>([]);
+  const [searchProducts, setSearchProducts] = useState<IProducts>(
+    {} as IProducts
+  );
   const [categoryProducts, setCategoryProducts] = useState<IProduct[]>([]);
 
   const [product, setProduct] = useState<IProduct>({} as IProduct);
@@ -40,6 +42,7 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
   const [hitsIsLoading, setHitsIsLoading] = useState(true);
   const [promotionsIsLoading, setPromotionsIsLoading] = useState(true);
   const [productIsLoading, setProductIsLoading] = useState(true);
+  const [searchIsLoading, setSearchIsLoading] = useState(true);
 
   const {
     setSuccessMessage,
@@ -48,15 +51,19 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
     setNotificationError,
   } = useNotification();
 
-  useEffect(() => {
-    console.log("isLoading- ", isLoading);
-  }, [isLoading]);
+  const config = {
+    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+  };
 
-  const getHits = async () => {
+  useEffect(() => {
+    console.log(newProduct);
+  }, [newProduct]);
+
+  const getHits = async (page: number) => {
     setHitsIsLoading(true);
     try {
       const res = await axios.get(
-        "http://game-store12.herokuapp.com/api/products/hits"
+        `https://gamestore4.herokuapp.com/products/hits/?page=${page}`
       );
       setHits(res.data);
     } catch (err: any) {
@@ -66,11 +73,11 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
     }
   };
 
-  const getPromotions = async () => {
+  const getPromotions = async (page: number) => {
     setPromotionsIsLoading(true);
     try {
       const res = await axios.get(
-        "http://game-store12.herokuapp.com/api/products/promotions"
+        `https://gamestore4.herokuapp.com/products/promotions/?page=${page}`
       );
       setPromotions(res.data);
     } catch (err: any) {
@@ -80,17 +87,21 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
     }
   };
 
-  const getSearchProducts = async ({ name }: { name: string }) => {
-    setIsLoading(true);
+  const getSearchProducts = async (
+    name: string,
+    page: number,
+    size: number
+  ) => {
+    setSearchIsLoading(true);
     try {
       const res = await axios.get(
-        `http://game-store12.herokuapp.com/api/products/search/${name}`
+        `http://localhost:5000/products/search/${name}/?page=${page}&size=${size}`
       );
-      setSearchProducts(res.data.products);
+      setSearchProducts(res.data);
     } catch (err: any) {
       console.log(err);
     } finally {
-      setIsLoading(false);
+      setSearchIsLoading(false);
     }
   };
 
@@ -112,7 +123,7 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
     setProductIsLoading(true);
     try {
       const res = await axios.get(
-        `http://game-store12.herokuapp.com/api/products/product/${id}`
+        `https://gamestore4.herokuapp.com/products/product/${id}`
       );
       setProduct(res.data);
     } catch (err: any) {
@@ -127,7 +138,7 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
     try {
       console.log("get all products");
       const res = await axios.get(
-        `https://game-store12.herokuapp.com/api/products/?page=${page}`
+        `https://gamestore4.herokuapp.com/products/?page=${page}`
       );
       setAllProducts(res.data);
     } catch (err: any) {
@@ -139,16 +150,17 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
   const updateProduct = async (id: string) => {
     try {
       const res = await axios.put(
-        `https://game-store12.herokuapp.com/api/products/${id}`,
-        product
+        `https://gamestore4.herokuapp.com/products/${id}`,
+        product,
+        config
       );
       if (res.status === 200) {
-        setSuccessMessage(res.data.message);
+        setSuccessMessage("Товар обновлен!");
         setNotificaionSuccess(true);
       }
     } catch (error: any) {
       console.log(error);
-      setErrorMessage(error.message);
+      setErrorMessage(error.response.data.message);
       setNotificationError(true);
     }
   };
@@ -156,15 +168,16 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
   const deleteProduct = async (id: string) => {
     try {
       const res = await axios.delete(
-        `https://game-store12.herokuapp.com/api/products/${id}`
+        `https://gamestore4.herokuapp.com/products/${id}`,
+        config
       );
       if (res.status === 200) {
-        setSuccessMessage(res.data.message);
+        setSuccessMessage("Товар удален");
         setNotificaionSuccess(true);
       }
     } catch (error: any) {
       console.log(error);
-      setErrorMessage(error.message);
+      setErrorMessage(error.response.data.message);
       setNotificationError(true);
     }
   };
@@ -172,16 +185,18 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
   const addProduct = async () => {
     try {
       const res = await axios.post(
-        "http://game-store12.herokuapp.com/api/products",
-        newProduct
+        "https://gamestore4.herokuapp.com/products",
+        newProduct,
+        config
       );
-      if (res.status === 200) {
-        setSuccessMessage(res.data.message);
+      if (res.status === 201) {
+        setSuccessMessage("Товар успешно добавлен!");
         setNotificaionSuccess(true);
+        setNewProduct({} as IProduct);
       }
     } catch (error: any) {
       console.log(error);
-      setErrorMessage(error.response.data.error);
+      setErrorMessage("Ошибка. Убедитесь, что все поля заполнены");
       setNotificationError(true);
     }
   };
@@ -213,8 +228,9 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
       hitsIsLoading,
       promotionsIsLoading,
       productIsLoading,
+      searchIsLoading,
     }),
-    [hits, isLoading, promotions, product, newProduct]
+    [hits, isLoading, promotions, product, newProduct, searchProducts]
   );
 
   return (
