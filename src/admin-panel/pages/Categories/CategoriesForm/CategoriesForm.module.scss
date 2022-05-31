@@ -5,18 +5,28 @@
 			align-items: center;
 			
 			.input {
+				cursor: pointer;
 				width: 307px;
 				padding: 11px 14px;
 				margin-right: 27px;
 				border: 1px solid #F5F5F5;
 				border-radius: 5px;
+				&:hover{
+					box-shadow: 0px 0px 12px 6px #F5F5F5;
+				
+					input{
+						color: #252733;
+					}
+				}
 				input {
+					cursor: pointer;
 					width: 100%;
 					font-weight: 400;
 					font-size: 14px;
 					line-height: 20px;
 					letter-spacing: 0.2px;
 					color: #B0B0B0;
+			
 				
 				}
 			
