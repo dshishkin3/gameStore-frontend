@@ -18,33 +18,33 @@ import ScrollToTop from "../../components/ui/scroll/ScrollToTop";
 
 import { MyLoaderProduct } from "../../components/ui/contentLoader/ContentLoader";
 
-
 const Product: FC = () => {
-	const { product, getProduct, isLoading } = useProducts();
+  const { product, getProduct, productIsLoading } = useProducts();
 
-	const { id } = useParams<string>();
+  const { id } = useParams<string>();
 
-	const [largeImg, setLargeImg] = useState<number>(0);
-	const [favorites, setFavorites] = useState<boolean>(false);
-	const [loading, setLoading] = useState(true);
+  const [largeImg, setLargeImg] = useState<number>(0);
+  const [favorites, setFavorites] = useState<boolean>(false);
+  const [loading, setLoading] = useState(true);
 
-	useEffect(() => {
-		if (id !== undefined) {
-			getProduct({ id });
-			setLoading(false);
-		}
-	}, []);
+  useEffect(() => {
+    if (id !== undefined) {
+      getProduct({ id });
+      setLoading(false);
+    }
+  }, []);
 
-	useEffect(() => {
-		if (localStorage.getItem(product._id)) {
-			setFavorites(true);
-		}
-	}, [localStorage.getItem(product._id)]);
+  useEffect(() => {
+    if (localStorage.getItem(product._id)) {
+      setFavorites(true);
+    }
+  }, [localStorage.getItem(product._id)]);
 
-	function addToFavorites(obj: IProduct): void {
-		toggleProductLS(obj, setFavorites);
-	}
+  function addToFavorites(obj: IProduct): void {
+    toggleProductLS(obj, setFavorites);
+  }
 
+<<<<<<< HEAD
 	const onClickImgHandle = (index: number): void => {
 		setLargeImg(index);
 	};
@@ -119,6 +119,80 @@ const Product: FC = () => {
 			)}
 		</>
 	);
+=======
+  const onClickImgHandle = (index: number): void => {
+    setLargeImg(index);
+  };
+  return (
+    <>
+      {productIsLoading ? (
+        <MyLoaderProduct />
+      ) : (
+        <div className={styles.product}>
+          <div className={styles.header}>
+            <PageTitle title={product.title} />
+          </div>
+          <div className={styles.content}>
+            <div className={styles.productImgSwipper}>
+              <Swiper
+                slidesPerView={1}
+                spaceBetween={70}
+                navigation={true}
+                className="mySwiper"
+                style={{ maxWidth: 355 }}
+                modules={[Navigation]}
+              >
+                {product.urlImages.map((img) => (
+                  <SwiperSlide>
+                    <img src={img} alt="image" />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+            <div className={styles.productImg}>
+              <div className={styles.large}>
+                <img src={product.urlImages[largeImg]} alt="productImage" />
+              </div>
+              <div className={styles.small}>
+                {product.urlImages.slice(1).map((img, index) => (
+                  <div
+                    className={index === largeImg ? styles.active : ""}
+                    onClick={() => onClickImgHandle(index)}
+                    key={img}
+                  >
+                    <img src={product.urlImages[index]} alt="small" />
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className={styles.body}>
+              <div className={styles.subtitle}>{product.desc}</div>
+              <div className={styles.price}>
+                <span>{product.price} ₽ </span>
+                <span
+                  onClick={() => addToFavorites(product)}
+                  className={styles.heartIcon}
+                >
+                  {" "}
+                  {favorites ? (
+                    <FavoriteOutlinedIcon color="success" />
+                  ) : (
+                    <FavoriteBorderOutlinedIcon color="success" />
+                  )}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className={styles.desc}>
+            <div className={styles.title}>{product.title}</div>
+            <div className={styles.body}>{product.characteristic}</div>
+          </div>
+          <ScrollToTop />
+        </div>
+      )}
+    </>
+  );
+>>>>>>> 83fa58876da079245c0031e8e919ded0a11affa6
 };
 
 export default Product;
