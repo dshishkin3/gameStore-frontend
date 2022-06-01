@@ -63,16 +63,8 @@ const AdminCategory: FC = () => {
 
 	const addNewSubcategory = () => {
 		const newSubcategories = category.subcategories;
-		if (category.subcategories.length < 3) {
-			newSubcategories[category.subcategories.length] = newSubcategory;
-			setCategory({ ...category, subcategories: newSubcategories });
-			// setSuccessMessage("Категория добавлена!");
-			// setNotificaionSuccess(true);
-		} else {
-			setErrorMessage(' максимальное количество категорий 3');
-			setNotificationError(true);
-		}
-
+		newSubcategories[category.subcategories.length] = newSubcategory;
+		setCategory({ ...category, subcategories: newSubcategories });
 	};
 
 	const deleteSubcategory = (title: string) => {

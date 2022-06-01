@@ -44,6 +44,10 @@
 					&:hover span {
 						color: #636363;
 						transition: all 0.5s;
+						svg{
+							transition: all 0.5s;
+							transform: translate(10px);
+						}
 					}
 					.btn {
 						display: flex;

@@ -48,9 +48,11 @@ const Product: FC = () => {
 	const onClickImgHandle = (index: number): void => {
 		setLargeImg(index);
 	};
+	console.log('1' + isLoading)
+	console.log('2' + loading)
 	return (
 		<>
-			{isLoading || loading ? ( // тут какой то баг, и пришлось добавить два loading, один из контекста, один тут, в остальных компнонентах все работает норм, хз почему тут так
+			{loading ? ( // тут какой то баг, и пришлось добавить два loading, один из контекста, один тут, в остальных компнонентах все работает норм, хз почему тут так
 				<MyLoaderProduct />
 			) : (
 				<div className={styles.product}>
