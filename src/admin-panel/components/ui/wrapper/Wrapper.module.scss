@@ -30,6 +30,12 @@
   cursor: pointer;
 }
 
+@media (max-width: 1300px) {
+  .container {
+    width: auto;
+  }
+}
+
 @media (max-width: 470px) {
   .leftArrow svg {
     font-size: 30px;
