@@ -1,3 +1,29 @@
-.container{
-	flex: 1 0 auto;
+.container {
+  flex: 1 0 auto;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 40px;
+}
+
+.block {
+  margin-top: 40px;
+  margin-left: 40px;
+  width: 600px;
+
+  &Title {
+    color: #a3a3a3;
+    font-size: 20px;
+    border-bottom: 1px solid #a3a3a3;
+    width: fit-content;
+    margin-bottom: 15px;
+  }
+
+  & li {
+    margin-left: 15px;
+    list-style-type: disc;
+    margin-bottom: 10px;
+  }
 }
