@@ -11,15 +11,15 @@ import styles from "./Favories.module.scss";
 import ActiveLastBreadcrumb from "../../components/ui/breadcrumbs/Breadcrumbs";
 
 
-
 const Favories: FC = () => {
 	const [product, setProduct] = useState<IProduct[]>([]);
 
 	useEffect(() => {
-		getProductFormLS();
+		getProductFromLS();
 	}, []);
 
-	function getProductFormLS() {
+
+	function getProductFromLS() {
 		if (localStorage.getItem("favorites")) {
 			setProduct(JSON.parse(localStorage.getItem("favorites") || ""));
 		}
@@ -32,7 +32,7 @@ const Favories: FC = () => {
 			{!product.length ? < Empty /> : product.length && <><PageTitle title="Мои закладки" />
 				<div className={styles.favorites}>
 					{product.map((obj) => (
-						<Card key={obj._id} product={obj} />
+						<Card key={obj._id} product={obj} getProduct={getProductFromLS} />
 					))}
 				</div> </>}
 			<ScrollToTop />
