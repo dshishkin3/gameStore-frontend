@@ -38,15 +38,21 @@ const Filters: FC<IFiltersProps> = ({ page }) => {
 
   let { name } = useParams();
 
+  interface IAllProducts {
+    products: IProduct[];
+    count: number;
+  }
+
   const search = async () => {
     setIsLoading(true);
-    const res = await axios.get<IProduct[]>(
+    const res = await axios.get<IAllProducts>(
       page === "category"
-        ? ` http://localhost:5000/products/category/${name}`
-        : `http://localhost:5000/products/search/${name}`
+        ? `https://gamestore4.herokuapp.com/products/category/${name}`
+        : `https://gamestore4.herokuapp.com/products/search/${name}`
     );
+    console.log(res.data);
 
-    let filteredProducts = res.data.filter(
+    let filteredProducts = res.data.products.filter(
       (product) =>
         product.price >= (typeof from === "string" ? 0 : from) &&
         product.price <= (typeof to === "string" ? 99999 : to)
@@ -55,25 +61,25 @@ const Filters: FC<IFiltersProps> = ({ page }) => {
     if (labelPrice.length > 1) {
       switch (labelPrice) {
         case "Менее 15 000 ₽":
-          filteredProducts = res.data.filter(
+          filteredProducts = res.data.products.filter(
             (product) => product.price <= 15000
           );
           break;
 
         case "15 001 ₽ - 20 000 ₽":
-          filteredProducts = res.data.filter(
+          filteredProducts = res.data.products.filter(
             (product) => product.price >= 15001 && product.price <= 20000
           );
           break;
 
         case "20 001 ₽ - 40 000 ₽":
-          filteredProducts = res.data.filter(
+          filteredProducts = res.data.products.filter(
             (product) => product.price >= 20001 && product.price <= 40000
           );
           break;
 
         case "40 001 и более":
-          filteredProducts = res.data.filter(
+          filteredProducts = res.data.products.filter(
             (product) => product.price >= 40001
           );
           break;
@@ -83,7 +89,11 @@ const Filters: FC<IFiltersProps> = ({ page }) => {
       }
     }
     page === "category" && setCategoryProducts(filteredProducts);
-    page === "search" && setSearchProducts(filteredProducts);
+    page === "search" &&
+      setSearchProducts({
+        products: filteredProducts,
+        count: filteredProducts.length,
+      });
     setIsLoading(false);
   };
 
