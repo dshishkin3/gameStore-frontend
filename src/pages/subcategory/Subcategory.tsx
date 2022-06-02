@@ -12,47 +12,47 @@ import { useCategories } from "../../hooks/useCategories";
 import styles from "./Subcategory.module.scss";
 
 const Subcategory: FC = () => {
-  let { name } = useParams<string>();
+	let { name } = useParams<string>();
 
-  const { category, getCategory, isLoadingCategory } = useCategories();
+	const { category, getCategory, isLoadingCategory } = useCategories();
 
-  const [maxItems, setMaxItems] = useState(14);
+	const [maxItems, setMaxItems] = useState(14);
 
-  useEffect(() => {
-    if (name !== undefined) {
-      getCategory(name);
-    }
-  }, []);
+	useEffect(() => {
+		if (name !== undefined) {
+			getCategory(name);
+		}
+	}, []);
 
-  return (
-    <div>
-      <ActiveLastBreadcrumb
-        categorie={["Компьютерная периферия", String(name)]}
-      />
-      <PageTitle title={String(name)} />
-      <div className={styles.categories}>
-        {isLoadingCategory ? (
-          <MyLoaderCategory />
-        ) : (
-          category.subcategories.slice(0, maxItems).map((item, i) => (
-            <Link
-              to={`/category/${item.title}`}
-              className={styles.category}
-              key={item.title + i}
-            >
-              <img src={item.urlImg} alt="" />
-              <p>{item.title}</p>
-            </Link>
-          ))
-        )}
-      </div>
-      {!isLoadingCategory &&
-        category.subcategories.length > 14 &&
-        category.subcategories.length > maxItems && (
-          <SeeMore onClick={() => setMaxItems(maxItems + 14)} />
-        )}
-    </div>
-  );
+	return (
+		<div>
+			<ActiveLastBreadcrumb
+				title={['Каталог товаров', String(name)]}
+			/>
+			<PageTitle title={String(name)} />
+			<div className={styles.categories}>
+				{isLoadingCategory ? (
+					<MyLoaderCategory />
+				) : (
+					category.subcategories.slice(0, maxItems).map((item, i) => (
+						<Link
+							to={`/category/${item.title}`}
+							className={styles.category}
+							key={item.title + i}
+						>
+							<img src={item.urlImg} alt="" />
+							<p>{item.title}</p>
+						</Link>
+					))
+				)}
+			</div>
+			{!isLoadingCategory &&
+				category.subcategories.length > 14 &&
+				category.subcategories.length > maxItems && (
+					<SeeMore onClick={() => setMaxItems(maxItems + 14)} />
+				)}
+		</div>
+	);
 };
 
 export default Subcategory;

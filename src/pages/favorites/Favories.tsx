@@ -14,7 +14,7 @@ import ActiveLastBreadcrumb from "../../components/ui/breadcrumbs/Breadcrumbs";
 
 const Favories: FC = () => {
 	const [product, setProduct] = useState<IProduct[]>([]);
-	
+
 	useEffect(() => {
 		getProductFormLS();
 	}, []);
@@ -28,7 +28,7 @@ const Favories: FC = () => {
 
 	return (
 		<div className={styles.container}>
-			<ActiveLastBreadcrumb />
+			<ActiveLastBreadcrumb title={['Мои закладки']} />
 			{!product.length ? < Empty /> : product.length && <><PageTitle title="Мои закладки" />
 				<div className={styles.favorites}>
 					{product.map((obj) => (

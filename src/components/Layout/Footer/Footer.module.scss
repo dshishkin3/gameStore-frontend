@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   margin-top: 100px;
+
 @media (max-width: 1000px) {
 	margin-top: 40px;
 }
@@ -63,6 +64,9 @@
 	flex-direction: column;
 	align-items: flex-end;
 	justify-content: center;
+	.infoItem {
+		text-align: right;
+	}
 	@media (max-width: 1000px) {
 		flex-direction: row;
 		align-self: flex-start;
@@ -165,13 +169,23 @@
 
 .links {
   display: flex;
+.social {
+		display: flex;
+	}
+	@media (max-width:510px) {
+		flex-direction: column;
+		.social {
+			
+			}
+	}
 }
-
 .link {
   display: flex;
   align-items: center;
   margin-top: 15px;
   margin-left: 20px;
+
+	
 }
 
 .linkTitle {
@@ -200,7 +214,7 @@
   }
 
   .information {
-    margin-top: 20 px;
+    margin-top: 20px;
     align-items: center;
 
   }
@@ -209,15 +223,13 @@
     margin-bottom: 15px;
   }
 	.navigation{
-	   align-self: center;
+		margin-right: 25px;
 	   }
 }
 
 @media (max-width: 485px) {
   .categories {
     flex-direction: column;
-   
-	
   }
 
   .links {

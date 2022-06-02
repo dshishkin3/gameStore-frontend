@@ -48,17 +48,19 @@ const Footer: FC = () => {
 							<CallIcon fontSize="small" />
 							<p className={styles.linkTitle}>8 (928) 89 68 896</p>
 						</a>
-						<a
-							href="https://instagram.com/game_store_95?igshid=YmMyMTA2M2Y="
-							className={styles.link}
-						>
-							<InstagramIcon fontSize="small" />
-							<p className={styles.linkTitle}>instagram</p>
-						</a>
-						<a href="https://t.me/game_store_95" className={styles.link}>
-							<TelegramIcon fontSize="small" />
-							<p className={styles.linkTitle}>telegram</p>
-						</a>
+						<span className={styles.social}>
+							<a
+								href="https://instagram.com/game_store_95?igshid=YmMyMTA2M2Y="
+								className={styles.link}
+							>
+								<InstagramIcon fontSize="small" />
+								<p className={styles.linkTitle}>instagram</p>
+							</a>
+							<a href="https://t.me/game_store_95" className={styles.link}>
+								<TelegramIcon fontSize="small" />
+								<p className={styles.linkTitle}>telegram</p>
+							</a>
+						</span>
 					</div>
 				</div>
 			</div>

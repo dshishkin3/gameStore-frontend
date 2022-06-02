@@ -5,28 +5,33 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 
+import styles from './Breadcrumbs.module.scss';
+
 function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
 	event.preventDefault();
 	console.info('You clicked a breadcrumb.');
 }
 
 interface IMyPropsTitle {
-	title?: string;
+	title: Array<string>;
 	categorie?: Array<string>;
 }
 const ActiveLastBreadcrumb: FC<IMyPropsTitle> = ({ title }) => {
 	const navigate = useNavigate()
-	const pathname = useLocation()
+
 	return (
-		<div role="presentation" onClick={handleClick}>
+		<div className={styles.container} role="presentation" onClick={handleClick}>
 			<Breadcrumbs aria-label="breadcrumb">
 				<Link underline="hover" color="inherit" href="/" onClick={() => navigate("/")} >
 					Home
 				</Link>
-				<Link underline="hover" color="inherit" href="/" onClick={() => navigate("/allCategories")} >
-					Каталог товаров
-				</Link>
-				{title && <Typography color="text.primary">{title}</Typography>}
+				{title[1] &&
+					<Link underline="hover" color="inherit" href="/" onClick={() => navigate("/allCategories")} >
+						{title[0]}
+					</Link>}
+				{title.length < 1 && <Typography color="text.primary">{title[0]}</Typography>}
+				{title[1] && <Typography color="text.primary">{title[1]}</Typography>}
+				{!title[1] && <Typography color="text.primary">{title[0]}</Typography>}
 
 			</Breadcrumbs>
 		</div >

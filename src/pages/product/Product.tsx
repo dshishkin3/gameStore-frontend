@@ -17,6 +17,7 @@ import styles from "./product.module.scss";
 import ScrollToTop from "../../components/ui/scroll/ScrollToTop";
 
 import { MyLoaderProduct } from "../../components/ui/contentLoader/ContentLoader";
+import ActiveLastBreadcrumb from "../../components/ui/breadcrumbs/Breadcrumbs";
 
 const Product: FC = () => {
 	const { product, getProduct, productIsLoading } = useProducts();
@@ -53,6 +54,7 @@ const Product: FC = () => {
 				<MyLoaderProduct />
 			) : (
 				<div className={styles.product}>
+					<ActiveLastBreadcrumb title={['Каталог товаров', product.title]} />
 					<div className={styles.header}>
 						<PageTitle title={product.title} />
 					</div>

@@ -44,7 +44,7 @@ const Card: FC<ICardProps> = ({ product }) => {
 					</div>
 				</div>
 				<Link to={`/product/${product._id}`} className={styles.cardItem}>
-					<img className={styles.img} src={product.urlImages[0]} alt="" />
+					<img className={styles.img} src={product.urlImages[0]} alt="product" />
 					<p className={styles.title}>
 						{product.title.length < 49
 							? product.title
