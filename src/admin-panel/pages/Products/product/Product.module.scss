@@ -69,3 +69,12 @@
     transition: all 0.5s;
   }
 }
+
+@media (max-width: 1720px) {
+  .title {
+    margin-right: 120px;
+  }
+  .priceBlock {
+    width: 110px;
+  }
+}

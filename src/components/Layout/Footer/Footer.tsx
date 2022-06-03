@@ -31,7 +31,10 @@ const Footer: FC = () => {
             ))}
         </div>
         <div className={styles.refs}>
-          <p className={styles.stock}>Акции</p>
+          <Link to="/" className={styles.allCategories}>
+            <p className={styles.stock}>Акции</p>
+          </Link>
+
           <Link to={`allCategories`} className={styles.allCategories}>
             Все категории
           </Link>

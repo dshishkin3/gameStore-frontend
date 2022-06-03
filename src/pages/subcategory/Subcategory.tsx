@@ -21,7 +21,7 @@ const Subcategory: FC = () => {
     if (name !== undefined) {
       getCategory(name);
     }
-  }, []);
+  }, [name]);
 
   return (
     <div>

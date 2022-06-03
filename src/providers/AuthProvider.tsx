@@ -10,7 +10,7 @@ interface IAuthProviderProps {
 }
 
 export const AuthProvider: FC<IAuthProviderProps> = ({ children }) => {
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -33,7 +33,7 @@ export const AuthProvider: FC<IAuthProviderProps> = ({ children }) => {
         localStorage.setItem("token", res.data.token);
       }
     } catch (err: any) {
-      setIsError(err.response.data.error);
+      setIsError("Ошибка при входе в аккаунт");
       console.log(err.response.data.error);
     } finally {
       setIsLoading(false);
