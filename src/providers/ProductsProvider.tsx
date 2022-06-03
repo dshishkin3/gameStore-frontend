@@ -55,10 +55,6 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
 		headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
 	};
 
-	useEffect(() => {
-		console.log(newProduct);
-	}, [newProduct]);
-
 	const getHits = async (page: number) => {
 		setHitsIsLoading(true);
 		try {
@@ -119,7 +115,7 @@ export const ProductsProvider: FC<IProductsProviderProps> = ({ children }) => {
 		}
 	};
 
-	const getProduct = async ({ id }: { id: string }) => {
+	const getProduct = async (id:string) => {
 		setProductIsLoading(true);
 		try {
 			const res = await axios.get(

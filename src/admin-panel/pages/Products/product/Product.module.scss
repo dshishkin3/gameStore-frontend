@@ -48,11 +48,14 @@
   align-items: center;
   width: 38%;
   justify-content: flex-end;
-  &:hover{
-		svg {
-				transition: all 0.5s;
-				transform: translate(10px);
-			}
+  & svg {
+    transition: all 0.5s;
+  }
+  &:hover {
+    svg {
+      transition: all 0.5s;
+      transform: translate(10px);
+    }
   }
   & p {
     font-size: 14px;

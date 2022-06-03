@@ -57,7 +57,7 @@ export interface IProductsContext {
   getPromotions: (arg0: number) => void;
   getSearchProducts: (name: string, page: number, size: number) => void;
   getCategoryProducts: ({ name }: { name: string }) => void;
-  getProduct: ({ id }: { id: string }) => void;
+  getProduct: (id: string) => void;
   updateProduct: (id: string) => void;
   deleteProduct: (id: string) => void;
   addProduct: () => void;

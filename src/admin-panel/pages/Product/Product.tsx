@@ -20,27 +20,33 @@ import Title from "./title/Title";
 import Flex from "../../components/ui/flexBox/Flex";
 
 const AdminProduct: FC = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   const { id } = useParams();
 
   const {
     getProduct,
     product,
-    isLoading,
     updateProduct,
     deleteProduct,
     productIsLoading,
   } = useProducts();
 
   useEffect(() => {
-    if (id !== undefined) {
-      getProduct({ id });
-    }
+    getProduct(String(id));
+    delay(500).then(() => setIsLoading(false));
   }, []);
+
+  const delay = (ms: number) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(resolve, ms);
+    });
+  };
 
   return (
     <Wrapper title={product.title} backBtn>
-      {productIsLoading ? (
-        <h1>loading...</h1>
+      {productIsLoading || isLoading ? (
+        <p>loading...</p>
       ) : (
         <>
           <HeaderItems
