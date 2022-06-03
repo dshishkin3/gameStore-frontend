@@ -5,11 +5,11 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./providers/AuthProvider";
 import { CategoriesProvider } from "./providers/CategoriesProvider";
 import { ProductsProvider } from "./providers/ProductsProvider";
+import { NotificationProvider } from "./providers/NotificationProvider";
 
 import App from "./App";
 
 import "./assets/styles/globals.css";
-import { NotificationProvider } from "./providers/NotificationProvider";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

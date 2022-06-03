@@ -1,6 +1,7 @@
-import axios from "axios";
 import React, { FC } from "react";
+
 import Wrapper from "../../components/ui/wrapper/Wrapper";
+
 import styles from "./Home.module.scss";
 
 const AdminHome: FC = () => {

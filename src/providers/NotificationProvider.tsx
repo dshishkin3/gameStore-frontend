@@ -1,12 +1,4 @@
-import {
-  FC,
-  useState,
-  useMemo,
-  createContext,
-  ReactNode,
-  useEffect,
-} from "react";
-import axios from "axios";
+import { FC, useState, useMemo, createContext, ReactNode } from "react";
 
 import { INotificationContext } from "./types";
 

@@ -1,11 +1,4 @@
-import {
-  FC,
-  useState,
-  useMemo,
-  createContext,
-  ReactNode,
-  useEffect,
-} from "react";
+import { FC, useState, useMemo, createContext, ReactNode } from "react";
 import axios from "axios";
 
 import { IProduct } from "../utils/interfaces";

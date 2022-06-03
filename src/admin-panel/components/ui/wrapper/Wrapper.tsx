@@ -1,9 +1,9 @@
 import { FC, ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
 
 import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
 
 import styles from "./Wrapper.module.scss";
-import { useNavigate } from "react-router-dom";
 
 interface IWrapperProps {
   children: ReactNode;

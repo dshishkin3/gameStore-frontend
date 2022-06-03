@@ -8,25 +8,16 @@ import {
 } from "react";
 import axios from "axios";
 
-import { ICategory } from "../utils/interfaces";
+import { ICategories, ICategory } from "../utils/interfaces";
 import { ICategoryContext } from "./types";
 import { useNotification } from "../hooks/useNotification";
 
 export const CategoriesContext = createContext<ICategoryContext>(
   {} as ICategoryContext
 );
-//
+
 interface ICategoryProviderProps {
   children: ReactNode;
-}
-export interface ICategories {
-  categories: ICategory[];
-  count: number;
-}
-
-export interface ICategories {
-  categories: ICategory[];
-  count: number;
 }
 
 export const CategoriesProvider: FC<ICategoryProviderProps> = ({
@@ -73,8 +64,6 @@ export const CategoriesProvider: FC<ICategoryProviderProps> = ({
   };
 
   const getCategory = async (name: string) => {
-    console.log(name);
-    console.log("вызов getCategory");
     setIsLoadingCategory(true);
     try {
       const res = await axios.get(
@@ -90,7 +79,7 @@ export const CategoriesProvider: FC<ICategoryProviderProps> = ({
 
   const addCategory = async (titleForm: string, urlImageFrom: string) => {
     try {
-      const response = await axios.post(
+      await axios.post(
         "https://gamestore4.herokuapp.com/categories/",
         { title: titleForm, urlImg: urlImageFrom },
         config
@@ -105,14 +94,11 @@ export const CategoriesProvider: FC<ICategoryProviderProps> = ({
   };
   const updateCategory = async (category: ICategory) => {
     try {
-      console.log(category);
-
-      const response = await axios.put(
+      await axios.put(
         `https://gamestore4.herokuapp.com/categories/${category._id}`,
         category,
         config
       );
-      console.log(response);
 
       setSuccessMessage("Категория обновлена!");
       setNotificaionSuccess(true);
@@ -124,7 +110,7 @@ export const CategoriesProvider: FC<ICategoryProviderProps> = ({
 
   const deleteCategory = async (id: string) => {
     try {
-      const response = await axios.delete(
+      await axios.delete(
         `https://gamestore4.herokuapp.com/categories/${id}`,
         config
       );

@@ -1,9 +1,8 @@
-import axios from "axios";
 import React, { FC } from "react";
-import { useNotification } from "../../../hooks/useNotification";
-import { useProducts } from "../../../hooks/useProducts";
-import Flex from "../../components/ui/flexBox/Flex";
 
+import { useProducts } from "../../../hooks/useProducts";
+
+import Flex from "../../components/ui/flexBox/Flex";
 import HeaderItems from "../../components/ui/headerItems/HeaderItems";
 import ToggleBtn from "../../components/ui/toggleBtn/ToggleBtn";
 import Wrapper from "../../components/ui/wrapper/Wrapper";

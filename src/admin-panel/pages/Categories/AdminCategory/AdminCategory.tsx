@@ -1,19 +1,17 @@
 import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import PageTitle from "../../../../components/ui/pageTitle/PageTitle";
-import { useCategories } from "../../../../hooks/useCategories";
-import AddOrDeleteBtnForm from "../../../components/ui/addOrDeleteBtnForm/AddOrDeleteBtnForm";
 
+import { useCategories } from "../../../../hooks/useCategories";
+import { useNotification } from "../../../../hooks/useNotification";
+
+import AddOrDeleteBtnForm from "../../../components/ui/addOrDeleteBtnForm/AddOrDeleteBtnForm";
+import PageTitle from "../../../../components/ui/pageTitle/PageTitle";
 import ToggleBtn from "../../../components/ui/toggleBtn/ToggleBtn";
 import Wrapper from "../../../components/ui/wrapper/Wrapper";
-
 import CategoriesForm from "../CategoriesForm/CategoriesForm";
 import CategoryHeader from "../CategoryHeader/CategoryHeader";
 
-import { ICategory } from "../../../../utils/interfaces";
-
 import styles from "./AdminCategory.module.scss";
-import { useNotification } from "../../../../hooks/useNotification";
 
 const AdminCategory: FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -26,23 +24,12 @@ const AdminCategory: FC = () => {
     setCategory,
   } = useCategories();
 
-  const {
-    setSuccessMessage,
-    setNotificaionSuccess,
-    setErrorMessage,
-    setNotificationError,
-  } = useNotification();
-
   let { id } = useParams<string>();
 
   const [newSubcategory, setNewSubcategory] = useState({
     title: "",
     urlImg: "",
   });
-
-  useEffect(() => {
-    console.log("id- ", id);
-  }, [id]);
 
   useEffect(() => {
     getCategory(String(id));

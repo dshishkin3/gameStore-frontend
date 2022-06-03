@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import PaginationControl from "../../admin-panel/components/ui/pagination/Pagination";
 
+import PaginationControl from "../../admin-panel/components/ui/pagination/Pagination";
 import BackButton from "../../components/ui/backButton/BackButton";
 import Card from "../../components/ui/card/Card";
 import { MyLoader } from "../../components/ui/contentLoader/ContentLoader";

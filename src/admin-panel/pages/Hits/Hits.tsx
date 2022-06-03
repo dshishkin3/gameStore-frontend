@@ -1,8 +1,7 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 import { useProducts } from "../../../hooks/useProducts";
 
-import HeaderItems from "../../components/ui/headerItems/HeaderItems";
 import PaginationControl from "../../components/ui/pagination/Pagination";
 import Wrapper from "../../components/ui/wrapper/Wrapper";
 import Product from "../Products/product/Product";

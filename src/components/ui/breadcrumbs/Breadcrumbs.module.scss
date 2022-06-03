@@ -1,7 +1,11 @@
-.container{
-		margin:31px 0px 16px 0px ;
-		color: #818181;
-		font-weight: 400;
-		font-size: 10px;
-		line-height: 16px;
+.container {
+  margin: 31px 0px 16px 0px;
+  color: #818181;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 16px;
+
+  & a {
+    font-size: 14px;
+  }
 }

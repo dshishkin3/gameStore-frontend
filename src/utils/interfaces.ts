@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface IProduct {
   _id: string;
   title: string;
@@ -15,4 +17,9 @@ export interface ICategory {
   title: string;
   urlImg: string;
   subcategories: any[];
+}
+
+export interface ICategories {
+  categories: ICategory[];
+  count: number;
 }

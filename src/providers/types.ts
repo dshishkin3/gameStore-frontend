@@ -7,7 +7,6 @@ export interface ICategoryContext {
   };
   category: ICategory;
   setCategory: (arg0: ICategory) => void;
-  //
   getCategories: (page: number, size: number) => void;
   addCategory: (titleForm: string, urlImageFrom: string) => void;
   updateCategory: (arg0: ICategory) => void;

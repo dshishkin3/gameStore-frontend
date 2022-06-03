@@ -57,8 +57,8 @@
       .large {
         margin-bottom: 17px;
         img {
-          max-width: 355px;
-          max-height: 315;
+          width: 355px;
+          height: 315px;
         }
       }
       .small {
@@ -66,11 +66,12 @@
         display: flex;
         justify-content: space-between;
         .active {
+          display: flex;
           background: #ffffff;
           border: 0.7px solid #f5f5f5;
         }
         img {
-          max-width: 77px;
+          width: 77px;
         }
       }
     }

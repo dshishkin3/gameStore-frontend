@@ -1,11 +1,11 @@
 import { FC, ReactNode } from "react";
+import { Link } from "react-router-dom";
 
 import { navItems } from "./navItems";
 
 import logo from "../../../assets/images/header/logo.png";
 
 import styles from "./LayoutAdmin.module.scss";
-import { Link } from "react-router-dom";
 
 interface ILayoutProps {
   children: ReactNode;

@@ -10,8 +10,8 @@ import AllCategories from "../pages/allCategories/AllCategories";
 import Category from "../pages/category/Category";
 import Favories from "../pages/favorites/Favories";
 import Subcategory from "../pages/subcategory/Subcategory";
-import LayoutAdmin from "../admin-panel/components/nav/LayoutAdmin";
 
+import LayoutAdmin from "../admin-panel/components/nav/LayoutAdmin";
 import AdminAuth from "../admin-panel/pages/Auth/Auth";
 import AdminHome from "../admin-panel/pages/Home/Home";
 import AdminProducts from "../admin-panel/pages/Products/Products";

@@ -1,18 +1,14 @@
 import { FC, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 import Wrapper from "../../components/ui/wrapper/Wrapper";
+import CategoriesForm from "./CategoriesForm/CategoriesForm";
+import PaginationControl from "../../components/ui/pagination/Pagination";
+import AdminCategoryItem from "./AdminCategoryItem/AdminCategoryItem";
+import AddOrDeleteBtnForm from "../../components/ui/addOrDeleteBtnForm/AddOrDeleteBtnForm";
 
 import { useCategories } from "../../../hooks/useCategories";
 
 import styles from "./Categories.module.scss";
-
-import CategoriesForm from "./CategoriesForm/CategoriesForm";
-import axios from "axios";
-import { ICategory } from "../../../utils/interfaces";
-import PaginationControl from "../../components/ui/pagination/Pagination";
-import AdminCategoryItem from "./AdminCategoryItem/AdminCategoryItem";
-import AddOrDeleteBtnForm from "../../components/ui/addOrDeleteBtnForm/AddOrDeleteBtnForm";
 
 const AdminCategories: FC = () => {
   const [urlImageFrom, setUrlImageForm] = useState("");

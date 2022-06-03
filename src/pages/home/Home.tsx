@@ -4,14 +4,14 @@ import Hits from "./hits/Hits";
 import Promotions from "./promotions/Promotions";
 import Map from "./map/Map";
 
+import { useCategories } from "../../hooks/useCategories";
+
 import styles from "./Home.module.scss";
 import "swiper/css";
 import "swiper/css/navigation";
-import { useAuth } from "../../hooks/useAuth";
-import { useCategories } from "../../hooks/useCategories";
 
 const Home: FC = () => {
-  const { getCategories, isLoading } = useCategories();
+  const { getCategories } = useCategories();
 
   useEffect(() => {
     getCategories(1, 99);

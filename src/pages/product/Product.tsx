@@ -7,17 +7,15 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 
 import { IProduct } from "../../utils/interfaces";
-
 import { useProducts } from "../../hooks/useProducts";
-import toggleProductLS from "../../hok/toggleProductLS";
+import toggleProductLS from "../../hooks/toggleProductLS";
 
 import PageTitle from "../../components/ui/pageTitle/PageTitle";
-
-import styles from "./product.module.scss";
 import ScrollToTop from "../../components/ui/scroll/ScrollToTop";
-
 import { MyLoaderProduct } from "../../components/ui/contentLoader/ContentLoader";
 import ActiveLastBreadcrumb from "../../components/ui/breadcrumbs/Breadcrumbs";
+
+import styles from "./product.module.scss";
 
 const Product: FC = () => {
   const { product, getProduct, productIsLoading } = useProducts();
@@ -70,7 +68,7 @@ const Product: FC = () => {
               >
                 {product.urlImages.map((img) => (
                   <SwiperSlide key={img}>
-                    <img src={img} alt="image" />
+                    <img src={img} alt="" />
                   </SwiperSlide>
                 ))}
               </Swiper>

@@ -1,9 +1,7 @@
-import axios from "axios";
 import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { useProducts } from "../../../hooks/useProducts";
-import { useNotification } from "../../../hooks/useNotification";
 
 import HeaderItems from "../../components/ui/headerItems/HeaderItems";
 import ToggleBtn from "../../components/ui/toggleBtn/ToggleBtn";
