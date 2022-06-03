@@ -33,7 +33,7 @@ export const AuthProvider: FC<IAuthProviderProps> = ({ children }) => {
         localStorage.setItem("token", res.data.token);
       }
     } catch (err: any) {
-      setIsError(err.response.data.error);
+      setIsError("Ошибка при входе в аккаунт");
       console.log(err.response.data.error);
     } finally {
       setIsLoading(false);

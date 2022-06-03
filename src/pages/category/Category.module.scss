@@ -16,7 +16,6 @@
 .wrapper {
   display: flex;
   justify-content: space-between;
-  margin-left: 380px;
 }
 
 .category {
@@ -61,16 +60,10 @@
   .empty {
     text-align: center;
   }
-  .wrapper {
-    margin-left: 300px;
-  }
 }
 
 @media (max-width: 1000px) {
   .container {
     flex-direction: column-reverse;
-  }
-  .wrapper {
-    margin-left: 0px;
   }
 }
