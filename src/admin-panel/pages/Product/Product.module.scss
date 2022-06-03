@@ -11,3 +11,19 @@
   display: flex;
   margin: 30px;
 }
+
+.titleBlock {
+  padding: 30px 70px;
+}
+
+@media (max-width: 1550px) {
+  .titleBlock {
+    padding: 30px 40px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .titleBlock {
+    padding: 30px 10px;
+  }
+}

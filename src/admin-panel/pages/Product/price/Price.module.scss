@@ -14,3 +14,18 @@
     }
   }
 }
+
+@media (max-width: 1503px) {
+  .container {
+    & input:first-child {
+      margin-right: 10px;
+    }
+  }
+}
+@media (max-width: 1400px) {
+  .container {
+    & input:first-child {
+      margin-right: 0px;
+    }
+  }
+}

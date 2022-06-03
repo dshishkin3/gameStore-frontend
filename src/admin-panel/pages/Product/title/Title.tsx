@@ -26,7 +26,7 @@ const Title: FC<ITitleProps> = ({ type }) => {
   };
 
   return (
-    <div style={{ padding: "30px 70px" }}>
+    <div className={styles.titleBlock}>
       <input className={styles.input} value={title} onChange={changeTitle} />
     </div>
   );
