@@ -26,7 +26,7 @@ const Category: FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.main}>
       <PageTitle title={String(name)} />
       <div className={styles.container}>
         {isLoading ? (
